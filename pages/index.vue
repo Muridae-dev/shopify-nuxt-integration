@@ -1,20 +1,21 @@
 <template>
   <div>
     <h1>Welcome to the homepage</h1>
-    <NuxtLink to="/about">About page</NuxtLink>
+    <ProductView />
   </div>
 </template>
 
 <script setup lang="ts">
-import { GetProducts } from "@/utils/ShopifyClient";
-
-const products = await GetProducts();
-
 // console.log(useNuxtData("products"));
 </script>
 
 <style lang="scss">
 h1 {
-  color: $secondary;
+  color: $primary;
+}
+
+body {
+  background: $primary-background; /* fallback for old browsers */
+  font-family: "Courier New", Courier, monospace;
 }
 </style>
