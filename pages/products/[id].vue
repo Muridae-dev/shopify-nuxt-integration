@@ -1,26 +1,30 @@
 <template>
-  <div v-if="product" class="product-container">
-    <div class="product-info">
-      <h1>{{ product.title }}</h1>
-      <div class="product-price">
-        Price:
-        <span>{{
-          product.variants.edges[0].node.price.amount +
-          product.variants.edges[0].node.price.currencyCode
-        }}</span>
-      </div>
-      <div class="product-description">
-        Description:<span>{{ product.description }}</span>
-      </div>
+  <div>
+    <Transition name="fade">
+      <div v-if="product" class="product-container">
+        <div class="product-info">
+          <h1>{{ product.title }}</h1>
+          <div class="product-price">
+            Price:
+            <span>{{
+              product.variants.edges[0].node.price.amount +
+              product.variants.edges[0].node.price.currencyCode
+            }}</span>
+          </div>
+          <div class="product-description">
+            Description:<span>{{ product.description }}</span>
+          </div>
 
-      <div class="product-breadcrumb">
-        {{ `${breadcrumb[1]} / ${breadcrumb[2]}` }}
+          <div class="product-breadcrumb">
+            {{ `${breadcrumb[1]} / ${breadcrumb[2]}` }}
+          </div>
+        </div>
+        <div class="product-image-container">
+          <img :src="product.images.edges[0].node.originalSrc" />
+        </div>
+        <!-- <pre>{{ product }}</pre> -->
       </div>
-    </div>
-    <div class="product-image-container">
-      <img :src="product.images.edges[0].node.originalSrc" />
-    </div>
-    <!-- <pre>{{ product }}</pre> -->
+    </Transition>
   </div>
 </template>
 
@@ -28,8 +32,6 @@
 const route = useRoute();
 const product = ref<any>();
 const breadcrumb = route.path.split("/");
-
-console.log(breadcrumb[1]);
 
 onMounted(async () => {
   const fetchedProducts = await GetProduct(route.params.id);

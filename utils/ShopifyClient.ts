@@ -34,6 +34,13 @@ export const GetProducts = async () => {
                   title
                   description
                   productType
+                  collections(first: 2) {
+                    edges {
+                      node {
+                        title
+                      }
+                    }
+                  }
                   variants(first: 1) {
                     edges {
                       node {

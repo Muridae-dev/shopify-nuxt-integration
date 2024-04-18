@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Welcome to the homepage</h1>
-    <ProductView />
+    <Hero />
+    <ProductCarousel />
   </div>
 </template>
 
@@ -11,11 +11,11 @@
 
 <style lang="scss">
 h1 {
-  color: $primary;
+  color: $secondary;
 }
 
 body {
   background: $primary-background; /* fallback for old browsers */
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Montserrat", sans-serif;
 }
 </style>
