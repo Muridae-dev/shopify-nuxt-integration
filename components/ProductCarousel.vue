@@ -1,11 +1,13 @@
 <template>
-  <div class="product-carousel-container">
-    <ProductCard
-      v-if="products"
-      v-for="{ node: product } in products"
-      v-bind="{ product }"
-    />
-  </div>
+  <Carousel v-if="products" :items-to-show="5">
+    <Slide v-for="{ node: product } in products" :key="product.id">
+      <ProductCard v-bind="{ product }" />
+    </Slide>
+    <template #addons>
+      <Navigation />
+      <Pagination />
+    </template>
+  </Carousel>
 </template>
 
 <script setup lang="ts">
@@ -20,11 +22,28 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-.product-carousel-container {
-  display: flex;
-  gap: 2px;
-  overflow: scroll;
-  width: 100%;
+.carousel__prev,
+.carousel__next {
   color: white;
+  mix-blend-mode: difference;
+
+  &:hover {
+    color: red;
+  }
+}
+
+.carousel__pagination-button {
+  &:hover {
+    &::after {
+      background: blue;
+    }
+  }
+  &::after {
+    background: white;
+  }
+}
+
+.carousel__pagination-button--active::after {
+  background: red;
 }
 </style>
