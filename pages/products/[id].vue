@@ -18,6 +18,8 @@
           <div class="product-breadcrumb">
             {{ `${breadcrumb[1]} / ${breadcrumb[2]}` }}
           </div>
+
+          <button class="product-add-to-cart">ADD TO CART</button>
         </div>
         <div class="product-image-container">
           <img :src="product.images.edges[0].node.originalSrc" />
@@ -48,6 +50,8 @@ onMounted(async () => {
   display: flex;
   justify-content: center;
   gap: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 
   flex-direction: row;
   flex-wrap: wrap;
@@ -79,6 +83,18 @@ onMounted(async () => {
         text-transform: none;
       }
     }
+
+    .product-add-to-cart {
+      height: 50px;
+      background: transparent;
+      color: $secondary;
+      border: 1px solid;
+      border-color: $secondary;
+      justify-self: flex-end;
+
+      font-family: "roc-grotesk-wide",  sans-serif;
+      font-weight: 600;
+    }
   }
 
   .product-image-container {
@@ -87,7 +103,6 @@ onMounted(async () => {
 
     img {
       width: 100%;
-      border-radius: 10px;
     }
   }
 

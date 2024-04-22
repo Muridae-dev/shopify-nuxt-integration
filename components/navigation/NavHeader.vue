@@ -44,6 +44,11 @@ header {
   a {
     color: white;
     text-decoration: none;
+
+    font-family: "roc-grotesk-wide",  sans-serif;
+    font-weight: 600;
+
+    text-transform: uppercase;
   }
 }
 

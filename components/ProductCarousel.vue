@@ -24,7 +24,12 @@ onMounted(async () => {
 <style lang="scss">
 .carousel__prev,
 .carousel__next {
-  color: black;
+  color: white;
+  mix-blend-mode: difference;
+
+  &:hover {
+    color: red;
+  }
 }
 
 .carousel__pagination-button {
