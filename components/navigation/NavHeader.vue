@@ -11,11 +11,20 @@
       <li>
         <NuxtLink class="header-link" to="/about">About</NuxtLink>
       </li>
+      <li>
+        <button class="header-link" @click="cartActive = !cartActive">
+          CART
+        </button>
+      </li>
     </ul>
   </header>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useCartStore } from "@/stores/cartStore";
+
+const { cartActive } = storeToRefs(useCartStore());
+</script>
 
 <style lang="scss">
 .header-spacing {
@@ -41,7 +50,8 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  a {
+  a,
+  button {
     color: white;
     text-decoration: none;
 
@@ -49,6 +59,12 @@ header {
     font-weight: 600;
 
     text-transform: uppercase;
+  }
+
+  button {
+    background: transparent;
+    font-size: 1.2rem;
+    border: none;
   }
 }
 
