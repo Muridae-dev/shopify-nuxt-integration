@@ -4,7 +4,7 @@
 footer {
   height: 400px;
 
-  background: black;
+  background: $primary-background;
   border-top: 1px solid;
   border-color: $secondary;
   color: $secondary;

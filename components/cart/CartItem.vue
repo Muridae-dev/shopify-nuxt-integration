@@ -10,13 +10,13 @@
         `${product.cost.amountPerQuantity.amount} ${product.cost.amountPerQuantity.currencyCode}`
       }}</span>
       <div class="cart-product-quantity">
-        <button @click="quantity = quantity - 1">-</button>
+        <button @click="quantityRef = quantityRef - 1">-</button>
         <input
           class="cart-product-quantity-input"
-          @change="(e) => (quantity = e.target.value)"
-          :value="quantity"
+          @change="(e) => (quantityRef = e.target.value)"
+          :value="quantityRef"
         />
-        <button @click="quantity = quantity + 1">+</button>
+        <button @click="quantityRef = quantityRef + 1">+</button>
       </div>
     </div>
   </div>
@@ -26,11 +26,12 @@
 interface CartItemProps {
   product: any;
   cartId: any;
+  quantity: any;
 }
 
 const props = defineProps<CartItemProps>();
 
-const quantity = ref(props.product.quantity);
+const quantityRef = ref(props.quantity);
 
 const updateCart = ({ product, quantity }: any) => {
   const productInfo = {
@@ -42,7 +43,7 @@ const updateCart = ({ product, quantity }: any) => {
   ShopifyUpdateLineItem({ cartId: props.cartId, product: productInfo });
 };
 
-watch(quantity, (newQuantity) => {
+watch(quantityRef, (newQuantity) => {
   updateCart({ product: props.product, quantity: newQuantity });
 });
 </script>

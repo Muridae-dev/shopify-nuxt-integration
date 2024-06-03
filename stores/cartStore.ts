@@ -22,12 +22,14 @@ export const useCartStore = defineStore("cart", () => {
       );
     cartId.value = localStorage.getItem("cartId");
 
-    console.log("cartId in store", cartId.value);
+    // console.log("cartId in store", cartId.value);
 
-    ShopifyAddCartItem({
+    await ShopifyAddCartItem({
       cartId: cartId.value,
       product: { merchandiseId: id, quantity },
     });
+
+    cartActive.value = true;
   };
 
   return { cartId, updateCart, cartActive };

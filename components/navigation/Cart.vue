@@ -5,7 +5,7 @@
     </button>
     <CartItem
       v-for="{ node: product } in cart.lines.edges"
-      v-bind="{ product, cartId }"
+      v-bind="{ product, cartId, quantity: product.quantity }"
     />
 
     <a class="cart-checkout-button" :href="cart.checkoutUrl">CHECKOUT</a>
@@ -17,10 +17,11 @@ const cart = ref<any>();
 
 const { cartId, cartActive } = storeToRefs(useCartStore());
 
-watch(cartId, async (newCartId) => {
-  cartActive.value = true;
-  if (newCartId !== "" && newCartId)
+watch([cartId, cartActive], async ([newCartId]) => {
+  if (newCartId && newCartId !== "") {
     cart.value = await ShopifyGetCart(newCartId).then((data) => data.cart);
+    console.log(cart.value);
+  }
 });
 </script>
 
@@ -35,9 +36,11 @@ watch(cartId, async (newCartId) => {
   height: 100%;
   width: 100%;
   max-width: 500px;
-  background: black;
+  background: $primary-background;
   z-index: 1000;
   overflow-y: scroll;
+
+  border-left: 1px solid $primary;
 
   &.active {
     transform: translateX(0);
@@ -62,7 +65,7 @@ watch(cartId, async (newCartId) => {
     border: 3px solid $secondary;
     border-radius: 10px;
     box-shadow: 5px 5px $secondary;
-    background: black;
+    background: $primary-background;
     top: 10px;
     right: 15px;
   }

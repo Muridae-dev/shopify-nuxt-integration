@@ -1,6 +1,6 @@
 <template>
   <div class="header-spacing" />
-  <header>
+  <header :class="{ 'hide-header': isScrollingDown }" ref="header">
     <div class="header-icon-container">
       <NuxtLink class="header-link" to="/">WEBSITE NAME</NuxtLink>
     </div>
@@ -24,6 +24,32 @@
 import { useCartStore } from "@/stores/cartStore";
 
 const { cartActive } = storeToRefs(useCartStore());
+
+// State for tracking scroll position
+const lastScroll = ref(0);
+const isScrollingDown = ref(false);
+const header = ref<HTMLDivElement | null>(null);
+
+const handleScroll = () => {
+  if (header.value) {
+    const headerHeight = header.value.clientHeight;
+
+    const currentScroll = window.scrollY;
+    isScrollingDown.value =
+      currentScroll > lastScroll.value && currentScroll > headerHeight;
+
+    lastScroll.value = currentScroll;
+  }
+};
+
+// Mounting and unmounting event listeners
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <style lang="scss">
@@ -40,23 +66,29 @@ header {
   padding-left: 50px;
   padding-right: 50px;
 
-  background: black;
+  background: $primary-background;
   border-bottom: 1px solid;
   border-color: $secondary;
 
   position: fixed;
   top: 0;
+  transform: translateY(0);
+  transition: transform 0.5s;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  &.hide-header {
+    transform: translateY(-100%);
+  }
+
   a,
   button {
-    color: white;
+    color: $secondary;
     text-decoration: none;
 
-    font-family: "roc-grotesk-wide",  sans-serif;
-    font-weight: 600;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
 
     text-transform: uppercase;
   }
@@ -65,6 +97,7 @@ header {
     background: transparent;
     font-size: 1.2rem;
     border: none;
+    vertical-align: middle;
   }
 }
 
