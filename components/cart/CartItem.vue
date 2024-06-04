@@ -32,6 +32,8 @@ interface CartItemProps {
 const props = defineProps<CartItemProps>();
 
 const quantityRef = ref(props.quantity);
+console.log("quantityRef:", quantityRef.value);
+console.log("quantityProuct", props.product.quantity);
 
 const updateCart = ({ product, quantity }: any) => {
   const productInfo = {

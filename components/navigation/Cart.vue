@@ -5,6 +5,7 @@
     </button>
     <CartItem
       v-for="{ node: product } in cart.lines.edges"
+      :key="product.id"
       v-bind="{ product, cartId, quantity: product.quantity }"
     />
 
@@ -13,17 +14,27 @@
 </template>
 
 <script setup lang="ts">
-const cart = ref<any>();
+const cart = reactive<any>({ lines: { edges: [] }, checkoutUrl: "" });
 
 const { cartId, cartActive } = storeToRefs(useCartStore());
 
 watch([cartId, cartActive], async ([newCartId]) => {
   if (newCartId && newCartId !== "") {
-    cart.value = await ShopifyGetCart(newCartId).then((data) => data.cart);
-    console.log(cart.value);
+    const newCart = await ShopifyGetCart(newCartId).then((data) => data.cart);
+    updateCart(newCart);
+    console.log(cart);
   }
 });
+
+function updateCart(newCart: any) {
+  cart.lines.edges = newCart.lines.edges;
+  cart.checkoutUrl = newCart.checkoutUrl;
+}
 </script>
+
+<style lang="scss">
+/* Your styles here */
+</style>
 
 <style lang="scss">
 .cart-container {
