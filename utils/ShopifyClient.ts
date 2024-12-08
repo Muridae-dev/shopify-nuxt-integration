@@ -1,6 +1,6 @@
-const baseDomain = "b799c0-97.myshopify.com";
+const baseDomain = "nuxt-build.myshopify.com";
 const apiVersion = "2024-04";
-const shopifyToken = "63c9ecc8f9a27ee24ba1dd090c425bca";
+const shopifyToken = "b28d17f32049c796a7c47d5281bdd46b";
 const baseURL = `https://${baseDomain}/api/${apiVersion}/graphql.json`;
 
 // -------------------- PRODUCTS --------------------
@@ -188,8 +188,6 @@ export const ShopifyAddCartItem = async ({ cartId, product }: any) => {
     return null;
   }
 
-  console.log(result);
-
   return result.data;
 };
 
@@ -239,8 +237,6 @@ export const ShopifyGetCart = async (cartId: string) => {
     return null;
   }
 
-  console.log(result);
-
   return result.data;
 };
 
@@ -268,8 +264,6 @@ export const ShopifyUpdateLineItem = async ({ cartId, product }: any) => {
     console.error("Error updating line-item: ", result.error);
     return null;
   }
-
-  console.log(result);
 
   return result.data;
 };

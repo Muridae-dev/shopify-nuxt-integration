@@ -24,6 +24,7 @@
           </span>
         </div>
         <img
+          v-if="product.images.edges[0]"
           :alt="
             product.images.edges[0].node.altText || `Image for ${product.title}`
           "
@@ -39,9 +40,11 @@ interface ProductCardProps {
   product: any;
 }
 
-defineProps<ProductCardProps>();
+const props = defineProps<ProductCardProps>();
 
 const getProductId = (idToFormat: string) => idToFormat.split("Product/")[1];
+
+console.log(props.product);
 </script>
 
 <style lang="scss">

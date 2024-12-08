@@ -10,7 +10,12 @@
         `${product.cost.amountPerQuantity.amount} ${product.cost.amountPerQuantity.currencyCode}`
       }}</span>
       <div class="cart-product-quantity">
-        <button @click="quantityRef = quantityRef - 1">-</button>
+        <button
+          @click="quantityRef = quantityRef - 1"
+          :disabled="quantityRef === 0"
+        >
+          -
+        </button>
         <input
           class="cart-product-quantity-input"
           @change="(e) => (quantityRef = e.target.value)"
@@ -25,24 +30,22 @@
 <script setup lang="ts">
 interface CartItemProps {
   product: any;
-  cartId: any;
   quantity: any;
 }
 
 const props = defineProps<CartItemProps>();
 
 const quantityRef = ref(props.quantity);
-console.log("quantityRef:", quantityRef.value);
-console.log("quantityProuct", props.product.quantity);
 
 const updateCart = ({ product, quantity }: any) => {
+  const { cartId } = useCartStore();
   const productInfo = {
     id: product.id,
     merchandiseId: product.merchandise.id,
     quantity: parseInt(quantity),
   };
 
-  ShopifyUpdateLineItem({ cartId: props.cartId, product: productInfo });
+  ShopifyUpdateLineItem({ cartId, product: productInfo });
 };
 
 watch(quantityRef, (newQuantity) => {
@@ -63,7 +66,9 @@ watch(quantityRef, (newQuantity) => {
 
   .cart-product-image {
     height: 100%;
-    width: auto;
+    object-fit: contain;
+    overflow: hidden;
+    aspect-ratio: 2/1;
   }
 
   .cart-product-info {
@@ -92,6 +97,13 @@ watch(quantityRef, (newQuantity) => {
         border-color: $secondary;
         width: 32px;
         height: 32px;
+
+        &[disabled],
+        &:disabled {
+          background: rgb(242, 242, 242);
+          color: rgb(98, 98, 98);
+          cursor: not-allowed;
+        }
       }
 
       input {

@@ -9,9 +9,15 @@ interface UpdateCartProps {
 export const useCartStore = defineStore("cart", () => {
   const cartId = ref<string>();
   const cartActive = ref(false);
+  const cart = reactive<any>({
+    lines: { edges: [] },
+    checkoutUrl: "",
+    totalQuantity: "",
+  });
 
   onMounted(() => {
     cartId.value = localStorage.getItem("cartId") || "";
+    fetchCart();
   });
 
   const updateCart = async ({ id, quantity }: UpdateCartProps) => {
@@ -22,15 +28,25 @@ export const useCartStore = defineStore("cart", () => {
       );
     cartId.value = localStorage.getItem("cartId");
 
-    // console.log("cartId in store", cartId.value);
-
     await ShopifyAddCartItem({
       cartId: cartId.value,
       product: { merchandiseId: id, quantity },
     });
 
+    await fetchCart();
+
     cartActive.value = true;
   };
 
-  return { cartId, updateCart, cartActive };
+  const fetchCart = async () => {
+    cartId.value !== "" &&
+      cartId.value &&
+      (await ShopifyGetCart(cartId.value).then((data) => {
+        cart.lines.edges = data.cart.lines.edges;
+        cart.checkoutUrl = data.cart.checkoutUrl;
+        cart.totalQuantity = data.cart.totalQuantity;
+      }));
+  };
+
+  return { cartId, updateCart, cartActive, cart };
 });

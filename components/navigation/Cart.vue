@@ -6,7 +6,7 @@
     <CartItem
       v-for="{ node: product } in cart.lines.edges"
       :key="product.id"
-      v-bind="{ product, cartId, quantity: product.quantity }"
+      v-bind="{ product, quantity: product.quantity }"
     />
 
     <a class="cart-checkout-button" :href="cart.checkoutUrl">CHECKOUT</a>
@@ -14,27 +14,14 @@
 </template>
 
 <script setup lang="ts">
-const cart = reactive<any>({ lines: { edges: [] }, checkoutUrl: "" });
+// But here it's not...
+const { cartActive, cart } = storeToRefs(useCartStore());
 
-const { cartId, cartActive } = storeToRefs(useCartStore());
-
-watch([cartId, cartActive], async ([newCartId]) => {
-  if (newCartId && newCartId !== "") {
-    const newCart = await ShopifyGetCart(newCartId).then((data) => data.cart);
-    updateCart(newCart);
-    console.log(cart);
-  }
+// Here it's being reactive
+watch(cart.value, (newCart) => {
+  console.log("newcart", newCart);
 });
-
-function updateCart(newCart: any) {
-  cart.lines.edges = newCart.lines.edges;
-  cart.checkoutUrl = newCart.checkoutUrl;
-}
 </script>
-
-<style lang="scss">
-/* Your styles here */
-</style>
 
 <style lang="scss">
 .cart-container {
@@ -92,6 +79,8 @@ function updateCart(newCart: any) {
   align-items: center;
   justify-content: center;
   margin: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
 
   color: $secondary;
   font-family: "roc-grotesk-wide",  sans-serif;
