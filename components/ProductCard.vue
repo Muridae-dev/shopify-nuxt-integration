@@ -23,13 +23,16 @@
             }}
           </span>
         </div>
-        <img
-          v-if="product.images.edges[0]"
-          :alt="
-            product.images.edges[0].node.altText || `Image for ${product.title}`
-          "
-          :src="product.images.edges[0].node.originalSrc"
-        />
+        <figure class="product-image-container">
+          <img
+            v-if="product.images.edges[0]"
+            :alt="
+              product.images.edges[0].node.altText ||
+              `Image for ${product.title}`
+            "
+            :src="product.images.edges[0].node.originalSrc"
+          />
+        </figure>
       </article>
     </NuxtLink>
   </div>
@@ -48,36 +51,44 @@ console.log(props.product);
 </script>
 
 <style lang="scss">
+// TODO: Change width 200px & height 200px to var
 .product-card {
-  width: 400px;
+  width: 200px;
   height: 100%;
   display: flex;
   flex-direction: column;
   color: $primary;
   background: $card-background;
 
-  img {
-    width: auto;
+  .product-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    aspect-ratio: 1;
     padding: 10px;
-    border-bottom: 1px solid;
-    border-color: $primary-background;
+    background-color: grey;
 
     order: 1;
+
+    img {
+      object-fit: contain;
+      width: 100%;
+    }
   }
 
   .product-info {
     order: 2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 5px;
-    align-items: center;
-    padding: 10px;
+    padding-top: 10px;
+    height: 100%;
 
     font-family: "roc-grotesk",  sans-serif;
 
     h2 {
-      font-size: 1.4rem;
+      font-size: 1rem;
       line-height: 1.4rem;
       font-weight: 500;
     }
@@ -85,7 +96,6 @@ console.log(props.product);
     .product-collection {
       font-size: 0.8rem;
       line-height: 0.8rem;
-      height: 0.8rem;
     }
 
     .product-price {
