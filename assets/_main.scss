@@ -1,1 +1,8 @@
 @import "./colors", "./sizes";
+
+@font-face {
+  font-family: "AdvercaseFont";
+  src: url("/fonts/advercaseFont.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
