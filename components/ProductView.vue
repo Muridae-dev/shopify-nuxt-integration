@@ -1,15 +1,15 @@
 <template>
   <section>
     <TransitionGroup name="fade">
-      <div v-show="showProducts" key="products" class="product-container">
+      <div v-if="!products" key="loading" class="loading-products">
+        LOADING ...
+      </div>
+
+      <div v-else key="products" class="product-container">
         <ProductCard
           v-for="{ node: product } in products"
           v-bind="{ product }"
         />
-      </div>
-
-      <div v-show="showLoading" key="loading" class="loading-products">
-        LOADING ...
       </div>
     </TransitionGroup>
   </section>
@@ -17,24 +17,10 @@
 
 <script setup lang="ts">
 import { GetProducts } from "@/utils/ShopifyClient";
-import { ref, onMounted } from "vue";
 
-const products = ref();
-const showProducts = ref(false);
-const showLoading = ref(true);
-
-onMounted(async () => {
+const { data: products } = await useAsyncData("products", async () => {
   const fetchedProducts = await GetProducts();
-  products.value = fetchedProducts.products
-    ? fetchedProducts.products.edges
-    : null;
-
-  setTimeout(() => {
-    showLoading.value = false;
-  });
-  setTimeout(() => {
-    showProducts.value = true;
-  }, 400);
+  return fetchedProducts.products ? fetchedProducts.products.edges : [];
 });
 </script>
 
