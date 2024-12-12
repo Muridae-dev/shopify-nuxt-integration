@@ -22,10 +22,20 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
+.carousel {
+  text-align: unset;
+}
+
+.carousel__track {
+  align-items: start;
+}
+
 .carousel__prev,
 .carousel__next {
   color: white;
   mix-blend-mode: difference;
+  margin-left: 0;
+  margin-right: 0;
 
   &:hover {
     color: red;

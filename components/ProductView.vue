@@ -2,6 +2,7 @@
   <section>
     <TransitionGroup name="fade">
       <div v-if="showProducts" key="products" class="product-container">
+        {{ showLoading }}
         <ProductCard
           v-for="{ node: product } in products"
           v-bind="{ product }"
@@ -9,7 +10,7 @@
       </div>
 
       <div v-if="showLoading" key="loading" class="loading-products">
-        LOADING ...
+        LOADING {{ showLoading }} {{ showProducts }} ...
       </div>
     </TransitionGroup>
   </section>
@@ -20,18 +21,21 @@ import { GetProducts } from "@/utils/ShopifyClient";
 import { ref, onMounted } from "vue";
 
 const products = ref();
-const showProducts = ref(false); // Initially, do not show products
-const showLoading = ref(true); // Initially, show loading
+const showProducts = ref(false);
+const showLoading = ref(true);
 
 onMounted(async () => {
   const fetchedProducts = await GetProducts();
   products.value = fetchedProducts.products
     ? fetchedProducts.products.edges
     : null;
-  setTimeout(() => (showLoading.value = false));
+
   setTimeout(() => {
-    showProducts.value = true; // Start showing products
-  }, 400); // Delay to match the fade transition duration
+    showLoading.value = false;
+  });
+  setTimeout(() => {
+    showProducts.value = true;
+  }, 400);
 });
 </script>
 
