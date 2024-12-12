@@ -1,16 +1,15 @@
 <template>
   <section>
     <TransitionGroup name="fade">
-      <div v-if="showProducts" key="products" class="product-container">
-        {{ showLoading }}
+      <div v-show="showProducts" key="products" class="product-container">
         <ProductCard
           v-for="{ node: product } in products"
           v-bind="{ product }"
         />
       </div>
 
-      <div v-if="showLoading" key="loading" class="loading-products">
-        LOADING {{ showLoading }} {{ showProducts }} ...
+      <div v-show="showLoading" key="loading" class="loading-products">
+        LOADING ...
       </div>
     </TransitionGroup>
   </section>
