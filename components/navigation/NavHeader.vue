@@ -87,8 +87,8 @@ header {
     color: $secondary;
     text-decoration: none;
 
-    font-family: "Work Sans", sans-serif;
-    font-weight: 700;
+    font-family: "roc-grotesk",  sans-serif;
+    font-weight: 500;
 
     text-transform: uppercase;
   }

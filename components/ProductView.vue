@@ -19,7 +19,7 @@
 import { GetProducts } from "@/utils/ShopifyClient";
 import { ref, onMounted } from "vue";
 
-const products = ref(null);
+const products = ref();
 const showProducts = ref(false); // Initially, do not show products
 const showLoading = ref(true); // Initially, show loading
 

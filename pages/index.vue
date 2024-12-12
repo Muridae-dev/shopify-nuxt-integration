@@ -1,13 +1,10 @@
 <template>
   <div>
-    <Hero />
     <ProductCarousel />
   </div>
 </template>
 
-<script setup lang="ts">
-// console.log(useNuxtData("products"));
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
 h1 {

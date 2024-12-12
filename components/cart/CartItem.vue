@@ -18,7 +18,7 @@
         </button>
         <input
           class="cart-product-quantity-input"
-          @change="(e) => (quantityRef = e.target.value)"
+          @change="(e) => (quantityRef = (e.target as HTMLInputElement).value)"
           :value="quantityRef"
         />
         <button @click="quantityRef = quantityRef + 1">+</button>
@@ -28,6 +28,8 @@
 </template>
 
 <script setup lang="ts">
+import type { InputHTMLAttributes } from "vue";
+
 interface CartItemProps {
   product: any;
   quantity: any;
