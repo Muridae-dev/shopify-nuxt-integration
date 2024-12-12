@@ -43,17 +43,14 @@ interface ProductCardProps {
   product: any;
 }
 
-const props = defineProps<ProductCardProps>();
+defineProps<ProductCardProps>();
 
 const getProductId = (idToFormat: string) => idToFormat.split("Product/")[1];
-
-console.log(props.product);
 </script>
 
 <style lang="scss">
-// TODO: Change width 200px & height 200px to var
 .product-card {
-  width: 200px;
+  width: $product-card-size;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -64,7 +61,7 @@ console.log(props.product);
     position: relative;
     display: flex;
     justify-content: center;
-    height: 200px;
+    height: $product-card-size;
     aspect-ratio: 1;
     padding: 10px;
     background-color: grey;

@@ -42,7 +42,7 @@ $product-container-padding: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2px;
+  gap: 10px;
   row-gap: 20px;
 
   padding-top: $product-container-padding;
