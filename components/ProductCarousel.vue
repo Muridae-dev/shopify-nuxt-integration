@@ -39,7 +39,7 @@ onMounted(async () => {
     }
   }
   &::after {
-    background: white;
+    background: $primary;
   }
 }
 

@@ -32,18 +32,21 @@
 }
 
 .hero-title-container {
-  height: 70%;
-  width: 100%;
   position: absolute;
-  bottom: 0;
-
-  background: transparent;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 1) 100%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: overlay;
 
   h1 {
-    position: absolute;
-    bottom: 100px;
-    left: 50px;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+
+    text-transform: uppercase;
   }
+
+  // background: transparent;
+  // background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 1) 100%);
 }
 </style>

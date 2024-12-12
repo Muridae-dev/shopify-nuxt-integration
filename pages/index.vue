@@ -16,6 +16,6 @@ h1 {
 
 body {
   background: $primary-background; /* fallback for old browsers */
-  font-family: "Montserrat", sans-serif;
+  font-family: "roc-grotesk",  sans-serif;
 }
 </style>

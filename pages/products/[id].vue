@@ -19,7 +19,9 @@
             {{ `${breadcrumb[1]} / ${breadcrumb[2]}` }}
           </div>
 
-          <button class="product-add-to-cart">ADD TO CART</button>
+          <button class="product-add-to-cart" @click="cartUpdateHelper">
+            ADD TO CART
+          </button>
         </div>
         <div class="product-image-container">
           <img :src="product.images.edges[0].node.originalSrc" />
@@ -31,9 +33,23 @@
 </template>
 
 <script setup lang="ts">
+import { useCartStore } from "@/stores/cartStore";
+
 const route = useRoute();
 const product = ref<any>();
 const breadcrumb = route.path.split("/");
+
+const { updateCart } = useCartStore();
+
+const cartUpdateHelper = () => {
+  const productObject = {
+    id: product.value.variants.edges[0].node.id,
+    quantity: 1,
+    price: product.value.variants.edges[0].node.price.amount,
+  };
+
+  updateCart(productObject);
+};
 
 onMounted(async () => {
   const fetchedProducts = await GetProduct(route.params.id);
