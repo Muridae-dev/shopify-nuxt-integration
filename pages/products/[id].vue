@@ -100,6 +100,14 @@ onMounted(async () => {
       }
     }
 
+    .product-price {
+      font-family: $product-price-font;
+    }
+
+    .product-description {
+      font-family: $product-description-font;
+    }
+
     .product-add-to-cart {
       height: 50px;
       background: transparent;
@@ -108,8 +116,13 @@ onMounted(async () => {
       border-color: $secondary;
       justify-self: flex-end;
 
-      font-family: "roc-grotesk-wide",  sans-serif;
+      font-family: $add-to-cart-font;
       font-weight: 600;
+
+      &:hover {
+        background: black;
+        color: white;
+      }
     }
   }
 
@@ -127,6 +140,7 @@ onMounted(async () => {
     padding-bottom: 30px;
     border-bottom: 1px solid;
     border-color: rgba($secondary, 0.5);
+    font-family: $product-title-font;
   }
 }
 </style>

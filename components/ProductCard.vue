@@ -57,6 +57,12 @@ const getProductId = (idToFormat: string) => idToFormat.split("Product/")[1];
   color: $primary;
   background: $card-background;
 
+  &:hover {
+    .product-image-container {
+      background-color: $card-image-background--hover;
+    }
+  }
+
   .product-image-container {
     position: relative;
     display: flex;
