@@ -1,0 +1,34 @@
+designs
+    - Find a handful of generic fonts that have specific use cases in mind
+    - Footer
+
+    Product Cards:
+        - Change product cards to vw sizing & add media queries where it makes sense
+        - Hover states
+
+    Carousel:
+        - Increase button sizing
+        - Change bottom button designs
+        - MAYBE: Add scrolling
+
+functionality
+    - Add collections
+    - Add filtering
+    - Add search
+    - Homepage
+        - Featured products?
+        - New releases?
+        - CMS? - Maybe through Shopify?
+    - NAV
+        - Dropdown for collections
+
+misc
+    - Add other products
+        - Records
+        - Posters
+        - T-Shirts
+        - CD:s
+        - ETC
+
+potential additions
+    - Make carousel scrollable

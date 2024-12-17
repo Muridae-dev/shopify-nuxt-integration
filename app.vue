@@ -1,5 +1,6 @@
 <template>
   <NuxtLayout>
+    <MiscGrain />
     <NuxtPage />
   </NuxtLayout>
 </template>

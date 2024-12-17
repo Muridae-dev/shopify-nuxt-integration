@@ -3,8 +3,6 @@
 <style lang="scss">
 footer {
   height: 400px;
-
-  background: $primary-background;
   border-top: 1px solid;
   border-color: $secondary;
   color: $secondary;

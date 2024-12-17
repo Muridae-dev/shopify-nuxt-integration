@@ -64,7 +64,7 @@ const getProductId = (idToFormat: string) => idToFormat.split("Product/")[1];
     height: $product-card-size;
     aspect-ratio: 1;
     padding: 10px;
-    background-color: grey;
+    background-color: $card-image-background;
 
     order: 1;
 
@@ -82,7 +82,7 @@ const getProductId = (idToFormat: string) => idToFormat.split("Product/")[1];
     padding-top: 10px;
     height: 100%;
 
-    font-family: "roc-grotesk",  sans-serif;
+    font-family: $card-title-font;
 
     h2 {
       font-size: 1rem;
@@ -93,11 +93,13 @@ const getProductId = (idToFormat: string) => idToFormat.split("Product/")[1];
     .product-collection {
       font-size: 0.8rem;
       line-height: 0.8rem;
+      font-family: $card-collection-font;
     }
 
     .product-price {
       font-size: 1rem;
       line-height: 1rem;
+      font-family: $card-price-font;
     }
   }
 }
