@@ -87,7 +87,7 @@ header {
     color: $secondary;
     text-decoration: none;
 
-    font-family: "AdvercaseFont", sans-serif;
+    font-family: $header-title-font;
     font-weight: 500;
 
     text-transform: uppercase;
