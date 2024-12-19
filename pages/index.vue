@@ -1,9 +1,14 @@
 <template>
   <div>
     <div v-if="collections">
-      <button v-for="collection in collections.collections.edges">
-        {{ collection.node.title }}
-      </button>
+      <NuxtLink
+        v-for="collection in collections.collections.edges"
+        :to="`/collections/${getCollectionId(collection.node.id)}`"
+      >
+        <button>
+          {{ collection.node.title }}
+        </button>
+      </NuxtLink>
       <pre>
         {{ collections }}
       </pre>
@@ -17,9 +22,11 @@ import { GetCollections } from "~/utils/ShopifyClient";
 
 const collections = ref();
 
+const getCollectionId = (idToFormat: string) =>
+  idToFormat.split("Collection/")[1];
+
 onMounted(async () => {
   collections.value = await GetCollections();
-  console.log(collections);
 });
 </script>
 
