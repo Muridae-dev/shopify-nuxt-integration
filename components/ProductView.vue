@@ -1,27 +1,17 @@
 <template>
   <section>
-    <TransitionGroup name="fade">
-      <div v-if="!products" key="loading" class="loading-products">
-        LOADING ...
-      </div>
-
-      <div v-else key="products" class="product-container">
-        <ProductCard
-          v-for="{ node: product } in products"
-          v-bind="{ product }"
-        />
-      </div>
-    </TransitionGroup>
+    <div key="products" class="product-container">
+      <ProductCard v-for="{ node: product } in products" v-bind="{ product }" />
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { GetProducts } from "@/utils/ShopifyClient";
+interface ProductViewProps {
+  products: any;
+}
 
-const { data: products } = await useAsyncData("products", async () => {
-  const fetchedProducts = await GetProducts();
-  return fetchedProducts.products ? fetchedProducts.products.edges : [];
-});
+defineProps<ProductViewProps>();
 </script>
 
 <style scoped lang="scss">

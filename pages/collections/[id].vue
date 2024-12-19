@@ -15,7 +15,6 @@ const breadcrumb = route.path.split("/");
 
 onMounted(async () => {
   const fetchedProducts = await GetProductsByCollection(route.params.id);
-  console.log("fetchedProducts:: ", fetchedProducts);
   products.value = fetchedProducts ? fetchedProducts.collection : null;
 });
 </script>
