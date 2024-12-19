@@ -13,7 +13,9 @@
 const route = useRoute();
 
 const { data: collection } = await useAsyncData("products", async () => {
-  const fetchedProducts = await GetProductsByCollection(route.params.handle);
+  const fetchedProducts = await GetProductsByCollection(
+    route.params.collectionHandler
+  );
   return fetchedProducts.collection;
 });
 </script>
