@@ -9,6 +9,7 @@ designs
         - fix size of images to not be larger than screen
         - add collections
             - link to said collections
+        - allow for rich-text
 
     Carousel:
         - Increase button sizing

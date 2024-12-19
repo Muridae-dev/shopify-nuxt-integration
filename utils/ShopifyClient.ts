@@ -74,12 +74,41 @@ export const GetProductsByCollection = async (collectionHandle: string) => {
     query: `query ProductsByCollection($handle: String!) {
       collection(handle: $handle) {
           id
+          title
           products(first: 100) {
             edges {
-              node {
-                id
+                node {
+                  id
+                  title
+                  description
+                  productType
+                  collections(first: 2) {
+                    edges {
+                      node {
+                        title
+                      }
+                    }
+                  }
+                  variants(first: 1) {
+                    edges {
+                      node {
+                        price {
+                          amount
+                          currencyCode
+                        }
+                      }
+                    }
+                  }
+                  images(first: 1) {
+                    edges {
+                      node {
+                        altText
+                        originalSrc
+                      }
+                    }
+                  }
+                }
               }
-            }
           }
       }
     }`,
