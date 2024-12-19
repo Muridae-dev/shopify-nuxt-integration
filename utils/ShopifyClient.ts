@@ -68,6 +68,33 @@ export const GetCollections = async () => {
   return result.data;
 };
 
+export const GetProductsByCollection = async (collectionId: string) => {
+  const params = {
+    query: `query ProductsByCollection($id: ID!) {
+      collection(id: $id) {
+          id
+          products(first: 100) {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+      }
+    }`,
+    variables: { id: `gid://shopify/Collection/${collectionId}` },
+  };
+
+  const result = await ShopifyClientJson(JSON.stringify(params));
+
+  if (result.error) {
+    console.error("Error fetching products:", result.error);
+    return null;
+  }
+
+  return result.data;
+};
+
 // -------------------- PRODUCTS -------------------
 // -------------------------------------------------
 export const GetProducts = async () => {

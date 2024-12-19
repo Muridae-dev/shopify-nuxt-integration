@@ -37,6 +37,6 @@ h1 {
 
 body {
   background: $primary-background; /* fallback for old browsers */
-  font-family: "roc-grotesk",  sans-serif;
+  font-family: $base-level-font;
 }
 </style>

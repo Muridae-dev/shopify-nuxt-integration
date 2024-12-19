@@ -2,18 +2,22 @@
   <div>
     Collections:
     {{ route.params }}
+    <pre>
+        {{ products }}
+    </pre>
   </div>
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
-const product = ref<any>();
+const products = ref<any>();
 const breadcrumb = route.path.split("/");
 
-//   onMounted(async () => {
-//     const fetchedProducts = await GetProduct(route.params.id);
-//     product.value = fetchedProducts ? fetchedProducts.node : null;
-//   });
+onMounted(async () => {
+  const fetchedProducts = await GetProductsByCollection(route.params.id);
+  console.log("fetchedProducts:: ", fetchedProducts);
+  products.value = fetchedProducts ? fetchedProducts.collection : null;
+});
 </script>
 
 <style scoped lang="scss">
