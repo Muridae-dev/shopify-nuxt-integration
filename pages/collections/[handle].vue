@@ -11,10 +11,9 @@
 
 <script setup lang="ts">
 const route = useRoute();
-const breadcrumb = route.path.split("/");
 
 const { data: collection } = await useAsyncData("products", async () => {
-  const fetchedProducts = await GetProductsByCollection(route.params.id);
+  const fetchedProducts = await GetProductsByCollection(route.params.handle);
   return fetchedProducts.collection;
 });
 </script>

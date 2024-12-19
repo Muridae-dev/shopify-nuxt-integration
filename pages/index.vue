@@ -9,9 +9,6 @@
           {{ collection.node.title }}
         </button>
       </NuxtLink>
-      <pre>
-        {{ collections }}
-      </pre>
     </div>
     <ProductCarousel />
   </div>
