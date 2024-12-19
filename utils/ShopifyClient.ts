@@ -3,8 +3,8 @@ const apiVersion = "2024-04";
 const shopifyToken = "b28d17f32049c796a7c47d5281bdd46b";
 const baseURL = `https://${baseDomain}/api/${apiVersion}/graphql.json`;
 
-// -------------------- PRODUCTS --------------------
-
+// -------------------- BASE --------------------
+// ----------------------------------------------
 export const ShopifyClient = async (query: string) => {
   try {
     const response = await $fetch(baseURL, {
@@ -25,6 +25,51 @@ export const ShopifyClient = async (query: string) => {
   }
 };
 
+export const ShopifyClientJson = async (query: string) => {
+  try {
+    const response = await $fetch(baseURL, {
+      method: "post",
+      headers: {
+        "X-Shopify-Storefront-Access-Token": shopifyToken,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: query,
+    });
+
+    return response.data ? { data: response.data } : { error: response.errors };
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return { error: "Failed to fetch data" };
+  }
+};
+
+// -------------------- COLLECTIONS --------------------
+// -----------------------------------------------------
+export const GetCollections = async () => {
+  const queryCollections = `query Collections {
+      collections(first: 100) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }`;
+
+  const result = await ShopifyClient(queryCollections);
+
+  if (result.error) {
+    console.error("Error fetching products:", result.error);
+    return null;
+  }
+
+  return result.data;
+};
+
+// -------------------- PRODUCTS -------------------
+// -------------------------------------------------
 export const GetProducts = async () => {
   const queryProducts = `query FirstProduct {
       products(first:20) {
@@ -75,26 +120,7 @@ export const GetProducts = async () => {
 };
 
 // -------------------- PRODUCT --------------------
-
-export const ShopifyClientJson = async (query: string) => {
-  try {
-    const response = await $fetch(baseURL, {
-      method: "post",
-      headers: {
-        "X-Shopify-Storefront-Access-Token": shopifyToken,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: query,
-    });
-
-    return response.data ? { data: response.data } : { error: response.errors };
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return { error: "Failed to fetch data" };
-  }
-};
-
+// -------------------------------------------------
 export const GetProduct = async (productId: string) => {
   const params = {
     query: `query SpecificProduct($id: ID!) {
@@ -142,6 +168,7 @@ export const GetProduct = async (productId: string) => {
 };
 
 // -------------------- CART --------------------
+// ----------------------------------------------
 export const ShopifyCreateCart = async () => {
   const params = `
   mutation {
