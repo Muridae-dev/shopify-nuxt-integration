@@ -3,7 +3,7 @@
     <div v-if="collections">
       <NuxtLink
         v-for="collection in collections.collections.edges"
-        :to="`/collections/${getCollectionId(collection.node.id)}`"
+        :to="`/collections/${collection.node.handle}`"
       >
         <button>
           {{ collection.node.title }}
@@ -21,9 +21,6 @@
 import { GetCollections } from "~/utils/ShopifyClient";
 
 const collections = ref();
-
-const getCollectionId = (idToFormat: string) =>
-  idToFormat.split("Collection/")[1];
 
 onMounted(async () => {
   collections.value = await GetCollections();

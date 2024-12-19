@@ -53,6 +53,7 @@ export const GetCollections = async () => {
           node {
             id
             title
+            handle
           }
         }
       }
@@ -68,10 +69,10 @@ export const GetCollections = async () => {
   return result.data;
 };
 
-export const GetProductsByCollection = async (collectionId: string) => {
+export const GetProductsByCollection = async (collectionHandle: string) => {
   const params = {
-    query: `query ProductsByCollection($id: ID!) {
-      collection(id: $id) {
+    query: `query ProductsByCollection($handle: String!) {
+      collection(handle: $handle) {
           id
           products(first: 100) {
             edges {
@@ -82,7 +83,7 @@ export const GetProductsByCollection = async (collectionId: string) => {
           }
       }
     }`,
-    variables: { id: `gid://shopify/Collection/${collectionId}` },
+    variables: { handle: collectionHandle },
   };
 
   const result = await ShopifyClientJson(JSON.stringify(params));
