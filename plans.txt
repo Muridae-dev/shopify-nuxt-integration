@@ -1,3 +1,10 @@
+FOR THIS BRANCH::
+    - Make collections into its own component?
+    - Add collections/products/[id]
+    - Use handler instead of [id] to grab products
+        - Change URL structure accordinly
+    
+
 designs
     - Find a handful of generic fonts that have specific use cases in mind
     - Footer
