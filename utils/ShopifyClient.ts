@@ -79,6 +79,7 @@ export const GetProductsByCollection = async (collectionHandle: string) => {
             edges {
                 node {
                   id
+                  handle
                   title
                   description
                   productType
@@ -86,6 +87,7 @@ export const GetProductsByCollection = async (collectionHandle: string) => {
                     edges {
                       node {
                         title
+                        handle
                       }
                     }
                   }
@@ -133,6 +135,7 @@ export const GetProducts = async () => {
               edges {
                 node {
                   id
+                  handle
                   title
                   description
                   productType
@@ -140,6 +143,7 @@ export const GetProducts = async () => {
                     edges {
                       node {
                         title
+                        handle
                       }
                     }
                   }
@@ -178,13 +182,14 @@ export const GetProducts = async () => {
 
 // -------------------- PRODUCT --------------------
 // -------------------------------------------------
-export const GetProduct = async (productId: string) => {
+export const GetProduct = async (productHandler: string) => {
   const params = {
-    query: `query SpecificProduct($id: ID!) {
-      node(id: $id) {
+    query: `query SpecificProduct($handle: String!) {
+      product(handle: $handle) {
           id
           ... on Product {
                 id
+                handle
                 title
                 description
                 productType
@@ -211,7 +216,7 @@ export const GetProduct = async (productId: string) => {
           }
       }
     }`,
-    variables: { id: `gid://shopify/Product/${productId}` },
+    variables: { handle: productHandler },
   };
 
   const result = await ShopifyClientJson(JSON.stringify(params));
