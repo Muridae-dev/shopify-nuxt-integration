@@ -1,7 +1,8 @@
 <template>
   <component
-    :is="href ? 'a' : 'button'"
-    :href="href || null"
+    :is="href ? (href.startsWith('/') ? defineNuxtLink({}) : 'a') : 'button'"
+    :href="href && !href.startsWith('/') ? href : null"
+    :to="href && href.startsWith('/') ? href : null"
     :class="['button', `button--${variant}`]"
     @click="href ? null : click"
     >{{ text }}</component
