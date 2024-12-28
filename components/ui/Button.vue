@@ -4,7 +4,7 @@
     :href="href && !href.startsWith('/') ? href : null"
     :to="href && href.startsWith('/') ? href : null"
     :class="['button', `button--${variant}`]"
-    @click="href ? null : click"
+    @click="href ? null : click()"
     >{{ text }}</component
   >
 </template>
