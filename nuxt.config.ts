@@ -17,4 +17,5 @@ export default defineNuxtConfig({
   },
 
   modules: ["vue3-carousel-nuxt", "@pinia/nuxt"],
+  compatibilityDate: "2024-12-28",
 });

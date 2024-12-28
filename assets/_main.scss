@@ -1,4 +1,6 @@
-@import "./colors", "./sizes", "./$fonts";
+@forward "./colors";
+@forward "./sizes";
+@forward "./fonts";
 
 @font-face {
   font-family: "AdvercaseFont";
