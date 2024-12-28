@@ -57,9 +57,8 @@ watch(quantityRef, (newQuantity) => {
 
 <style lang="scss">
 .cart-product {
-  padding: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   gap: 50px;
   justify-content: space-between;

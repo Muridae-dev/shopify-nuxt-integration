@@ -1,0 +1,49 @@
+<template>
+  <component
+    :is="href ? 'a' : 'button'"
+    :href="href || null"
+    :class="['button', `button--${variant}`]"
+    @click="href ? null : click"
+    >{{ text }}</component
+  >
+</template>
+
+<script setup lang="ts">
+interface ButtonProps {
+  text: string;
+  variant?: "primary" | "secondary";
+  click?: () => any;
+  href?: string;
+}
+
+withDefaults(defineProps<ButtonProps>(), {
+  variant: "primary",
+});
+</script>
+
+<style scoped lang="scss">
+.button {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 1px solid;
+  justify-self: flex-end;
+
+  font-family: $add-to-cart-font;
+  font-weight: 600;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &--primary {
+    background: transparent;
+    color: $secondary;
+    border-color: $secondary;
+
+    &:hover {
+      background: black;
+      color: white;
+    }
+  }
+}
+</style>

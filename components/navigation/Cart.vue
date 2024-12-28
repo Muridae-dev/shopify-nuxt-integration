@@ -9,7 +9,7 @@
       v-bind="{ product, quantity: product.quantity }"
     />
 
-    <a class="cart-checkout-button" :href="cart.checkoutUrl">CHECKOUT</a>
+    <UiButton text="CHECKOUT" :href="cart.checkoutUrl" />
   </div>
 </template>
 
@@ -37,6 +37,11 @@ watch(cart.value, (newCart) => {
   background: $primary-background;
   z-index: 1000;
   overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  padding-left: 50px;
+  padding-right: 50px;
 
   border-left: 1px solid $primary;
 
