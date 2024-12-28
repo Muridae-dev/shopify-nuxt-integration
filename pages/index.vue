@@ -1,14 +1,11 @@
 <template>
   <div>
-    <div v-if="collections">
-      <NuxtLink
+    <div v-if="collections" class="collections--container">
+      <UiButton
         v-for="collection in collections.collections.edges"
-        :to="`/collections/${collection.node.handle}`"
-      >
-        <button>
-          {{ collection.node.title }}
-        </button>
-      </NuxtLink>
+        :text="collection.node.title"
+        :href="`/collections/${collection.node.handle}`"
+      />
     </div>
     <ProductCarousel />
   </div>
@@ -32,5 +29,13 @@ h1 {
 body {
   background: $primary-background; /* fallback for old browsers */
   font-family: $base-level-font;
+}
+
+.collections--container {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding: 10px;
+  gap: 10px;
 }
 </style>
