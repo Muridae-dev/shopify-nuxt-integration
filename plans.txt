@@ -45,7 +45,5 @@ misc
         - CD:s
         - ETC
 
-    - Make button into its own component
-
 potential additions
     - Make carousel scrollable

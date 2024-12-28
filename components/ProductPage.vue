@@ -19,9 +19,6 @@
         </div>
 
         <UiButton text="ADD TO CART" :click="cartUpdateHelper" />
-        <!-- <button class="product-add-to-cart" @click="cartUpdateHelper">
-          ADD TO CART
-        </button> -->
       </div>
       <div class="product-image-container">
         <img :src="product.images.edges[0].node.originalSrc" />
