@@ -25,6 +25,7 @@ withDefaults(defineProps<ButtonProps>(), {
 .button {
   padding-top: 15px;
   padding-bottom: 15px;
+  width: 100%;
   border: 1px solid;
   justify-self: flex-end;
 
