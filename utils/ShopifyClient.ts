@@ -3,8 +3,8 @@ const apiVersion = "2024-04";
 const shopifyToken = "b28d17f32049c796a7c47d5281bdd46b";
 const baseURL = `https://${baseDomain}/api/${apiVersion}/graphql.json`;
 
-// -------------------- PRODUCTS --------------------
-
+// -------------------- BASE --------------------
+// ----------------------------------------------
 export const ShopifyClient = async (query: string) => {
   try {
     const response = await $fetch(baseURL, {
@@ -25,12 +25,61 @@ export const ShopifyClient = async (query: string) => {
   }
 };
 
-export const GetProducts = async () => {
-  const queryProducts = `query FirstProduct {
-      products(first:20) {
-              edges {
+export const ShopifyClientJson = async (query: string) => {
+  try {
+    const response = await $fetch(baseURL, {
+      method: "post",
+      headers: {
+        "X-Shopify-Storefront-Access-Token": shopifyToken,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: query,
+    });
+
+    return response.data ? { data: response.data } : { error: response.errors };
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return { error: "Failed to fetch data" };
+  }
+};
+
+// -------------------- COLLECTIONS --------------------
+// -----------------------------------------------------
+export const GetCollections = async () => {
+  const queryCollections = `query Collections {
+      collections(first: 100) {
+        edges {
+          node {
+            id
+            title
+            handle
+          }
+        }
+      }
+    }`;
+
+  const result = await ShopifyClient(queryCollections);
+
+  if (result.error) {
+    console.error("Error fetching products:", result.error);
+    return null;
+  }
+
+  return result.data;
+};
+
+export const GetProductsByCollection = async (collectionHandle: string) => {
+  const params = {
+    query: `query ProductsByCollection($handle: String!) {
+      collection(handle: $handle) {
+          id
+          title
+          products(first: 100) {
+            edges {
                 node {
                   id
+                  handle
                   title
                   description
                   productType
@@ -38,6 +87,63 @@ export const GetProducts = async () => {
                     edges {
                       node {
                         title
+                        handle
+                      }
+                    }
+                  }
+                  variants(first: 1) {
+                    edges {
+                      node {
+                        price {
+                          amount
+                          currencyCode
+                        }
+                      }
+                    }
+                  }
+                  images(first: 1) {
+                    edges {
+                      node {
+                        altText
+                        originalSrc
+                      }
+                    }
+                  }
+                }
+              }
+          }
+      }
+    }`,
+    variables: { handle: collectionHandle },
+  };
+
+  const result = await ShopifyClientJson(JSON.stringify(params));
+
+  if (result.error) {
+    console.error("Error fetching products:", result.error);
+    return null;
+  }
+
+  return result.data;
+};
+
+// -------------------- PRODUCTS -------------------
+// -------------------------------------------------
+export const GetProducts = async () => {
+  const queryProducts = `query FirstProduct {
+      products(first:20) {
+              edges {
+                node {
+                  id
+                  handle
+                  title
+                  description
+                  productType
+                  collections(first: 2) {
+                    edges {
+                      node {
+                        title
+                        handle
                       }
                     }
                   }
@@ -75,33 +181,15 @@ export const GetProducts = async () => {
 };
 
 // -------------------- PRODUCT --------------------
-
-export const ShopifyClientJson = async (query: string) => {
-  try {
-    const response = await $fetch(baseURL, {
-      method: "post",
-      headers: {
-        "X-Shopify-Storefront-Access-Token": shopifyToken,
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: query,
-    });
-
-    return response.data ? { data: response.data } : { error: response.errors };
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return { error: "Failed to fetch data" };
-  }
-};
-
-export const GetProduct = async (productId: string) => {
+// -------------------------------------------------
+export const GetProduct = async (productHandler: string) => {
   const params = {
-    query: `query SpecificProduct($id: ID!) {
-      node(id: $id) {
+    query: `query SpecificProduct($handle: String!) {
+      product(handle: $handle) {
           id
           ... on Product {
                 id
+                handle
                 title
                 description
                 productType
@@ -128,7 +216,7 @@ export const GetProduct = async (productId: string) => {
           }
       }
     }`,
-    variables: { id: `gid://shopify/Product/${productId}` },
+    variables: { handle: productHandler },
   };
 
   const result = await ShopifyClientJson(JSON.stringify(params));
@@ -142,6 +230,7 @@ export const GetProduct = async (productId: string) => {
 };
 
 // -------------------- CART --------------------
+// ----------------------------------------------
 export const ShopifyCreateCart = async () => {
   const params = `
   mutation {

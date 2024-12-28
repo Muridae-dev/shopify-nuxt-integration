@@ -4,7 +4,12 @@ designs
 
     Product Cards:
         - Change product cards to vw sizing & add media queries where it makes sense
-        - Hover states
+
+    Product Page:
+        - fix size of images to not be larger than screen
+        - add collections
+            - link to said collections
+        - allow for rich-text
 
     Carousel:
         - Increase button sizing
@@ -15,12 +20,22 @@ functionality
     - Add collections
     - Add filtering
     - Add search
-    - Homepage
+
+    - Homepage:
         - Featured products?
         - New releases?
         - CMS? - Maybe through Shopify?
-    - NAV
+    - NAV:
         - Dropdown for collections
+    - Product Page:
+        - Notification when item has been added to cart
+            - Maybe add some sort of loading animation?
+        - Quantity of items to add
+        - Sizes? (maybe versions or something similar?)
+
+
+bugs
+    - When an item that's already added to cart gets added to cart again it doesn't increase its quantity
 
 misc
     - Add other products

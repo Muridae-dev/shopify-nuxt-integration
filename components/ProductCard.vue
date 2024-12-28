@@ -1,6 +1,12 @@
 <template>
   <div>
-    <NuxtLink :to="`/products/${getProductId(product.id)}`">
+    <NuxtLink
+      :to="
+        productIsPartOfCollection(product.collections.edges[0])
+          ? `/collections/${route.params.collectionHandler}/products/${product.handle}`
+          : `/products/${product.handle}`
+      "
+    >
       <article class="product-card">
         <div class="product-info">
           <h2>{{ product.title }}</h2>
@@ -45,7 +51,14 @@ interface ProductCardProps {
 
 defineProps<ProductCardProps>();
 
-const getProductId = (idToFormat: string) => idToFormat.split("Product/")[1];
+const route = useRoute();
+
+const productIsPartOfCollection = (cardCollection: any) => {
+  return (
+    cardCollection &&
+    route.params.collectionHandler === cardCollection.node.handle
+  );
+};
 </script>
 
 <style lang="scss">
