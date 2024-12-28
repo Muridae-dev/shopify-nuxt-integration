@@ -17,7 +17,6 @@ designs
         - MAYBE: Add scrolling
 
 functionality
-    - Add collections
     - Add filtering
     - Add search
 
@@ -32,6 +31,9 @@ functionality
             - Maybe add some sort of loading animation?
         - Quantity of items to add
         - Sizes? (maybe versions or something similar?)
+
+components
+    - imageFrame
 
 
 bugs
