@@ -102,23 +102,6 @@ const cartUpdateHelper = () => {
     .product-description {
       font-family: $product-description-font;
     }
-
-    .product-add-to-cart {
-      height: 50px;
-      background: transparent;
-      color: $secondary;
-      border: 1px solid;
-      border-color: $secondary;
-      justify-self: flex-end;
-
-      font-family: $add-to-cart-font;
-      font-weight: 600;
-
-      &:hover {
-        background: black;
-        color: white;
-      }
-    }
   }
 
   .product-image-container {

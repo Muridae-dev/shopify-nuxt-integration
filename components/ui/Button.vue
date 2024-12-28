@@ -30,7 +30,7 @@ withDefaults(defineProps<ButtonProps>(), {
   border: 1px solid;
   justify-self: flex-end;
 
-  font-family: $add-to-cart-font;
+  font-family: $button-font--primary;
   font-weight: 600;
 
   display: inline-flex;
