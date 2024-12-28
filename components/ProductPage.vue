@@ -45,9 +45,9 @@ const { updateCart } = useCartStore();
 
 const cartUpdateHelper = () => {
   const productObject = {
-    id: props.product.value.variants.edges[0].node.id,
+    id: props.product.variants.edges[0].node.id,
     quantity: 1,
-    price: props.product.value.variants.edges[0].node.price.amount,
+    price: props.product.variants.edges[0].node.price.amount,
   };
 
   updateCart(productObject);
