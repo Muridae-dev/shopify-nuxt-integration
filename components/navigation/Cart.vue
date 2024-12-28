@@ -40,8 +40,8 @@ watch(cart.value, (newCart) => {
 
   display: flex;
   flex-direction: column;
-  padding-left: 50px;
-  padding-right: 50px;
+  gap: 40px;
+  padding: 50px;
 
   border-left: 1px solid $primary;
 
