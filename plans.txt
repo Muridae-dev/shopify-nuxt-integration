@@ -15,6 +15,8 @@ designs
         - Increase button sizing
         - Change bottom button designs
         - MAYBE: Add scrolling
+        - Make products into a prop instead
+        - Maybe a headline?
 
 functionality
     - Add filtering
@@ -31,6 +33,12 @@ functionality
             - Maybe add some sort of loading animation?
         - Quantity of items to add
         - Sizes? (maybe versions or something similar?)
+
+    - Button:
+        - Add to cart button starts to spin while it's waiting to actually add to cart
+
+    - Cart:
+        - Hide cart when pressing anywhere else on the page
 
 components
     - imageFrame
