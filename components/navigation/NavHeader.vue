@@ -11,15 +11,28 @@
       <li>
         <NuxtLink class="header-link" to="/about">About</NuxtLink>
       </li>
-      <li>
-        <button class="header-link" @click="cartActive = !cartActive">
-          CART
-        </button>
-      </li>
     </ul>
+
+    <button class="header-link header-cart" @click="cartActive = !cartActive">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        width="28"
+        height="28"
+      >
+        <!-- Bag body outline -->
+        <rect x="6" y="8" width="12" height="12" />
+
+        <!-- Handle -->
+        <path d="M8 8a4 4 0 0 1 8 0" />
+      </svg>
+    </button>
   </header>
 </template>
-
+x
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cartStore";
 
@@ -75,8 +88,9 @@ header {
   transform: translateY(0);
   transition: transform 0.5s;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+
+  letter-spacing: -0.05em;
 
   &.hide-header {
     transform: translateY(-100%);
@@ -95,9 +109,8 @@ header {
 
   button {
     background: transparent;
-    font-size: 1.2rem;
     border: none;
-    vertical-align: middle;
+    justify-self: flex-end;
   }
 }
 
@@ -108,16 +121,16 @@ header {
 
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+}
+
+.header-cart {
+  padding-left: 20px;
 }
 
 .header-link-container {
   display: flex;
   gap: 20px;
   list-style-type: none;
-
-  li {
-    font-size: 1.2rem;
-  }
+  margin-left: auto;
 }
 </style>

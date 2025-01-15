@@ -54,6 +54,7 @@ misc
         - T-Shirts
         - CD:s
         - ETC
+    - Remove unused fonts
 
 potential additions
     - Make carousel scrollable

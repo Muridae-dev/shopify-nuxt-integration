@@ -104,20 +104,23 @@ const productIsPartOfCollection = (cardCollection: any) => {
     font-family: $card-title-font;
 
     h2 {
-      font-size: 1rem;
+      font-size: 0.8rem;
       line-height: 1.4rem;
       font-weight: 500;
+      letter-spacing: -0.02rem;
     }
 
     .product-collection {
       font-size: 0.8rem;
       line-height: 0.8rem;
+      letter-spacing: -0.02rem;
       font-family: $card-collection-font;
     }
 
     .product-price {
-      font-size: 1rem;
+      font-size: 0.8rem;
       line-height: 1rem;
+      letter-spacing: -0.02rem;
       font-family: $card-price-font;
     }
   }
