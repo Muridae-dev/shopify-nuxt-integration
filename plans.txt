@@ -4,12 +4,14 @@ designs
 
     Product Cards:
         - Change product cards to vw sizing & add media queries where it makes sense
+        - Multiple thumbnails on hover
 
     Product Page:
         - fix size of images to not be larger than screen
         - add collections
             - link to said collections
         - allow for rich-text
+        - Multiple images
 
     Carousel:
         - Increase button sizing
@@ -46,6 +48,8 @@ components
 
 bugs
     - When an item that's already added to cart gets added to cart again it doesn't increase its quantity
+    - Sometimes the cart breaks & you can't add anything to the cart
+        - Probably the token is no longer valid or something
 
 misc
     - Add other products

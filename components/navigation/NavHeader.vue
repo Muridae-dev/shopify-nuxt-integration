@@ -79,7 +79,7 @@ header {
   padding-left: 50px;
   padding-right: 50px;
 
-  background: $primary-background;
+  backdrop-filter: $blur;
   border-bottom: 1px solid;
   border-color: $secondary;
 

@@ -85,12 +85,13 @@ watch(quantityRef, (newQuantity) => {
       align-items: center;
       gap: 0px;
       padding-top: 10px;
+
       button,
       input {
         background: transparent;
         color: $secondary;
         text-align: center;
-        font-family: "roc-grotesk-wide",  sans-serif;
+        font-family: $base-level-font;
         font-weight: 600;
         border: 1px solid;
         border-color: $secondary;

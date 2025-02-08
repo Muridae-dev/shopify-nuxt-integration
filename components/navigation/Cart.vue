@@ -34,7 +34,7 @@ watch(cart.value, (newCart) => {
   height: 100%;
   width: 100%;
   max-width: 500px;
-  background: $primary-background;
+  backdrop-filter: $blur--cart;
   z-index: 1000;
   overflow-y: scroll;
 
@@ -60,13 +60,12 @@ watch(cart.value, (newCart) => {
   top: 0;
   right: 0;
 
-  font-family: "roc-grotesk",  sans-serif;
+  font-family: $header-title-font;
   font-weight: 400;
   font-size: 2rem;
 
   &.--fun {
     border: 3px solid $secondary;
-    border-radius: 10px;
     box-shadow: 5px 5px $secondary;
     background: $primary-background;
     top: 10px;
