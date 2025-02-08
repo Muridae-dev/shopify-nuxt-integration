@@ -1,6 +1,6 @@
 <template>
   <div class="cart-container" v-if="cart" :class="cartActive && 'active'">
-    <button class="cart-close-button --fun" @click="cartActive = !cartActive">
+    <button class="cart-close-button" @click="cartActive = !cartActive">
       X
     </button>
     <CartItem
@@ -25,69 +25,49 @@ watch(cart.value, (newCart) => {
 
 <style lang="scss">
 .cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
   position: fixed;
   top: 0;
   right: 0;
   transform: translateX(100%);
-  color: $secondary;
-  transition: transform 0.5s;
+
   height: 100%;
   width: 100%;
-  max-width: 500px;
+  padding: 50px;
+  max-width: $cart-max-width;
+  color: $secondary;
   backdrop-filter: $blur--cart;
   z-index: 1000;
   overflow-y: scroll;
-
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 50px;
-
   border-left: 1px solid $primary;
+
+  transition: transform 0.5s;
 
   &.active {
     transform: translateX(0);
   }
+
+  @include respond-to(xs) {
+    padding: 10px;
+  }
 }
 
 .cart-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
   height: 50px;
   width: 50px;
   background: transparent;
   border: none;
   color: $secondary;
-  position: absolute;
-  top: 0;
-  right: 0;
+  border: 2px solid black;
 
   font-family: $header-title-font;
   font-weight: 400;
-  font-size: 2rem;
-
-  &.--fun {
-    border: 3px solid $secondary;
-    box-shadow: 5px 5px $secondary;
-    background: $primary-background;
-    top: 10px;
-    right: 15px;
-  }
-}
-
-.cart-checkout-button {
-  height: 50px;
-  width: 50%;
-  border: 1px solid;
-  border-color: $secondary;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 40px;
-
-  color: $secondary;
-  font-family: "roc-grotesk-wide",  sans-serif;
-  font-weight: 600;
+  font-size: 1.5rem;
 }
 </style>

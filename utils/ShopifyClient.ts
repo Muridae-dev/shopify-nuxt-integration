@@ -297,7 +297,8 @@ export const ShopifyGetCart = async (cartId: string) => {
                 ... on ProductVariant {
                   id
                   product {
-                    title        
+                    title
+                    handle
                   }
                   image {
                     url

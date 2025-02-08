@@ -50,6 +50,7 @@ bugs
     - When an item that's already added to cart gets added to cart again it doesn't increase its quantity
     - Sometimes the cart breaks & you can't add anything to the cart
         - Probably the token is no longer valid or something
+    - When hopping between product-pages the data gets changed pre fade-out
 
 misc
     - Add other products
