@@ -7,7 +7,7 @@
         :href="`/collections/${collection.node.handle}`"
       />
     </div>
-    <ProductCarousel />
+    <!-- <ProductCarousel /> -->
   </div>
 </template>
 
@@ -37,5 +37,9 @@ body {
   padding-bottom: 20px;
   padding: 10px;
   gap: 10px;
+
+  @include respond-to(sm) {
+    flex-direction: column;
+  }
 }
 </style>
