@@ -147,6 +147,11 @@ header {
     z-index: 9999;
     transition: transform 0.5s;
 
+    a {
+      color: inherit;
+      text-transform: uppercase;
+    }
+
     &.active {
       transform: translateX(0);
     }
