@@ -1,6 +1,10 @@
 <template>
   <div class="cart-container" v-if="cart" :class="cartActive && 'active'">
+    <div class="cart-header">
+      Your cart ({{ cart.lines.edges.length }} items)
+    </div>
     <UiCloseButton :closeMenu="() => (cartActive = !cartActive)" />
+
     <CartItem
       v-for="{ node: product } in cart.lines.edges"
       :key="product.id"
@@ -33,7 +37,7 @@ watch(cart.value, (newCart) => {
 
   height: 100%;
   width: 100%;
-  padding: 50px;
+  padding: 10px;
   max-width: $cart-max-width;
   color: $secondary;
   backdrop-filter: $blur--menu;
@@ -46,9 +50,13 @@ watch(cart.value, (newCart) => {
   &.active {
     transform: translateX(0);
   }
+}
 
-  @include respond-to(xs) {
-    padding: 10px;
-  }
+.cart-header {
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02rem;
+  text-transform: uppercase;
 }
 </style>

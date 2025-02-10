@@ -133,24 +133,6 @@ header {
 .mobile-nav {
   display: none;
 
-  // TODO -- this will be the same as cart close button so make it into one component
-  button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-
-    height: 50px;
-    width: 50px;
-    background: transparent;
-    border: none;
-    color: $secondary;
-    border: 2px solid black;
-
-    font-family: $header-title-font;
-    font-weight: 400;
-    font-size: 1.5rem;
-  }
-
   @include respond-to(sm) {
     display: flex;
     align-items: center;
