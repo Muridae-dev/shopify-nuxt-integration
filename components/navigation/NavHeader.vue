@@ -22,7 +22,7 @@
     :class="{ active: menuActive }"
     :aria-hidden="!menuActive"
   >
-    <button @click="toggleMenu">X</button>
+    <UiCloseButton :closeMenu="toggleMenu" />
     <NavigationNavLinks :closeMenu="toggleMenu" />
   </nav>
 </template>

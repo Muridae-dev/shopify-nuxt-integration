@@ -1,6 +1,7 @@
 designs
     - Find a handful of generic fonts that have specific use cases in mind
     - Footer
+    - Add a global X padding variable so that eg. header, content and footer are all aligned on the Y axis
 
     Product Cards:
         - Change product cards to vw sizing & add media queries where it makes sense
