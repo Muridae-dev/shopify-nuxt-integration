@@ -38,7 +38,7 @@ watch(cart.value, (newCart) => {
   padding: 50px;
   max-width: $cart-max-width;
   color: $secondary;
-  backdrop-filter: $blur--cart;
+  backdrop-filter: $blur--menu;
   z-index: 1000;
   overflow-y: scroll;
   border-left: 1px solid $primary;
