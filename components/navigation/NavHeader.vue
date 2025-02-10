@@ -23,7 +23,7 @@
     :aria-hidden="!menuActive"
   >
     <button @click="toggleMenu">X</button>
-    <NavigationNavLinks />
+    <NavigationNavLinks :closeMenu="toggleMenu" />
   </nav>
 </template>
 

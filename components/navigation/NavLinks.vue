@@ -1,13 +1,23 @@
 <template>
   <ul class="nav-link-container">
     <li>
-      <NuxtLink class="header-link" to="/products">Products</NuxtLink>
+      <NuxtLink class="header-link" to="/products" @click="closeMenu"
+        >Products</NuxtLink
+      >
     </li>
     <li>
-      <NuxtLink class="header-link" to="/about">About</NuxtLink>
+      <NuxtLink class="header-link" to="/about" @click="closeMenu"
+        >About</NuxtLink
+      >
     </li>
   </ul>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  closeMenu?: () => void;
+}>();
+</script>
 
 <style lang="scss">
 .nav-link-container {
