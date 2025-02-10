@@ -1,55 +1,52 @@
 <template>
   <div class="header-spacing" />
   <header :class="{ 'hide-header': isScrollingDown }" ref="header">
+    <NuxtLink class="header-link" to="/">WEBSITE NAME</NuxtLink>
+
+    <!-- DESKTOP -->
+    <nav class="desktop-nav"><NavigationNavLinks /></nav>
+
     <div class="header-icon-container">
-      <NuxtLink class="header-link" to="/">WEBSITE NAME</NuxtLink>
+      <button class="header-link header-hamburger" @click="toggleMenu">
+        <MiscIconsHamburger />
+      </button>
+      <button class="header-link header-cart" @click="cartActive = !cartActive">
+        <MiscIconsCart />
+      </button>
     </div>
-    <ul class="header-link-container">
-      <li>
-        <NuxtLink class="header-link" to="/products">Products</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink class="header-link" to="/about">About</NuxtLink>
-      </li>
-      <li>
-        <button class="header-link" @click="cartActive = !cartActive">
-          CART
-        </button>
-      </li>
-    </ul>
   </header>
+
+  <!-- MOBILE -->
+  <nav
+    class="mobile-nav"
+    :class="{ active: menuActive }"
+    :aria-hidden="!menuActive"
+  >
+    <UiCloseButton :closeMenu="toggleMenu" />
+    <NavigationNavLinks :closeMenu="toggleMenu" />
+  </nav>
 </template>
 
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cartStore";
 
 const { cartActive } = storeToRefs(useCartStore());
-
-// State for tracking scroll position
-const lastScroll = ref(0);
+const menuActive = ref(false);
 const isScrollingDown = ref(false);
-const header = ref<HTMLDivElement | null>(null);
+const lastScroll = ref(0);
 
-const handleScroll = () => {
-  if (header.value) {
-    const headerHeight = header.value.clientHeight;
-
-    const currentScroll = window.scrollY;
-    isScrollingDown.value =
-      currentScroll > lastScroll.value && currentScroll > headerHeight;
-
-    lastScroll.value = currentScroll;
-  }
+const toggleMenu = () => {
+  menuActive.value = !menuActive.value;
 };
 
-// Mounting and unmounting event listeners
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
+const handleScroll = () => {
+  const currentScroll = window.scrollY;
+  isScrollingDown.value = currentScroll > lastScroll.value;
+  lastScroll.value = currentScroll;
+};
 
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
+onMounted(() => window.addEventListener("scroll", handleScroll));
+onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 </script>
 
 <style lang="scss">
@@ -66,7 +63,7 @@ header {
   padding-left: 50px;
   padding-right: 50px;
 
-  background: $primary-background;
+  backdrop-filter: $blur;
   border-bottom: 1px solid;
   border-color: $secondary;
 
@@ -75,8 +72,14 @@ header {
   transform: translateY(0);
   transition: transform 0.5s;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+
+  letter-spacing: -0.05em;
+
+  @include respond-to(sm) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
   &.hide-header {
     transform: translateY(-100%);
@@ -95,29 +98,58 @@ header {
 
   button {
     background: transparent;
-    font-size: 1.2rem;
     border: none;
-    vertical-align: middle;
+  }
+}
+
+.desktop-nav {
+  margin-left: auto;
+
+  @include respond-to(sm) {
+    display: none;
   }
 }
 
 .header-icon-container {
-  height: calc($header-spacing * 0.8);
-  width: auto;
-  color: $secondary;
+  padding-left: 20px;
 
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
+  @include respond-to(sm) {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+  }
 }
 
-.header-link-container {
-  display: flex;
-  gap: 20px;
-  list-style-type: none;
+.header-hamburger {
+  display: none;
 
-  li {
-    font-size: 1.2rem;
+  @include respond-to(sm) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+// MOBILE
+.mobile-nav {
+  display: none;
+
+  @include respond-to(sm) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(25px);
+    z-index: 9999;
+    transition: transform 0.5s;
+
+    &.active {
+      transform: translateX(0);
+    }
   }
 }
 </style>

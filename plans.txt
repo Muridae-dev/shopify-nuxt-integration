@@ -1,20 +1,25 @@
 designs
     - Find a handful of generic fonts that have specific use cases in mind
     - Footer
+    - Add a global X padding variable so that eg. header, content and footer are all aligned on the Y axis
 
     Product Cards:
         - Change product cards to vw sizing & add media queries where it makes sense
+        - Multiple thumbnails on hover
 
     Product Page:
         - fix size of images to not be larger than screen
         - add collections
             - link to said collections
         - allow for rich-text
+        - Multiple images
 
     Carousel:
         - Increase button sizing
         - Change bottom button designs
         - MAYBE: Add scrolling
+        - Make products into a prop instead
+        - Maybe a headline?
 
 functionality
     - Add filtering
@@ -32,12 +37,21 @@ functionality
         - Quantity of items to add
         - Sizes? (maybe versions or something similar?)
 
+    - Button:
+        - Add to cart button starts to spin while it's waiting to actually add to cart
+
+    - Cart:
+        - Hide cart when pressing anywhere else on the page
+
 components
     - imageFrame
 
 
 bugs
     - When an item that's already added to cart gets added to cart again it doesn't increase its quantity
+    - Sometimes the cart breaks & you can't add anything to the cart
+        - Probably the token is no longer valid or something
+    - When hopping between product-pages the data gets changed pre fade-out
 
 misc
     - Add other products
@@ -46,6 +60,7 @@ misc
         - T-Shirts
         - CD:s
         - ETC
+    - Remove unused fonts
 
 potential additions
     - Make carousel scrollable

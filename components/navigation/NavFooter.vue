@@ -6,5 +6,6 @@ footer {
   border-top: 1px solid;
   border-color: $secondary;
   color: $secondary;
+  font-family: $base-level-font;
 }
 </style>

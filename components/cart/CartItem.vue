@@ -1,11 +1,19 @@
 <template>
   <div class="cart-product">
-    <img class="cart-product-image" :src="product.merchandise.image.url" />
+    <figure>
+      <NuxtLink
+        :to="`/products/${product.merchandise.product.handle}`"
+        aria-hidden="true"
+      ></NuxtLink>
+      <img class="cart-product-image" :src="product.merchandise.image.url" />
+    </figure>
 
     <div class="cart-product-info">
-      <span class="cart-product-title">{{
-        product.merchandise.product.title
-      }}</span>
+      <NuxtLink
+        :to="`/products/${product.merchandise.product.handle}`"
+        class="cart-product-title"
+        >{{ product.merchandise.product.title }}</NuxtLink
+      >
       <span class="cart-product-cost">{{
         `${product.cost.amountPerQuantity.amount} ${product.cost.amountPerQuantity.currencyCode}`
       }}</span>
@@ -28,8 +36,6 @@
 </template>
 
 <script setup lang="ts">
-import type { InputHTMLAttributes } from "vue";
-
 interface CartItemProps {
   product: any;
   quantity: any;
@@ -58,16 +64,43 @@ watch(quantityRef, (newQuantity) => {
 <style lang="scss">
 .cart-product {
   display: flex;
-  gap: 50px;
   justify-content: space-between;
   align-items: center;
+  gap: 50px;
+
   height: 150px;
 
-  .cart-product-image {
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02rem;
+  text-transform: uppercase;
+
+  .cart-product-title {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  figure {
+    position: relative;
+
     height: 100%;
-    object-fit: contain;
-    overflow: hidden;
-    aspect-ratio: 2/1;
+    padding: 10px;
+    background-color: $card-image-background;
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      height: 100%;
+      width: 100%;
+    }
+
+    .cart-product-image {
+      height: 100%;
+      overflow: hidden;
+    }
   }
 
   .cart-product-info {
@@ -76,26 +109,24 @@ watch(quantityRef, (newQuantity) => {
     justify-content: space-evenly;
     flex-direction: column;
 
-    .cart-product-title {
-      font-weight: bold;
-    }
-
     .cart-product-quantity {
       display: inline-flex;
       align-items: center;
       gap: 0px;
       padding-top: 10px;
+
       button,
       input {
-        background: transparent;
-        color: $secondary;
-        text-align: center;
-        font-family: "roc-grotesk-wide",  sans-serif;
-        font-weight: 600;
-        border: 1px solid;
-        border-color: $secondary;
         width: 32px;
         height: 32px;
+
+        background: transparent;
+        color: $secondary;
+        border: 1px solid;
+        border-color: $secondary;
+
+        text-align: center;
+        font-family: $base-level-font;
 
         &[disabled],
         &:disabled {

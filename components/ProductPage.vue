@@ -67,11 +67,21 @@ const cartUpdateHelper = () => {
   flex-direction: row;
   flex-wrap: wrap;
 
+  @include respond-to(sm) {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .product-info {
     max-width: 40%;
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    @include respond-to(sm) {
+      max-width: unset;
+      width: 90%;
+    }
 
     .product-breadcrumb {
       text-transform: uppercase;
@@ -107,6 +117,10 @@ const cartUpdateHelper = () => {
   .product-image-container {
     width: 50%;
     order: -1;
+
+    @include respond-to(sm) {
+      width: 90%;
+    }
 
     img {
       width: 100%;
