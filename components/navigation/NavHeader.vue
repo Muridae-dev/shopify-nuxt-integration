@@ -10,7 +10,7 @@
       <button class="header-link header-hamburger" @click="toggleMenu">
         <MiscIconsHamburger />
       </button>
-      <button class="header-link header-cart" @click="cartActive = !cartActive">
+      <button class="header-link" @click="cartActive = !cartActive">
         <MiscIconsCart />
       </button>
     </div>
@@ -60,8 +60,7 @@ header {
   width: 100%;
   z-index: 99;
 
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 0px var(--side-spacing);
 
   backdrop-filter: $blur;
   border-bottom: 1px solid;
@@ -76,11 +75,6 @@ header {
 
   letter-spacing: -0.05em;
 
-  @include respond-to(sm) {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
   &.hide-header {
     transform: translateY(-100%);
   }
@@ -94,6 +88,8 @@ header {
     font-weight: 500;
 
     text-transform: uppercase;
+
+    padding: 0;
   }
 
   button {
@@ -112,11 +108,12 @@ header {
 
 .header-icon-container {
   padding-left: 20px;
+  display: flex;
 
   @include respond-to(sm) {
-    display: flex;
     justify-content: center;
     margin-left: auto;
+    gap: 20px;
   }
 }
 

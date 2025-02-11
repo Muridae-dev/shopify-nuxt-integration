@@ -1,4 +1,16 @@
-$header-spacing: 50px;
-$product-card-size: 200px;
+@use "./breakpoints" as breakpoints;
 
+$header-spacing: 50px;
+$product-card-size: 25vw;
 $cart-max-width: 500px;
+$side-spacing: 20px;
+
+:root {
+  --side-spacing: #{$side-spacing};
+}
+
+@include breakpoints.respond-to(sm) {
+  :root {
+    --side-spacing: 10px;
+  }
+}

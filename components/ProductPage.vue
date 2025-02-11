@@ -59,10 +59,12 @@ const cartUpdateHelper = () => {
   margin: auto;
   color: $secondary;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 50px;
   margin-top: 50px;
   margin-bottom: 50px;
+
+  padding: 0px var(--side-spacing);
 
   flex-direction: row;
   flex-wrap: wrap;
@@ -80,7 +82,7 @@ const cartUpdateHelper = () => {
 
     @include respond-to(sm) {
       max-width: unset;
-      width: 90%;
+      width: 100%;
     }
 
     .product-breadcrumb {
@@ -119,7 +121,7 @@ const cartUpdateHelper = () => {
     order: -1;
 
     @include respond-to(sm) {
-      width: 90%;
+      width: 100%;
     }
 
     img {
