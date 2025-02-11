@@ -33,9 +33,7 @@ body {
 
 .collections--container {
   display: flex;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding: 10px;
+  padding: 20px var(--side-spacing);
   gap: 10px;
 
   @include respond-to(sm) {

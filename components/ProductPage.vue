@@ -59,10 +59,12 @@ const cartUpdateHelper = () => {
   margin: auto;
   color: $secondary;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 50px;
   margin-top: 50px;
   margin-bottom: 50px;
+
+  padding: 0px var(--side-spacing);
 
   flex-direction: row;
   flex-wrap: wrap;

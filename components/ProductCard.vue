@@ -63,7 +63,7 @@ const productIsPartOfCollection = (cardCollection: any) => {
 
 <style lang="scss">
 .product-card {
-  width: $product-card-size;
+  width: calc($product-card-size - var(--side-spacing));
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@ const productIsPartOfCollection = (cardCollection: any) => {
     position: relative;
     display: flex;
     justify-content: center;
-    height: $product-card-size;
+    height: calc($product-card-size - var(--side-spacing));
     aspect-ratio: 1;
     padding: 10px;
     background-color: $card-image-background;

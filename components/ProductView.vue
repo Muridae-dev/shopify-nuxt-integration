@@ -20,12 +20,11 @@ $product-container-padding: 50px;
 .product-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   row-gap: 20px;
 
-  padding-top: $product-container-padding;
-  padding-bottom: $product-container-padding;
+  padding: $product-container-padding var(--side-spacing);
 
   a {
     text-decoration: none;

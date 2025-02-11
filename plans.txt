@@ -6,6 +6,7 @@ designs
     Product Cards:
         - Change product cards to vw sizing & add media queries where it makes sense
         - Multiple thumbnails on hover
+        - Underline product text on hover
 
     Product Page:
         - fix size of images to not be larger than screen
