@@ -82,7 +82,7 @@ const cartUpdateHelper = () => {
 
     @include respond-to(sm) {
       max-width: unset;
-      width: 90%;
+      width: 100%;
     }
 
     .product-breadcrumb {
@@ -121,7 +121,7 @@ const cartUpdateHelper = () => {
     order: -1;
 
     @include respond-to(sm) {
-      width: 90%;
+      width: 100%;
     }
 
     img {

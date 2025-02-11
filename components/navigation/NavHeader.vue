@@ -113,6 +113,7 @@ header {
   @include respond-to(sm) {
     justify-content: center;
     margin-left: auto;
+    gap: 20px;
   }
 }
 

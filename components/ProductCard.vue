@@ -62,34 +62,57 @@ const productIsPartOfCollection = (cardCollection: any) => {
 </script>
 
 <style lang="scss">
+$product-card-width: calc($product-card-size - var(--side-spacing) + 2.5px);
+$product-card-md-width: calc(50vw - (var(--side-spacing) + 5px));
+
 .product-card {
-  width: calc($product-card-size - var(--side-spacing));
+  width: $product-card-width;
   height: 100%;
   display: flex;
   flex-direction: column;
   color: $primary;
   background: $card-background;
 
-  &:hover {
-    .product-image-container {
-      background-color: $card-image-background--hover;
-    }
+  @include respond-to(md) {
+    width: $product-card-md-width;
+  }
+
+  @include respond-to(sm) {
+    width: 100%;
   }
 
   .product-image-container {
     position: relative;
     display: flex;
     justify-content: center;
-    height: calc($product-card-size - var(--side-spacing));
+    height: $product-card-width;
     aspect-ratio: 1;
     padding: 10px;
     background-color: $card-image-background;
 
     order: 1;
 
+    @include respond-to(md) {
+      height: $product-card-md-width;
+    }
+
+    @include respond-to(sm) {
+      height: unset;
+    }
+
     img {
       object-fit: contain;
       width: 100%;
+    }
+  }
+
+  &:hover {
+    .product-image-container {
+      background-color: $card-image-background--hover;
+    }
+
+    h2 {
+      text-decoration: underline;
     }
   }
 
@@ -100,23 +123,20 @@ const productIsPartOfCollection = (cardCollection: any) => {
     gap: 5px;
     padding-top: 10px;
     height: 100%;
-
     font-family: $card-title-font;
 
-    h2 {
+    h2,
+    .product-collection,
+    .product-price {
       font-size: 0.8rem;
       letter-spacing: -0.02rem;
     }
 
     .product-collection {
-      font-size: 0.8rem;
-      letter-spacing: -0.02rem;
       font-family: $card-collection-font;
     }
 
     .product-price {
-      font-size: 0.8rem;
-      letter-spacing: -0.02rem;
       font-family: $card-price-font;
     }
   }

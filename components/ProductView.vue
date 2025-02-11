@@ -20,7 +20,6 @@ $product-container-padding: 50px;
 .product-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   gap: 10px;
   row-gap: 20px;
 
