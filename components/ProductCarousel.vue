@@ -1,7 +1,7 @@
 <template>
-  <Carousel v-if="products" :items-to-show="5">
-    <Slide v-for="{ node: product } in products" :key="product.id">
-      <ProductCard v-bind="{ product }" />
+  <Carousel :items-to-show="1">
+    <Slide v-for="image in imageArray" :key="image.node.originalSrc">
+      <img :src="image.node.originalSrc" />
     </Slide>
     <template #addons>
       <Navigation />
@@ -11,14 +11,11 @@
 </template>
 
 <script setup lang="ts">
-const products = ref();
+interface ProductCarouselProps {
+  imageArray: any[];
+}
 
-onMounted(async () => {
-  const fetchedProducts = await GetProducts();
-  products.value = fetchedProducts.products
-    ? fetchedProducts.products.edges
-    : null;
-});
+defineProps<ProductCarouselProps>();
 </script>
 
 <style lang="scss">
@@ -55,5 +52,9 @@ onMounted(async () => {
 
 .carousel__pagination-button--active::after {
   background: red;
+}
+
+img {
+  width: 100%;
 }
 </style>
