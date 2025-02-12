@@ -55,27 +55,26 @@ const cartUpdateHelper = () => {
 <style scoped lang="scss">
 .product-container {
   width: 100%;
-  max-width: 1440px;
   margin: auto;
   color: $secondary;
   display: flex;
   justify-content: space-between;
-  gap: 50px;
+  gap: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
 
   padding: 0px var(--side-spacing);
 
   flex-direction: row;
-  flex-wrap: wrap;
 
   @include respond-to(sm) {
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   .product-info {
-    max-width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 30px;
