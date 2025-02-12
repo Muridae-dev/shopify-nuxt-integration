@@ -48,8 +48,6 @@ interface ProductPageProps {
 const props = defineProps<ProductPageProps>();
 const route = useRoute();
 
-console.log("product", props.product);
-
 const breadcrumb = route.path.split("/");
 
 const { updateCart } = useCartStore();
