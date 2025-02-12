@@ -7,7 +7,7 @@
         :href="`/collections/${collection.node.handle}`"
       />
     </div>
-    <!-- <ProductCarousel /> -->
+    <ProductCarousel />
   </div>
 </template>
 
