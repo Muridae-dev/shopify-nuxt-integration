@@ -25,9 +25,11 @@
           v-for="productImage in product.images.edges"
           :src="productImage.node.originalSrc"
           class="product-image--desktop"
+          :class="product.images.edges.length > 1 && '--inactive-mobile'"
         />
 
         <ProductCarousel
+          v-if="product.images.edges.length > 1"
           :imageArray="product.images.edges"
           class="product-image-carousel--mobile"
         />
@@ -142,8 +144,10 @@ const cartUpdateHelper = () => {
     .product-image--desktop {
       width: 100%;
 
-      @include respond-to(sm) {
-        display: none;
+      &.--inactive-mobile {
+        @include respond-to(sm) {
+          display: none;
+        }
       }
     }
 
