@@ -21,7 +21,18 @@
         <UiButton text="ADD TO CART" :click="cartUpdateHelper" />
       </div>
       <div class="product-image-container">
-        <img :src="product.images.edges[0].node.originalSrc" />
+        <img
+          v-for="productImage in product.images.edges"
+          :src="productImage.node.originalSrc"
+          class="product-image--desktop"
+          :class="product.images.edges.length > 1 && '--inactive-mobile'"
+        />
+
+        <ProductCarousel
+          v-if="product.images.edges.length > 1"
+          :imageArray="product.images.edges"
+          class="product-image-carousel--mobile"
+        />
       </div>
     </div>
   </div>
@@ -59,6 +70,7 @@ const cartUpdateHelper = () => {
   color: $secondary;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -74,13 +86,15 @@ const cartUpdateHelper = () => {
   }
 
   .product-info {
+    position: sticky;
+    top: $header-spacing;
+    left: 0;
     width: 50%;
     display: flex;
     flex-direction: column;
     gap: 30px;
 
     @include respond-to(sm) {
-      max-width: unset;
       width: 100%;
     }
 
@@ -116,6 +130,8 @@ const cartUpdateHelper = () => {
   }
 
   .product-image-container {
+    display: flex;
+    flex-direction: column;
     width: 50%;
     order: -1;
 
@@ -123,8 +139,22 @@ const cartUpdateHelper = () => {
       width: 100%;
     }
 
-    img {
+    .product-image--desktop {
       width: 100%;
+
+      &.--inactive-mobile {
+        @include respond-to(sm) {
+          display: none;
+        }
+      }
+    }
+
+    .product-image-carousel--mobile {
+      display: none;
+
+      @include respond-to(sm) {
+        display: inline;
+      }
     }
   }
 

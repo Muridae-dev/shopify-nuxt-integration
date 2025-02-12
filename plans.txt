@@ -1,7 +1,6 @@
 designs
     - Find a handful of generic fonts that have specific use cases in mind
     - Footer
-    - Add a global X padding variable so that eg. header, content and footer are all aligned on the Y axis
 
     Product Cards:
         - Change product cards to vw sizing & add media queries where it makes sense
@@ -25,6 +24,7 @@ designs
 functionality
     - Add filtering
     - Add search
+    - Add notifications
 
     - Homepage:
         - Featured products?
@@ -43,6 +43,7 @@ functionality
 
     - Cart:
         - Hide cart when pressing anywhere else on the page
+        - Hide cart when navigating to a product
 
 components
     - imageFrame

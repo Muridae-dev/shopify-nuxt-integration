@@ -205,7 +205,7 @@ export const GetProduct = async (productHandler: string) => {
                     }
                   }
                 }
-                images(first: 1) {
+                images(first: 10) {
                   edges {
                     node {
                       altText
