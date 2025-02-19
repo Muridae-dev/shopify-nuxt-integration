@@ -7,9 +7,9 @@
           : `/products/${product.handle}`
       "
     >
-      <article class="product-card">
+      <article class="product-card text-sm">
         <div class="product-info">
-          <h2>{{ product.title }}</h2>
+          <h2 class="text-sm">{{ product.title }}</h2>
           <span class="product-collection">
             <span
               v-if="product.collections.edges[0]"
@@ -123,22 +123,6 @@ $product-card-md-width: calc(50vw - (var(--side-spacing) + 5px));
     gap: 5px;
     padding-top: 10px;
     height: 100%;
-    font-family: $card-title-font;
-
-    h2,
-    .product-collection,
-    .product-price {
-      font-size: 0.8rem;
-      letter-spacing: -0.02rem;
-    }
-
-    .product-collection {
-      font-family: $card-collection-font;
-    }
-
-    .product-price {
-      font-family: $card-price-font;
-    }
   }
 }
 </style>
