@@ -1,11 +1,11 @@
 <template>
   <div class="header-spacing" />
   <header
-    class="text-header"
+    class="text-header --uppercase"
     :class="{ 'hide-header': isScrollingDown }"
     ref="header"
   >
-    <NuxtLink class="header-link" to="/">WEBSITE NAME</NuxtLink>
+    <NuxtLink class="header-link" to="/">Website Name</NuxtLink>
 
     <!-- DESKTOP -->
     <nav class="desktop-nav"><NavigationNavLinks /></nav>
@@ -76,8 +76,6 @@ header {
   transition: transform 0.5s;
   display: flex;
   align-items: center;
-
-  text-transform: uppercase;
 
   &.hide-header {
     transform: translateY(-100%);

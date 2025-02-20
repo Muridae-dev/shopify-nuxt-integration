@@ -12,10 +12,6 @@ $button-font--primary: "IBMPlexMono",  sans-serif;
   font-size: 0.8rem;
   letter-spacing: -0.02rem;
   font-family: $card-font;
-
-  &.--uppercase {
-    text-transform: uppercase;
-  }
 }
 
 .text-header {
@@ -42,4 +38,8 @@ $button-font--primary: "IBMPlexMono",  sans-serif;
   font-family: $base-level-font;
   letter-spacing: -0.05rem;
   font-size: 2rem;
+}
+
+.--uppercase {
+  text-transform: uppercase;
 }
