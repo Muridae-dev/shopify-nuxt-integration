@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-product">
+  <div class="cart-product text-sm --uppercase">
     <figure>
       <NuxtLink
         :to="`/products/${product.merchandise.product.handle}`"
@@ -69,12 +69,6 @@ watch(quantityRef, (newQuantity) => {
   gap: 50px;
 
   height: 150px;
-
-  font-size: 0.8rem;
-  line-height: 1.4rem;
-  font-weight: 500;
-  letter-spacing: -0.02rem;
-  text-transform: uppercase;
 
   .cart-product-title {
     color: inherit;

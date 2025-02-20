@@ -4,9 +4,7 @@ $header-title-font: "IBMPlexMono-Light", sans-serif;
 
 $card-font: "IBMPlexMono",  sans-serif;
 
-$product-title-font: "IBMPlexMono", sans-serif;
-$product-price-font: "IBMPlexMono",  sans-serif;
-$product-description-font: "IBMPlexMono",  sans-serif;
+$product-page-font: "IBMPlexMono", sans-serif;
 
 $button-font--primary: "IBMPlexMono",  sans-serif;
 
@@ -14,10 +12,34 @@ $button-font--primary: "IBMPlexMono",  sans-serif;
   font-size: 0.8rem;
   letter-spacing: -0.02rem;
   font-family: $card-font;
+
+  &.--uppercase {
+    text-transform: uppercase;
+  }
+}
+
+.text-header {
+  text-decoration: none;
+  font-family: $header-title-font;
+  letter-spacing: -0.05rem;
 }
 
 .text-md {
+  text-decoration: none;
+  font-family: $product-page-font;
+  letter-spacing: -0.03rem;
 }
 
 .text-lg {
+  text-decoration: none;
+  font-family: $base-level-font;
+  letter-spacing: -0.05rem;
+  font-size: 1.5rem;
+}
+
+.text-xl {
+  text-decoration: none;
+  font-family: $base-level-font;
+  letter-spacing: -0.05rem;
+  font-size: 2rem;
 }

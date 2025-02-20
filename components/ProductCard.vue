@@ -62,8 +62,8 @@ const productIsPartOfCollection = (cardCollection: any) => {
 </script>
 
 <style lang="scss">
-$product-card-width: calc($product-card-size - var(--side-spacing) + 2.5px);
-$product-card-md-width: calc(50vw - (var(--side-spacing) + 5px));
+$product-card-width: calc($product-card-size - var(--side-spacing) / 2);
+$product-card-md-width: calc(50vw - (var(--side-spacing)));
 
 .product-card {
   width: $product-card-width;
@@ -87,7 +87,7 @@ $product-card-md-width: calc(50vw - (var(--side-spacing) + 5px));
     justify-content: center;
     height: $product-card-width;
     aspect-ratio: 1;
-    padding: 10px;
+    padding: 5px;
     background-color: $card-image-background;
 
     order: 1;

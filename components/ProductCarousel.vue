@@ -1,7 +1,7 @@
 <template>
   <Carousel :items-to-show="1">
     <Slide v-for="image in imageArray" :key="image.node.originalSrc">
-      <img :src="image.node.originalSrc" />
+      <img class="product-carousel-image" :src="image.node.originalSrc" />
     </Slide>
     <template #addons>
       <Navigation />
@@ -54,7 +54,7 @@ defineProps<ProductCarouselProps>();
   background: red;
 }
 
-img {
+.product-carousel-image {
   width: 100%;
 }
 </style>

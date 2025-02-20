@@ -1,6 +1,6 @@
 <template>
   <div class="cart-container" v-if="cart" :class="cartActive && 'active'">
-    <div class="cart-header">
+    <div class="text-sm --uppercase">
       Your cart ({{ cart.lines.edges.length }} items)
     </div>
     <UiCloseButton :closeMenu="() => (cartActive = !cartActive)" />
@@ -50,13 +50,5 @@ watch(cart.value, (newCart) => {
   &.active {
     transform: translateX(0);
   }
-}
-
-.cart-header {
-  font-size: 0.8rem;
-  line-height: 1.4rem;
-  font-weight: 500;
-  letter-spacing: -0.02rem;
-  text-transform: uppercase;
 }
 </style>

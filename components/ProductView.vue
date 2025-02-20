@@ -15,12 +15,11 @@ defineProps<ProductViewProps>();
 </script>
 
 <style scoped lang="scss">
-$product-container-padding: 50px;
+$product-container-padding: 20px;
 
 .product-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
   row-gap: 20px;
 
   padding: $product-container-padding var(--side-spacing);

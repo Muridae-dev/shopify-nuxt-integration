@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1 class="collections-title-container">
-      Collections:
+    <h1 class="collections-title-container text-lg">
       {{ collection.title }}
     </h1>
     <ProductView
@@ -24,6 +23,9 @@ const { data: collection } = await useAsyncData("products", async () => {
 
 <style lang="scss" scoped>
 .collections-title-container {
-  padding: 0px var(--side-spacing);
+  margin: 0 var(--side-spacing);
+  padding: 10px 0;
+
+  border-bottom: 1px solid black;
 }
 </style>
