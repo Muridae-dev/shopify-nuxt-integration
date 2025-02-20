@@ -1,14 +1,29 @@
 <template>
-  <section>
-    <div key="products" class="product-container">
-      <ProductCard v-for="{ node: product } in products" v-bind="{ product }" />
-    </div>
-  </section>
+  <div>
+    <section>
+      <h1 class="collections-title-container text-lg">
+        {{ collectionName ?? "Show All" }}
+      </h1>
+      <UiButton
+        class="product-filter-button --uppercase"
+        text="Filters"
+        variant="secondary"
+      />
+      <div key="products" class="product-container">
+        <ProductCard
+          v-for="{ node: product } in products"
+          v-bind="{ product }"
+        />
+      </div>
+    </section>
+    <NavigationFilters />
+  </div>
 </template>
 
 <script setup lang="ts">
 interface ProductViewProps {
   products: any;
+  collectionName?: string;
 }
 
 defineProps<ProductViewProps>();
@@ -27,6 +42,22 @@ $product-container-padding: 20px;
   a {
     text-decoration: none;
   }
+}
+
+.collections-title-container {
+  margin: 0 var(--side-spacing);
+  padding: 10px 0;
+
+  border-bottom: 1px solid black;
+}
+
+.product-filter-button {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  z-index: 99;
 }
 
 .loading-products {

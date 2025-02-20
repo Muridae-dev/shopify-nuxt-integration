@@ -47,5 +47,18 @@ withDefaults(defineProps<ButtonProps>(), {
       color: white;
     }
   }
+
+  &--secondary {
+    background: black;
+    color: white;
+    border-color: $secondary;
+    width: auto;
+    border-radius: 2px;
+
+    &:hover {
+      background: white;
+      color: black;
+    }
+  }
 }
 </style>
