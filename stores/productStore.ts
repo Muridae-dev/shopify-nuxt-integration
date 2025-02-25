@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useFilterStore } from "@/stores/filterStore";
 import { GetProducts, GetProductsByCollection } from "@/utils/ShopifyClient";
 
 export const useProductStore = defineStore("productStore", {
@@ -13,8 +14,8 @@ export const useProductStore = defineStore("productStore", {
       if (this.products.length > 0 && !this.collection) return;
 
       this.collection = null;
-
       this.isLoading = true;
+
       try {
         const { data } = await useAsyncData("products", async () => {
           const fetchedProducts = await GetProducts();
@@ -26,6 +27,9 @@ export const useProductStore = defineStore("productStore", {
         console.error("Error fetching products:", error);
       } finally {
         this.isLoading = false;
+
+        const filterStore = useFilterStore();
+        filterStore.setAvailableFilters(this.products);
       }
     },
 

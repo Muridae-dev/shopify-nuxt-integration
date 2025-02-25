@@ -11,5 +11,5 @@ import { useProductStore } from "@/stores/productStore";
 
 const productStore = useProductStore();
 
-productStore.fetchProducts(); // Fetch when the component mounts
+productStore.fetchProducts();
 </script>

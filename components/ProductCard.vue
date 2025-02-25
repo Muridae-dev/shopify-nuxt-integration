@@ -36,7 +36,7 @@
               product.images.edges[0].node.altText ||
               `Image for ${product.title}`
             "
-            :src="product.images.edges[0].node.originalSrc"
+            :src="product.images.edges[0].node.transformedSrc"
           />
         </figure>
       </article>

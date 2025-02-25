@@ -8,6 +8,7 @@
         class="product-filter-button --uppercase"
         text="Filters"
         variant="secondary"
+        :click="() => (filterStore.isActive = true)"
       />
       <div key="products" class="product-container">
         <ProductCard
@@ -21,12 +22,16 @@
 </template>
 
 <script setup lang="ts">
+import { useFilterStore } from "@/stores/filterStore";
+
 interface ProductViewProps {
   products: any;
   collectionName?: string;
 }
 
 defineProps<ProductViewProps>();
+
+const filterStore = useFilterStore();
 </script>
 
 <style scoped lang="scss">
