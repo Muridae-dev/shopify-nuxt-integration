@@ -8,11 +8,11 @@
         class="product-filter-button --uppercase"
         text="Filters"
         variant="secondary"
-        :click="() => (filterStore.isActive = true)"
+        :click="() => (filterStore.isActive = !filterStore.isActive)"
       />
       <div key="products" class="product-container">
         <ProductCard
-          v-for="{ node: product } in products"
+          v-for="{ node: product } in filteredProducts"
           v-bind="{ product }"
         />
       </div>
@@ -29,9 +29,28 @@ interface ProductViewProps {
   collectionName?: string;
 }
 
-defineProps<ProductViewProps>();
+const props = defineProps<ProductViewProps>();
 
 const filterStore = useFilterStore();
+
+const filteredProducts = computed(() => {
+  return props.products.filter((product) => {
+    return (
+      (!filterStore.selectedFilters.productTypes.length ||
+        filterStore.selectedFilters.productTypes.includes(
+          product.node.productType
+        )) &&
+      (!filterStore.selectedFilters.colors.length ||
+        product.node.variants.edges.some(({ node }) =>
+          node.selectedOptions.some(
+            (opt) =>
+              opt.name.toLowerCase() === "color" &&
+              filterStore.selectedFilters.colors.includes(opt.value)
+          )
+        ))
+    );
+  });
+});
 </script>
 
 <style scoped lang="scss">

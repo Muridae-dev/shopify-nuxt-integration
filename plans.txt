@@ -63,6 +63,8 @@ misc
         - CD:s
         - ETC
     - Remove unused fonts
+    - Create a global class for side-menus
+    - Remove "edges" for all product fetching to use "node"
 
 potential additions
     - Make carousel scrollable

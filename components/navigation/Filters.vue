@@ -8,7 +8,21 @@
     <UiCloseButton :closeMenu="() => (filterStore.isActive = false)" />
     <h2 id="filter-title">Filter Products</h2>
     <form>
-      <pre>{{ filterStore.filters }}</pre>
+      <div
+        v-for="(values, filterType) in filterStore.filters"
+        :key="filterType"
+      >
+        <h3>{{ filterType }}</h3>
+        <label v-for="value in values" :key="value">
+          <input
+            type="checkbox"
+            :value="value"
+            :checked="filterStore.selectedFilters[filterType].includes(value)"
+            @change="toggleFilter(filterType, value)"
+          />
+          {{ value }}
+        </label>
+      </div>
       <button>Apply Filters</button>
       <button type="reset">Reset</button>
     </form>
@@ -19,6 +33,18 @@
 import { useFilterStore } from "@/stores/filterStore";
 
 const filterStore = useFilterStore();
+
+const toggleFilter = (filterType: string, value: string) => {
+  const currentFilters = filterStore.selectedFilters[filterType];
+  if (currentFilters.includes(value)) {
+    filterStore.updateSelectedFilters(
+      filterType,
+      currentFilters.filter((v) => v !== value)
+    );
+  } else {
+    filterStore.updateSelectedFilters(filterType, [...currentFilters, value]);
+  }
+};
 </script>
 
 <style lang="scss">
