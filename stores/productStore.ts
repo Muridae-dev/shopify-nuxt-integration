@@ -56,6 +56,9 @@ export const useProductStore = defineStore("productStore", {
         console.error("Error fetching collection products:", error);
       } finally {
         this.isLoading = false;
+
+        const filterStore = useFilterStore();
+        filterStore.setAvailableFilters(this.products);
       }
     },
   },
