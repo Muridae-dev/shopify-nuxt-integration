@@ -1,5 +1,5 @@
 <template>
-  <dialog
+  <div
     class="filter-menu"
     role="dialog"
     aria-labelledby="filter-title"
@@ -40,7 +40,7 @@
         @click="filterStore.clearFilters()"
       />
     </form>
-  </dialog>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -63,7 +63,6 @@ const toggleFilter = (filterType: string, value: string) => {
 
 <style lang="scss" scoped>
 .filter-menu {
-  all: unset;
   display: flex;
   flex-direction: column;
   gap: 40px;
