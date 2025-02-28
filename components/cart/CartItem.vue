@@ -73,31 +73,6 @@ watch(quantityRef, (newQuantity) => {
     text-decoration: underline;
   }
 
-  // figure {
-  //   position: relative;
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   aspect-ratio: 1;
-  //   height: 100%;
-  //   padding: 10px;
-  //   background-color: $card-image-background;
-
-  //   a {
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-
-  //     height: 100%;
-  //     width: 100%;
-  //   }
-
-  //   .cart-product-image {
-  //     height: 100%;
-  //     overflow: hidden;
-  //   }
-  // }
-
   .cart-product-info {
     width: 100%;
     display: flex;
