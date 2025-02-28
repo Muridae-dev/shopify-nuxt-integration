@@ -1,44 +1,43 @@
 <template>
-  <div>
-    <NuxtLink
-      :to="
-        productIsPartOfCollection(product.collections.edges[0])
-          ? `/collections/${route.params.collectionHandler}/products/${product.handle}`
-          : `/products/${product.handle}`
-      "
-    >
-      <article class="product-card parent text-sm">
-        <div class="product-info">
-          <h2 class="text-sm">{{ product.title }}</h2>
-          <span class="product-collection">
-            <span
-              v-if="product.collections.edges[0]"
-              v-for="(collection, index) in product.collections.edges"
-            >
-              {{
-                index !== product.collections.edges.length - 1
-                  ? `${collection.node.title} / `
-                  : collection.node.title
-              }}
-            </span>
-          </span>
-          <span class="product-price">
+  <NuxtLink
+    class="product-card-container"
+    :to="
+      productIsPartOfCollection(product.collections.edges[0])
+        ? `/collections/${route.params.collectionHandler}/products/${product.handle}`
+        : `/products/${product.handle}`
+    "
+  >
+    <article class="product-card parent text-sm">
+      <div class="product-info">
+        <h2 class="text-sm">{{ product.title }}</h2>
+        <span class="product-collection">
+          <span
+            v-if="product.collections.edges[0]"
+            v-for="(collection, index) in product.collections.edges"
+          >
             {{
-              product.variants.edges[0].node.price.amount +
-              product.variants.edges[0].node.price.currencyCode
+              index !== product.collections.edges.length - 1
+                ? `${collection.node.title} / `
+                : collection.node.title
             }}
           </span>
-        </div>
-        <UiProductImage
-          v-if="product.images.edges[0]"
-          :imageSrc="product.images.edges[0].node.transformedSrc"
-          :imageAlt="
-            product.images.edges[0].node.altText || `Image for ${product.title}`
-          "
-        />
-      </article>
-    </NuxtLink>
-  </div>
+        </span>
+        <span class="product-price">
+          {{
+            product.variants.edges[0].node.price.amount +
+            product.variants.edges[0].node.price.currencyCode
+          }}
+        </span>
+      </div>
+      <UiProductImage
+        v-if="product.images.edges[0]"
+        :imageSrc="product.images.edges[0].node.transformedSrc"
+        :imageAlt="
+          product.images.edges[0].node.altText || `Image for ${product.title}`
+        "
+      />
+    </article>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
@@ -59,6 +58,12 @@ const productIsPartOfCollection = (cardCollection: any) => {
 </script>
 
 <style lang="scss">
+.product-card-container {
+  @include respond-to(sm) {
+    width: 100%;
+  }
+}
+
 .product-card {
   width: $product-card-width;
   height: 100%;
