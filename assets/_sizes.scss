@@ -5,6 +5,9 @@ $product-card-size: 25vw;
 $cart-max-width: 500px;
 $side-spacing: 20px;
 
+$product-card-width: calc($product-card-size - var(--side-spacing) / 2);
+$product-card-md-width: calc(50vw - (var(--side-spacing)));
+
 :root {
   --side-spacing: #{$side-spacing};
 }

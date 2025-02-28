@@ -7,7 +7,7 @@
           : `/products/${product.handle}`
       "
     >
-      <article class="product-card text-sm">
+      <article class="product-card parent text-sm">
         <div class="product-info">
           <h2 class="text-sm">{{ product.title }}</h2>
           <span class="product-collection">
@@ -29,16 +29,13 @@
             }}
           </span>
         </div>
-        <figure class="product-image-container">
-          <img
-            v-if="product.images.edges[0]"
-            :alt="
-              product.images.edges[0].node.altText ||
-              `Image for ${product.title}`
-            "
-            :src="product.images.edges[0].node.transformedSrc"
-          />
-        </figure>
+        <UiProductImage
+          v-if="product.images.edges[0]"
+          :imageSrc="product.images.edges[0].node.transformedSrc"
+          :imageAlt="
+            product.images.edges[0].node.altText || `Image for ${product.title}`
+          "
+        />
       </article>
     </NuxtLink>
   </div>
@@ -62,9 +59,6 @@ const productIsPartOfCollection = (cardCollection: any) => {
 </script>
 
 <style lang="scss">
-$product-card-width: calc($product-card-size - var(--side-spacing) / 2);
-$product-card-md-width: calc(50vw - (var(--side-spacing)));
-
 .product-card {
   width: $product-card-width;
   height: 100%;
@@ -81,16 +75,8 @@ $product-card-md-width: calc(50vw - (var(--side-spacing)));
     width: 100%;
   }
 
-  .product-image-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
+  figure {
     height: $product-card-width;
-    aspect-ratio: 1;
-    padding: 5px;
-    background-color: $card-image-background;
-
-    order: 1;
 
     @include respond-to(md) {
       height: $product-card-md-width;
@@ -98,21 +84,6 @@ $product-card-md-width: calc(50vw - (var(--side-spacing)));
 
     @include respond-to(sm) {
       height: unset;
-    }
-
-    img {
-      object-fit: contain;
-      width: 100%;
-    }
-  }
-
-  &:hover {
-    .product-image-container {
-      background-color: $card-image-background--hover;
-    }
-
-    h2 {
-      text-decoration: underline;
     }
   }
 

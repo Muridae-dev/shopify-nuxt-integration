@@ -1,12 +1,10 @@
 <template>
-  <div class="cart-product text-sm --uppercase">
-    <figure>
-      <NuxtLink
-        :to="`/products/${product.merchandise.product.handle}`"
-        aria-hidden="true"
-      ></NuxtLink>
-      <img class="cart-product-image" :src="product.merchandise.image.url" />
-    </figure>
+  <div class="cart-product parent text-sm --uppercase">
+    <UiProductImage
+      :imageSrc="product.merchandise.image.url"
+      :imageAlt="`[[ TODO ]]`"
+      :imageLink="product.merchandise.product.handle"
+    />
 
     <div class="cart-product-info">
       <NuxtLink
@@ -75,30 +73,30 @@ watch(quantityRef, (newQuantity) => {
     text-decoration: underline;
   }
 
-  figure {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 1;
-    height: 100%;
-    padding: 10px;
-    background-color: $card-image-background;
+  // figure {
+  //   position: relative;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   aspect-ratio: 1;
+  //   height: 100%;
+  //   padding: 10px;
+  //   background-color: $card-image-background;
 
-    a {
-      position: absolute;
-      top: 0;
-      left: 0;
+  //   a {
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
 
-      height: 100%;
-      width: 100%;
-    }
+  //     height: 100%;
+  //     width: 100%;
+  //   }
 
-    .cart-product-image {
-      height: 100%;
-      overflow: hidden;
-    }
-  }
+  //   .cart-product-image {
+  //     height: 100%;
+  //     overflow: hidden;
+  //   }
+  // }
 
   .cart-product-info {
     width: 100%;
