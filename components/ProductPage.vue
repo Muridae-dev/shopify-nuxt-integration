@@ -20,18 +20,18 @@
 
         <UiButton text="ADD TO CART" :click="cartUpdateHelper" />
       </div>
-      <div class="product-image-container">
+      <div class="product-page-image-container">
         <img
           v-for="productImage in product.images.edges"
           :src="productImage.node.transformedSrc"
-          class="product-image--desktop"
+          class="product-page-image--desktop"
           :class="product.images.edges.length > 1 && '--inactive-mobile'"
         />
 
         <ProductCarousel
           v-if="product.images.edges.length > 1"
           :imageArray="product.images.edges"
-          class="product-image-carousel--mobile"
+          class="product-page-image-carousel--mobile"
         />
       </div>
     </div>
@@ -121,7 +121,7 @@ const cartUpdateHelper = () => {
     }
   }
 
-  .product-image-container {
+  .product-page-image-container {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -131,7 +131,7 @@ const cartUpdateHelper = () => {
       width: 100%;
     }
 
-    .product-image--desktop {
+    .product-page-image--desktop {
       width: 100%;
 
       &.--inactive-mobile {
@@ -141,7 +141,7 @@ const cartUpdateHelper = () => {
       }
     }
 
-    .product-image-carousel--mobile {
+    .product-page-image-carousel--mobile {
       display: none;
 
       @include respond-to(sm) {
