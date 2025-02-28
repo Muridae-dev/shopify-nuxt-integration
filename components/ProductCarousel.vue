@@ -1,7 +1,7 @@
 <template>
   <Carousel :items-to-show="1">
-    <Slide v-for="image in imageArray" :key="image.node.originalSrc">
-      <img class="product-carousel-image" :src="image.node.originalSrc" />
+    <Slide v-for="image in imageArray" :key="image.node.transformedSrc">
+      <img class="product-carousel-image" :src="image.node.transformedSrc" />
     </Slide>
     <template #addons>
       <Navigation />

@@ -178,8 +178,8 @@ export const GetProduct = async (productHandler: string) => {
                 images(first: 10) {
                   edges {
                     node {
+                      transformedSrc(maxWidth: 1200, maxHeight: 1200)
                       altText
-                      originalSrc
                     }
                   }
                 }

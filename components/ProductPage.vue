@@ -23,7 +23,7 @@
       <div class="product-image-container">
         <img
           v-for="productImage in product.images.edges"
-          :src="productImage.node.originalSrc"
+          :src="productImage.node.transformedSrc"
           class="product-image--desktop"
           :class="product.images.edges.length > 1 && '--inactive-mobile'"
         />
