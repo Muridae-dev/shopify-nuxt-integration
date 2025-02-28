@@ -264,7 +264,7 @@ export const ShopifyGetCart = async (cartId: string) => {
               quantity
               merchandise {
                 __typename
-                ... on ProductsVariant {
+                ... on ProductVariant {
                   id
                   product {
                     title

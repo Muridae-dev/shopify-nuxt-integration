@@ -11,10 +11,20 @@
       <div
         v-for="(values, filterType) in filterStore.filters"
         :key="filterType"
+        class="filter-type-container"
       >
-        <h3>{{ filterType }}</h3>
-        <label v-for="value in values" :key="value">
+        <h3 class="text-md --uppercase">{{ filterType }}</h3>
+        <label
+          class="checkbox-label text-md --uppercase"
+          v-for="value in values"
+          :key="value"
+          :class="{
+            '--checked':
+              filterStore.selectedFilters[filterType].includes(value),
+          }"
+        >
           <input
+            class="hidden"
             type="checkbox"
             :value="value"
             :checked="filterStore.selectedFilters[filterType].includes(value)"
@@ -23,8 +33,12 @@
           {{ value }}
         </label>
       </div>
-      <button>Apply Filters</button>
-      <button type="reset">Reset</button>
+      <UiButton
+        text="Reset"
+        type="reset"
+        class="--uppercase"
+        @click="filterStore.clearFilters()"
+      />
     </form>
   </dialog>
 </template>
@@ -47,7 +61,7 @@ const toggleFilter = (filterType: string, value: string) => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .filter-menu {
   all: unset;
   display: flex;
@@ -74,5 +88,45 @@ const toggleFilter = (filterType: string, value: string) => {
   &.active {
     transform: translateX(0);
   }
+}
+
+.filter-type-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.checkbox-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    border: 1px solid black;
+    background: white;
+
+    box-shadow: inset 0 0 0 0 white; /* No inner box initially */
+  }
+
+  &.--checked {
+    &::before {
+      background: black;
+      box-shadow: inset 0 0 0 4px white; /* Expands inward to form the black box */
+    }
+  }
+}
+
+.hidden {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
 }
 </style>

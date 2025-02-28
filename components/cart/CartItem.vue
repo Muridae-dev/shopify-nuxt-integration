@@ -77,7 +77,10 @@ watch(quantityRef, (newQuantity) => {
 
   figure {
     position: relative;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
     height: 100%;
     padding: 10px;
     background-color: $card-image-background;
