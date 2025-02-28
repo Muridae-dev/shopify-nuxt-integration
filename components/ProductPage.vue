@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="product" class="product-container">
+    <div v-if="product" class="product-container text-md">
       <div class="product-info">
-        <h1>{{ product.title }}</h1>
+        <h1 class="text-xl">{{ product.title }}</h1>
         <div class="product-price">
           Price:
           <span>{{
@@ -119,14 +119,6 @@ const cartUpdateHelper = () => {
         text-transform: none;
       }
     }
-
-    .product-price {
-      font-family: $product-price-font;
-    }
-
-    .product-description {
-      font-family: $product-description-font;
-    }
   }
 
   .product-image-container {
@@ -163,7 +155,6 @@ const cartUpdateHelper = () => {
     padding-bottom: 30px;
     border-bottom: 1px solid;
     border-color: rgba($secondary, 0.5);
-    font-family: $product-title-font;
   }
 }
 </style>

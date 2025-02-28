@@ -69,13 +69,7 @@ export const GetCollections = async () => {
   return result.data;
 };
 
-export const GetProductsByCollection = async (collectionHandle: string) => {
-  const params = {
-    query: `query ProductsByCollection($handle: String!) {
-      collection(handle: $handle) {
-          id
-          title
-          products(first: 100) {
+const productsVar = `products(first: 100) {
             edges {
                 node {
                   id
@@ -91,27 +85,39 @@ export const GetProductsByCollection = async (collectionHandle: string) => {
                       }
                     }
                   }
-                  variants(first: 1) {
+                  variants(first: 10) {
                     edges {
                       node {
                         price {
                           amount
                           currencyCode
                         }
+                        selectedOptions {
+                          name
+                          value
+                        }
                       }
                     }
                   }
-                  images(first: 1) {
+                  images(first: 3) {
                     edges {
                       node {
+                        transformedSrc(maxWidth: 500, maxHeight: 500)
                         altText
-                        originalSrc
                       }
                     }
                   }
                 }
               }
-          }
+          }`;
+
+export const GetProductsByCollection = async (collectionHandle: string) => {
+  const params = {
+    query: `query ProductsByCollection($handle: String!) {
+      collection(handle: $handle) {
+          id
+          title
+          ${productsVar}
       }
     }`,
     variables: { handle: collectionHandle },
@@ -131,43 +137,7 @@ export const GetProductsByCollection = async (collectionHandle: string) => {
 // -------------------------------------------------
 export const GetProducts = async () => {
   const queryProducts = `query FirstProduct {
-      products(first:20) {
-              edges {
-                node {
-                  id
-                  handle
-                  title
-                  description
-                  productType
-                  collections(first: 2) {
-                    edges {
-                      node {
-                        title
-                        handle
-                      }
-                    }
-                  }
-                  variants(first: 1) {
-                    edges {
-                      node {
-                        price {
-                          amount
-                          currencyCode
-                        }
-                      }
-                    }
-                  }
-                  images(first: 1) {
-                    edges {
-                      node {
-                        altText
-                        originalSrc
-                      }
-                    }
-                  }
-                }
-              }
-            }
+      ${productsVar}
     }`;
 
   const result = await ShopifyClient(queryProducts);

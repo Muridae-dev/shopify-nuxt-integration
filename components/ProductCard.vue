@@ -7,9 +7,9 @@
           : `/products/${product.handle}`
       "
     >
-      <article class="product-card">
+      <article class="product-card text-sm">
         <div class="product-info">
-          <h2>{{ product.title }}</h2>
+          <h2 class="text-sm">{{ product.title }}</h2>
           <span class="product-collection">
             <span
               v-if="product.collections.edges[0]"
@@ -36,7 +36,7 @@
               product.images.edges[0].node.altText ||
               `Image for ${product.title}`
             "
-            :src="product.images.edges[0].node.originalSrc"
+            :src="product.images.edges[0].node.transformedSrc"
           />
         </figure>
       </article>
@@ -62,8 +62,8 @@ const productIsPartOfCollection = (cardCollection: any) => {
 </script>
 
 <style lang="scss">
-$product-card-width: calc($product-card-size - var(--side-spacing) + 2.5px);
-$product-card-md-width: calc(50vw - (var(--side-spacing) + 5px));
+$product-card-width: calc($product-card-size - var(--side-spacing) / 2);
+$product-card-md-width: calc(50vw - (var(--side-spacing)));
 
 .product-card {
   width: $product-card-width;
@@ -87,7 +87,7 @@ $product-card-md-width: calc(50vw - (var(--side-spacing) + 5px));
     justify-content: center;
     height: $product-card-width;
     aspect-ratio: 1;
-    padding: 10px;
+    padding: 5px;
     background-color: $card-image-background;
 
     order: 1;
@@ -123,22 +123,6 @@ $product-card-md-width: calc(50vw - (var(--side-spacing) + 5px));
     gap: 5px;
     padding-top: 10px;
     height: 100%;
-    font-family: $card-title-font;
-
-    h2,
-    .product-collection,
-    .product-price {
-      font-size: 0.8rem;
-      letter-spacing: -0.02rem;
-    }
-
-    .product-collection {
-      font-family: $card-collection-font;
-    }
-
-    .product-price {
-      font-family: $card-price-font;
-    }
   }
 }
 </style>

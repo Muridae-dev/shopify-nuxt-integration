@@ -1,7 +1,11 @@
 <template>
   <div class="header-spacing" />
-  <header :class="{ 'hide-header': isScrollingDown }" ref="header">
-    <NuxtLink class="header-link" to="/">WEBSITE NAME</NuxtLink>
+  <header
+    class="text-header --uppercase"
+    :class="{ 'hide-header': isScrollingDown }"
+    ref="header"
+  >
+    <NuxtLink class="header-link" to="/">Website Name</NuxtLink>
 
     <!-- DESKTOP -->
     <nav class="desktop-nav"><NavigationNavLinks /></nav>
@@ -18,7 +22,7 @@
 
   <!-- MOBILE -->
   <nav
-    class="mobile-nav"
+    class="mobile-nav text-md"
     :class="{ active: menuActive }"
     :aria-hidden="!menuActive"
   >
@@ -73,8 +77,6 @@ header {
   display: flex;
   align-items: center;
 
-  letter-spacing: -0.05em;
-
   &.hide-header {
     transform: translateY(-100%);
   }
@@ -82,13 +84,6 @@ header {
   a,
   button {
     color: $secondary;
-    text-decoration: none;
-
-    font-family: $header-title-font;
-    font-weight: 500;
-
-    text-transform: uppercase;
-
     padding: 0;
   }
 
@@ -146,7 +141,6 @@ header {
 
     a {
       color: inherit;
-      text-transform: uppercase;
     }
 
     &.active {

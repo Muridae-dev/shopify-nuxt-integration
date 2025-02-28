@@ -1,22 +1,28 @@
 <template>
-    <div>
-      Collections:
-      {{ collection.title }}
-      <ProductView
-        v-if="collection.products"
-        :products="collection.products.edges"
-      />
-    </div>
-  </template>
-  
-  <script setup lang="ts">
-  const route = useRoute();
-  
-  const { data: collection } = await useAsyncData("products", async () => {
-    const fetchedProducts = await GetProductsByCollection(
-      route.params.collectionHandler
-    );
-    return fetchedProducts.collection;
-  });
-  </script>
-  
+  <div>
+    <ProductView
+      v-if="productStore.products.length"
+      :products="productStore.products"
+      :collectionName="productStore.collection?.title"
+    />
+    <div v-else>Loading...</div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useProductStore } from "@/stores/productStore";
+import { useRoute } from "vue-router";
+import { watchEffect } from "vue";
+
+const productStore = useProductStore();
+const route = useRoute();
+
+// Automatically fetch products when the route changes
+watchEffect(() => {
+  const collectionHandler = route.params.collectionHandler;
+
+  if (collectionHandler) {
+    productStore.fetchProductsByCollection(collectionHandler);
+  }
+});
+</script>

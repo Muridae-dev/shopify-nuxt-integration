@@ -1,12 +1,15 @@
 <template>
-  <ProductView v-if="products" :products />
+  <ProductView
+    v-if="productStore.products.length"
+    :products="productStore.products"
+  />
+  <div v-else>Loading...</div>
 </template>
 
 <script setup lang="ts">
-import { GetProducts } from "@/utils/ShopifyClient";
+import { useProductStore } from "@/stores/productStore";
 
-const { data: products } = await useAsyncData("products", async () => {
-  const fetchedProducts = await GetProducts();
-  return fetchedProducts.products ? fetchedProducts.products.edges : [];
-});
+const productStore = useProductStore();
+
+productStore.fetchProducts();
 </script>

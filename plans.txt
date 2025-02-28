@@ -41,10 +41,6 @@ functionality
     - Button:
         - Add to cart button starts to spin while it's waiting to actually add to cart
 
-    - Cart:
-        - Hide cart when pressing anywhere else on the page
-        - Hide cart when navigating to a product
-
 components
     - imageFrame
 
@@ -63,6 +59,11 @@ misc
         - CD:s
         - ETC
     - Remove unused fonts
+    - Create a global component for side-menus
+        - Close side-menus when pressing elsewhere
+        - Cart:
+            - Hide cart when navigating to a product
+    - Remove "edges" for all product fetching to use "node"
 
 potential additions
     - Make carousel scrollable
