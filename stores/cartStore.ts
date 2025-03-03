@@ -1,9 +1,11 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { useNotificationStore } from "@/stores/notificationStore";
 
 interface UpdateCartProps {
   id: string;
   quantity: number;
+  title?: string;
 }
 
 export const useCartStore = defineStore("cart", () => {
@@ -20,7 +22,9 @@ export const useCartStore = defineStore("cart", () => {
     fetchCart();
   });
 
-  const updateCart = async ({ id, quantity }: UpdateCartProps) => {
+  const updateCart = async ({ id, quantity, title }: UpdateCartProps) => {
+    const notificationStore = useNotificationStore();
+
     !localStorage.getItem("cartId") &&
       localStorage.setItem(
         "cartId",
@@ -28,12 +32,23 @@ export const useCartStore = defineStore("cart", () => {
       );
     cartId.value = localStorage.getItem("cartId");
 
-    await ShopifyAddCartItem({
-      cartId: cartId.value,
-      product: { merchandiseId: id, quantity },
-    });
+    try {
+      await ShopifyAddCartItem({
+        cartId: cartId.value,
+        product: { merchandiseId: id, quantity },
+      });
 
-    await fetchCart();
+      await fetchCart();
+
+      if (title) {
+        notificationStore.addNotification("success", `${title} added to cart!`);
+      }
+
+      cartActive.value = true;
+    } catch (error) {
+      notificationStore.addNotification("error", "Failed to add item to cart.");
+      console.error("Cart update error:", error);
+    }
 
     cartActive.value = true;
   };

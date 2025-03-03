@@ -2,7 +2,7 @@
   <div>
     <NavigationNavHeader />
     <NavigationCart />
-    <!-- <NavigationNotificationBar /> -->
+    <NavigationNotificationBar />
     <slot />
     <NavigationNavFooter />
   </div>
