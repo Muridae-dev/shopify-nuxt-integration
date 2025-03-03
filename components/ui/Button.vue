@@ -5,13 +5,12 @@
     :href="!href?.startsWith('/') ? href : null"
     :class="['button', `button--${variant}`]"
     @click="href ? null : click ? click() : null"
-    >{{ text }}</component
-  >
+    ><slot
+  /></component>
 </template>
 
 <script setup lang="ts">
 interface ButtonProps {
-  text: string;
   variant?: "primary" | "secondary";
   click?: () => any;
   href?: string;
@@ -24,6 +23,7 @@ withDefaults(defineProps<ButtonProps>(), {
 
 <style scoped lang="scss">
 .button {
+  position: relative;
   padding-top: 15px;
   padding-bottom: 15px;
   width: 100%;

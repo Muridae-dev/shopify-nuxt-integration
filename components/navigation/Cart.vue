@@ -17,7 +17,7 @@
       v-bind="{ product, quantity: product.quantity }"
     />
 
-    <UiButton text="CHECKOUT" :href="cartStore.cart.checkoutUrl" />
+    <UiButton :href="cartStore.cart.checkoutUrl">CHECKOUT</UiButton>
   </div>
 </template>
 

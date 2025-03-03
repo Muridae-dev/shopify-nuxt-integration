@@ -1,5 +1,9 @@
 <template>
-  <div class="cart-product parent text-sm --uppercase">
+  <div
+    class="cart-product parent text-sm --uppercase"
+    v-if="product.merchandise.image"
+  >
+    <!-- TODO: Above v-if might be worth looking into... -->
     <UiProductImage
       :imageSrc="product.merchandise.image.url"
       :imageAlt="`[[ TODO ]]`"

@@ -3,9 +3,9 @@
     <div v-if="collections" class="collections--container">
       <UiButton
         v-for="collection in collections.collections.edges"
-        :text="collection.node.title"
         :href="`/collections/${collection.node.handle}`"
-      />
+        >{{ collection.node.title }}</UiButton
+      >
     </div>
   </div>
 </template>

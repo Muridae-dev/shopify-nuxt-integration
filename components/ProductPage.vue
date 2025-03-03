@@ -18,7 +18,10 @@
           {{ `${breadcrumb[1]} / ${breadcrumb[2]}` }}
         </div>
 
-        <UiButton text="ADD TO CART" :click="cartUpdateHelper" />
+        <UiButton :click="cartUpdateHelper">
+          <span v-if="!cartStore.cartUpdating" class="--bold">ADD TO CART</span>
+          <UiLoader v-else />
+        </UiButton>
       </div>
       <div class="product-page-image-container">
         <img
@@ -50,7 +53,7 @@ const route = useRoute();
 
 const breadcrumb = route.path.split("/");
 
-const { updateCart } = useCartStore();
+const cartStore = useCartStore();
 
 const cartUpdateHelper = () => {
   const productObject = {
@@ -59,7 +62,7 @@ const cartUpdateHelper = () => {
     title: props.product.title,
   };
 
-  updateCart(productObject);
+  cartStore.updateCart(productObject);
 };
 </script>
 

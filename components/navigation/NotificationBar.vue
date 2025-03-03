@@ -4,7 +4,7 @@
     :class="notificationStore.headerHidden && 'hide-header'"
   >
     <div
-      class="notification-bar"
+      class="notification-bar text-md"
       :class="notificationStore.notifications.length > 0 && 'active'"
     >
       <div v-if="notificationStore.notifications[0]">
@@ -41,28 +41,22 @@ const notificationStore = useNotificationStore();
 .notification-bar {
   height: $notification-bar-height;
   width: 100%;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 0 $side-spacing;
 
   transform: translateY(-100%);
   opacity: 1;
 
-  background: green; // TODO this needs to be fixed
+  background: $notification-bar-success-color;
   border-bottom: 1px solid $secondary;
 
   transition: transform 0.5s;
 
-  font-family: "video",  serif;
-  font-weight: 500;
-  font-size: 1.2rem;
-  letter-spacing: 0.1rem;
-  color: $secondary;
   display: flex;
   align-items: center;
 
   &.active {
     transform: translateY(0);
-    background: green;
+    background: $notification-bar-success-color;
   }
 }
 </style>

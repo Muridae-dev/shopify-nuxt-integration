@@ -13,6 +13,7 @@ export const useCartStore = defineStore("cart", {
   state: () => ({
     cartId: useCookie("cartId").value || null, // ✅ Uses cookie instead of localStorage
     cartActive: false,
+    cartUpdating: false,
     cart: {
       lines: { edges: [] },
       checkoutUrl: "",
@@ -43,6 +44,7 @@ export const useCartStore = defineStore("cart", {
     },
 
     async updateCart({ id, quantity, title }: UpdateCartProps) {
+      this.cartUpdating = true;
       const notificationStore = useNotificationStore();
       const cartCookie = useCookie("cartId"); // ✅ Get cookie reference
 
@@ -80,6 +82,8 @@ export const useCartStore = defineStore("cart", {
         );
         console.error("Cart update error:", error);
       }
+
+      this.cartUpdating = false;
     },
   },
 });
