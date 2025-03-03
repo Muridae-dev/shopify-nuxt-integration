@@ -14,7 +14,7 @@
 
   background-image: url("@/assets/images/misc/noise.gif");
   background-size: 300px;
-  opacity: calc(10 / 100);
+  opacity: calc(10 / 200);
   mix-blend-mode: multiply;
   pointer-events: none;
 }
@@ -26,10 +26,7 @@
   height: 100%;
   width: 100%;
 
-  background: rgb(224, 15, 196);
   background: var(--primary-background-color);
-  transition: background 1s;
-  opacity: 1;
   filter: contrast(120%);
 }
 </style>
