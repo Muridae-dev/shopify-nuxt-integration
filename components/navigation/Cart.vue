@@ -1,28 +1,30 @@
 <template>
-  <div class="cart-container" v-if="cart" :class="cartActive && 'active'">
+  <div
+    class="cart-container"
+    v-if="cartStore.cart"
+    :class="cartStore.cartActive && 'active'"
+  >
     <div class="text-sm --uppercase">
-      Your cart ({{ cart.lines.edges.length }} items)
+      Your cart ({{ cartStore.cart.lines.edges.length }} items)
     </div>
-    <UiCloseButton :closeMenu="() => (cartActive = !cartActive)" />
+    <UiCloseButton
+      :closeMenu="() => (cartStore.cartActive = !cartStore.cartActive)"
+    />
 
     <CartItem
-      v-for="{ node: product } in cart.lines.edges"
+      v-for="{ node: product } in cartStore.cart.lines.edges"
       :key="product.id"
       v-bind="{ product, quantity: product.quantity }"
     />
 
-    <UiButton text="CHECKOUT" :href="cart.checkoutUrl" />
+    <UiButton text="CHECKOUT" :href="cartStore.cart.checkoutUrl" />
   </div>
 </template>
 
 <script setup lang="ts">
-// But here it's not...
-const { cartActive, cart } = storeToRefs(useCartStore());
+const cartStore = useCartStore();
 
-// Here it's being reactive
-watch(cart.value, (newCart) => {
-  console.log("newcart", newCart);
-});
+onMounted(() => cartStore.initializeCart());
 </script>
 
 <style lang="scss">
