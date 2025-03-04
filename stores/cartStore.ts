@@ -1,52 +1,89 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { useNotificationStore } from "@/stores/notificationStore";
 
 interface UpdateCartProps {
   id: string;
   quantity: number;
+  title?: string;
 }
 
-export const useCartStore = defineStore("cart", () => {
-  const cartId = ref<string>();
-  const cartActive = ref(false);
-  const cart = reactive<any>({
-    lines: { edges: [] },
-    checkoutUrl: "",
-    totalQuantity: "",
-  });
+import { useCookie } from "#app";
 
-  onMounted(() => {
-    cartId.value = localStorage.getItem("cartId") || "";
-    fetchCart();
-  });
+export const useCartStore = defineStore("cart", {
+  state: () => ({
+    cartId: useCookie("cartId").value || null,
+    cartActive: false,
+    cartUpdating: false,
+    cart: {
+      lines: { edges: [] },
+      checkoutUrl: "",
+      totalQuantity: "",
+    },
+  }),
 
-  const updateCart = async ({ id, quantity }: UpdateCartProps) => {
-    !localStorage.getItem("cartId") &&
-      localStorage.setItem(
-        "cartId",
-        await ShopifyCreateCart().then((data) => data.cartCreate.cart.id)
-      );
-    cartId.value = localStorage.getItem("cartId");
+  actions: {
+    async fetchCart() {
+      if (!this.cartId) return;
 
-    await ShopifyAddCartItem({
-      cartId: cartId.value,
-      product: { merchandiseId: id, quantity },
-    });
+      try {
+        const data = await ShopifyGetCart(this.cartId);
+        this.cart = {
+          lines: { edges: data.cart.lines.edges },
+          checkoutUrl: data.cart.checkoutUrl,
+          totalQuantity: data.cart.totalQuantity,
+        };
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
+    },
 
-    await fetchCart();
+    async initializeCart() {
+      if (this.cartId) {
+        this.fetchCart();
+      }
+    },
 
-    cartActive.value = true;
-  };
+    async updateCart({ id, quantity, title }: UpdateCartProps) {
+      this.cartUpdating = true;
+      const notificationStore = useNotificationStore();
+      const cartCookie = useCookie("cartId");
 
-  const fetchCart = async () => {
-    cartId.value !== "" &&
-      cartId.value &&
-      (await ShopifyGetCart(cartId.value).then((data) => {
-        cart.lines.edges = data.cart.lines.edges;
-        cart.checkoutUrl = data.cart.checkoutUrl;
-        cart.totalQuantity = data.cart.totalQuantity;
-      }));
-  };
+      if (!this.cartId) {
+        try {
+          const data = await ShopifyCreateCart();
+          this.cartId = data.cartCreate.cart.id;
+          cartCookie.value = this.cartId;
+        } catch (error) {
+          console.error("Error creating cart:", error);
+          return;
+        }
+      }
 
-  return { cartId, updateCart, cartActive, cart };
+      try {
+        await ShopifyAddCartItem({
+          cartId: this.cartId,
+          product: { merchandiseId: id, quantity },
+        });
+
+        await this.fetchCart();
+
+        if (title) {
+          notificationStore.addNotification(
+            "success",
+            `${title} added to cart!`
+          );
+        }
+
+        this.cartActive = true;
+      } catch (error) {
+        notificationStore.addNotification(
+          "error",
+          "Failed to add item to cart."
+        );
+        console.error("Cart update error:", error);
+      }
+
+      this.cartUpdating = false;
+    },
+  },
 });

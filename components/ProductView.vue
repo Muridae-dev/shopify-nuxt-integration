@@ -6,10 +6,11 @@
       </h1>
       <UiButton
         class="product-filter-button --uppercase"
-        text="Filters"
         variant="secondary"
         :click="() => (filterStore.isActive = !filterStore.isActive)"
-      />
+      >
+        Filters
+      </UiButton>
       <div key="products" class="product-container">
         <ProductCard
           v-for="{ node: product } in filteredProducts"

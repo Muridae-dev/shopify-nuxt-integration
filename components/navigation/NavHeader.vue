@@ -2,7 +2,7 @@
   <div class="header-spacing" />
   <header
     class="text-header --uppercase"
-    :class="{ 'hide-header': isScrollingDown }"
+    :class="{ 'hide-header': notificationStore.headerHidden }"
     ref="header"
   >
     <NuxtLink class="header-link" to="/">Website Name</NuxtLink>
@@ -33,10 +33,11 @@
 
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cartStore";
+import { useNotificationStore } from "@/stores/notificationStore";
 
 const { cartActive } = storeToRefs(useCartStore());
+const notificationStore = useNotificationStore();
 const menuActive = ref(false);
-const isScrollingDown = ref(false);
 const lastScroll = ref(0);
 
 const toggleMenu = () => {
@@ -45,7 +46,7 @@ const toggleMenu = () => {
 
 const handleScroll = () => {
   const currentScroll = window.scrollY;
-  isScrollingDown.value = currentScroll > lastScroll.value;
+  notificationStore.headerHidden = currentScroll > lastScroll.value;
   lastScroll.value = currentScroll;
 };
 

@@ -34,11 +34,11 @@
         </label>
       </div>
       <UiButton
-        text="Reset"
         type="reset"
         class="--uppercase"
         @click="filterStore.clearFilters()"
-      />
+        >Filters</UiButton
+      >
     </form>
   </div>
 </template>
