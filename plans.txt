@@ -20,7 +20,6 @@ designs
 
 functionality
     - Add search
-    - Add notifications
 
     - Homepage:
         - Featured products?

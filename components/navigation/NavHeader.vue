@@ -1,8 +1,11 @@
 <template>
-  <div class="header-spacing" />
+  <div v-if="!isFrontPage" class="header-spacing" />
   <header
     class="text-header --uppercase"
-    :class="{ 'hide-header': notificationStore.headerHidden }"
+    :class="{
+      'hide-header': notificationStore.headerHidden,
+      'is-front-page': isFrontPage,
+    }"
     ref="header"
   >
     <NuxtLink class="header-link" to="/">Website Name</NuxtLink>
@@ -34,6 +37,9 @@
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cartStore";
 import { useNotificationStore } from "@/stores/notificationStore";
+
+const route = useRoute();
+const isFrontPage = computed(() => route.path === "/");
 
 const { cartActive } = storeToRefs(useCartStore());
 const notificationStore = useNotificationStore();
@@ -86,6 +92,15 @@ header {
   button {
     color: $secondary;
     padding: 0;
+
+    transition: filter 1s;
+  }
+
+  &.is-front-page {
+    a,
+    button {
+      filter: invert(100%);
+    }
   }
 
   button {

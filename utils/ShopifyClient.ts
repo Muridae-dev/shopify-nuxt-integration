@@ -327,3 +327,38 @@ export const ShopifyUpdateLineItem = async ({ cartId, product }: any) => {
 
   return result.data;
 };
+
+export const ShopifyMetaData = async () => {
+  const params = {
+    query: `query MyQuery($handle: MetaobjectHandleInput) {
+      metaobject(handle: $handle) {
+        fields {
+          references(first: 10) {
+            nodes {
+              ... on Collection {
+                description
+                handle
+                title
+                image {
+                  transformedSrc(maxHeight: 1200)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    `,
+    variables: { handle: { handle: "home-page-alwwdfte", type: "home_page" } },
+  };
+
+  const result = await ShopifyClientJson(JSON.stringify(params));
+
+  if (result.error) {
+    console.error("Error fetching products:", result.error);
+    return null;
+  }
+
+  return result.data;
+};
