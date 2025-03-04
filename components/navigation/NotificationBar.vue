@@ -4,8 +4,10 @@
     :class="notificationStore.headerHidden && 'hide-header'"
   >
     <div
-      class="notification-bar text-md"
-      :class="notificationStore.notifications.length > 0 && 'active'"
+      v-for="notification in notificationStore.notifications"
+      :key="notification.id"
+      class="notification-bar text-sm"
+      :class="[{ active: !notification.isHiding }, `--${notification.type}`]"
     >
       <div v-if="notificationStore.notifications[0]">
         {{ notificationStore.notifications[0].message }}
@@ -27,9 +29,10 @@ const notificationStore = useNotificationStore();
   left: 0;
   z-index: 50;
 
-  height: $notification-bar-height;
+  height: calc(100vh - ($header-spacing));
   width: 100%;
   overflow: hidden;
+  pointer-events: none;
 
   transition: transform 0.5s;
 
@@ -46,7 +49,6 @@ const notificationStore = useNotificationStore();
   transform: translateY(-100%);
   opacity: 1;
 
-  background: $notification-bar-success-color;
   border-bottom: 1px solid $secondary;
 
   transition: transform 0.5s;
@@ -54,9 +56,20 @@ const notificationStore = useNotificationStore();
   display: flex;
   align-items: center;
 
+  &.--success {
+    background: $notification-bar-success-color;
+  }
+
+  &.--error {
+    background: $notification-bar-error-color;
+  }
+
+  &.--info {
+    background: $notification-bar-info-color;
+  }
+
   &.active {
     transform: translateY(0);
-    background: $notification-bar-success-color;
   }
 }
 </style>
