@@ -11,7 +11,7 @@ import { useCookie } from "#app";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
-    cartId: useCookie("cartId").value || null, // ✅ Uses cookie instead of localStorage
+    cartId: useCookie("cartId").value || null,
     cartActive: false,
     cartUpdating: false,
     cart: {
@@ -46,13 +46,13 @@ export const useCartStore = defineStore("cart", {
     async updateCart({ id, quantity, title }: UpdateCartProps) {
       this.cartUpdating = true;
       const notificationStore = useNotificationStore();
-      const cartCookie = useCookie("cartId"); // ✅ Get cookie reference
+      const cartCookie = useCookie("cartId");
 
       if (!this.cartId) {
         try {
           const data = await ShopifyCreateCart();
           this.cartId = data.cartCreate.cart.id;
-          cartCookie.value = this.cartId; // ✅ Set cookie
+          cartCookie.value = this.cartId;
         } catch (error) {
           console.error("Error creating cart:", error);
           return;
