@@ -1,11 +1,9 @@
 <template>
-  <div
-    class="filter-menu"
-    role="dialog"
-    aria-labelledby="filter-title"
-    :class="filterStore.isActive && 'active'"
+  <UiSideMenu
+    :isOpen="filterStore.isActive"
+    side="left"
+    :closeMenu="closeFilters"
   >
-    <UiCloseButton :closeMenu="() => (filterStore.isActive = false)" />
     <h2 id="filter-title">Filter Products</h2>
     <form>
       <div
@@ -37,16 +35,18 @@
         type="reset"
         class="--uppercase"
         @click="filterStore.clearFilters()"
-        >Filters</UiButton
+        >Reset</UiButton
       >
     </form>
-  </div>
+  </UiSideMenu>
 </template>
 
 <script setup lang="ts">
 import { useFilterStore } from "@/stores/filterStore";
 
 const filterStore = useFilterStore();
+
+const closeFilters = () => (filterStore.isActive = false);
 
 const toggleFilter = (filterType: string, value: string) => {
   const currentFilters = filterStore.selectedFilters[filterType];
@@ -62,33 +62,6 @@ const toggleFilter = (filterType: string, value: string) => {
 </script>
 
 <style lang="scss" scoped>
-.filter-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translateX(-100%);
-
-  height: 100%;
-  width: 100%;
-  padding: 10px;
-  max-width: $cart-max-width;
-  color: var(--secondary);
-  background: transparent;
-  backdrop-filter: $blur--menu;
-  z-index: 1000;
-  overflow-y: scroll;
-  border-right: 1px solid $primary;
-
-  transition: transform 0.5s;
-
-  &.active {
-    transform: translateX(0);
-  }
-}
-
 .filter-type-container {
   display: flex;
   flex-direction: column;
