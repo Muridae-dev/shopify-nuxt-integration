@@ -18,5 +18,13 @@ const isFrontPage = computed(() => route.path === "/");
 <style lang="scss">
 .homepage {
   --secondary: white;
+  header {
+    transition: border-color 0.5s, transform 0.5s;
+
+    a,
+    button {
+      transition: color 0.5s;
+    }
+  }
 }
 </style>
