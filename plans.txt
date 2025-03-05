@@ -3,7 +3,7 @@ designs
     - Footer
 
     Product Cards:
-        - Multiple thumbnails on hover
+        - Multiple thumbnails on hover !!!
 
     Product Page:
         - fix size of images to not be larger than screen
@@ -21,30 +21,12 @@ designs
 functionality
     - Add search
 
-    - Homepage:
-        - Featured products?
-        - New releases?
-        - CMS? - Maybe through Shopify?
     - NAV:
-        - Dropdown for collections
+        - Dropdown for collections ?
+
     - Product Page:
-        - Notification when item has been added to cart
-            - Maybe add some sort of loading animation?
         - Quantity of items to add
         - Sizes? (maybe versions or something similar?)
-
-    - Button:
-        - Add to cart button starts to spin while it's waiting to actually add to cart
-
-components
-    - imageFrame
-
-
-bugs
-    - When an item that's already added to cart gets added to cart again it doesn't increase its quantity
-    - Sometimes the cart breaks & you can't add anything to the cart
-        - Probably the token is no longer valid or something
-    - When hopping between product-pages the data gets changed pre fade-out
 
 misc
     - Add other products
@@ -55,10 +37,13 @@ misc
         - ETC
     - Remove unused fonts
     - Create a global component for side-menus
-        - Close side-menus when pressing elsewhere
+        - Close side-menus when pressing elsewhere !!!
         - Cart:
-            - Hide cart when navigating to a product
+            - Hide cart when navigating to a product !!!
     - Remove "edges" for all product fetching to use "node"
 
-potential additions
-    - Make carousel scrollable
+bugs
+    - When an item that's already added to cart gets added to cart again it doesn't increase its quantity
+    - Sometimes the cart breaks & you can't add anything to the cart - PROBABLY FIXED?
+        - Probably the token is no longer valid or something
+    - When hopping between product-pages the data gets changed pre fade-out
