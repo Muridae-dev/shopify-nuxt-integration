@@ -95,9 +95,9 @@ watch(quantityRef, (newQuantity) => {
         height: 32px;
 
         background: transparent;
-        color: $secondary;
+        color: var(--secondary);
         border: 1px solid;
-        border-color: $secondary;
+        border-color: var(--secondary);
 
         text-align: center;
         font-family: $base-level-font;

@@ -41,7 +41,7 @@ onMounted(() => cartStore.initializeCart());
   width: 100%;
   padding: 10px;
   max-width: $cart-max-width;
-  color: $secondary;
+  color: var(--secondary);
   backdrop-filter: $blur--menu;
   z-index: 1000;
   overflow-y: scroll;

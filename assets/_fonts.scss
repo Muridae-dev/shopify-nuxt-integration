@@ -12,18 +12,21 @@ $button-font--primary: "IBMPlexMono",  sans-serif;
   font-size: 0.8rem;
   letter-spacing: -0.02rem;
   font-family: $card-font;
+  color: var(--secondary);
 }
 
 .text-header {
   text-decoration: none;
   font-family: $header-title-font;
   letter-spacing: -0.05rem;
+  color: var(--secondary);
 }
 
 .text-md {
   text-decoration: none;
   font-family: $product-page-font;
   letter-spacing: -0.03rem;
+  color: var(--secondary);
 }
 
 .text-lg {
@@ -31,6 +34,7 @@ $button-font--primary: "IBMPlexMono",  sans-serif;
   font-family: $base-level-font;
   letter-spacing: -0.05rem;
   font-size: 1.5rem;
+  color: var(--secondary);
 }
 
 .text-xl {
@@ -38,6 +42,7 @@ $button-font--primary: "IBMPlexMono",  sans-serif;
   font-family: $base-level-font;
   letter-spacing: -0.05rem;
   font-size: 2rem;
+  color: var(--secondary);
 }
 
 .--uppercase {

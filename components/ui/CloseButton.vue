@@ -18,7 +18,7 @@ defineProps<{
   width: 32px;
   background: transparent;
   border: none;
-  color: $secondary;
+  color: var(--secondary);
 
   font-family: $header-title-font;
   font-weight: 400;

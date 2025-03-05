@@ -49,7 +49,7 @@ const notificationStore = useNotificationStore();
   transform: translateY(-100%);
   opacity: 1;
 
-  border-bottom: 1px solid $secondary;
+  border-bottom: 1px solid var(--secondary);
 
   transition: transform 0.5s;
 

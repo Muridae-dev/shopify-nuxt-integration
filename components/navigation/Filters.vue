@@ -75,7 +75,7 @@ const toggleFilter = (filterType: string, value: string) => {
   width: 100%;
   padding: 10px;
   max-width: $cart-max-width;
-  color: $secondary;
+  color: var(--secondary);
   background: transparent;
   backdrop-filter: $blur--menu;
   z-index: 1000;
