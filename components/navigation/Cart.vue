@@ -3,7 +3,7 @@
     v-if="cartStore.cart"
     :isOpen="cartStore.cartActive"
     side="right"
-    :close="closeCart"
+    :closeMenu="closeCart"
   >
     <div class="text-sm --uppercase">
       Your cart ({{ cartStore.cart.lines.edges.length }} items)

@@ -1,5 +1,9 @@
 <template>
-  <UiSideMenu :isOpen="filterStore.isActive" side="left" :close="closeFilters">
+  <UiSideMenu
+    :isOpen="filterStore.isActive"
+    side="left"
+    :closeMenu="closeFilters"
+  >
     <h2 id="filter-title">Filter Products</h2>
     <form>
       <div

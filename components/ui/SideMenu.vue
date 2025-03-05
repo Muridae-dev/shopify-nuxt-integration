@@ -5,13 +5,13 @@
       class="side-menu"
       :class="[`side-menu--${side}`, { active: isOpen }]"
     >
-      <UiCloseButton :closeMenu="close" />
+      <UiCloseButton :closeMenu />
       <slot />
     </div>
     <div
       class="side-menu--backdrop"
       :class="{ active: isOpen }"
-      @click="close"
+      @click="closeMenu"
     />
   </div>
 </template>
@@ -20,7 +20,7 @@
 interface SideMenuProps {
   side: "left" | "right";
   isOpen: boolean;
-  close: any;
+  closeMenu: () => void;
 }
 
 defineProps<SideMenuProps>();
