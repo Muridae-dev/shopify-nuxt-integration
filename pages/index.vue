@@ -17,13 +17,6 @@
         </div>
       </div>
     </div>
-    <!-- <div v-if="collections" class="collections--container">
-      <UiButton
-        v-for="collection in collections.collections.edges"
-        :href="`/collections/${collection.node.handle}`"
-        >{{ collection.node.title }}</UiButton
-      >
-    </div> -->
   </div>
 </template>
 
@@ -76,14 +69,4 @@ body {
     max-width: 400px;
   }
 }
-
-// .collections--container {
-//   display: flex;
-//   padding: 20px var(--side-spacing);
-//   gap: 10px;
-
-//   @include respond-to(sm) {
-//     flex-direction: column;
-//   }
-// }
 </style>

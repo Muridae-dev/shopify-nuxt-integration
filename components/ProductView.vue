@@ -4,6 +4,7 @@
       <h1 class="collections-title-container text-lg">
         {{ collectionName ?? "Show All" }}
       </h1>
+      <UiCollections />
       <UiButton
         class="product-filter-button --uppercase"
         variant="secondary"
