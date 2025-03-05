@@ -32,6 +32,10 @@
       <UiProductImage
         v-if="product.images.edges[0]"
         :imageSrc="product.images.edges[0].node.transformedSrc"
+        :imageHoverSrc="
+          product.images.edges.length > 1 &&
+          product.images.edges[1].node.transformedSrc
+        "
         :imageAlt="
           product.images.edges[0].node.altText || `Image for ${product.title}`
         "

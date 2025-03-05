@@ -6,6 +6,7 @@
       aria-hidden="true"
     ></NuxtLink>
     <img :alt="imageAlt" :src="imageSrc" />
+    <img v-if="imageHoverSrc" class="product-image--alt" :src="imageHoverSrc" />
   </figure>
 </template>
 
@@ -13,6 +14,7 @@
 interface ProductImageProps {
   imageSrc: string;
   imageAlt: string;
+  imageHoverSrc?: string | false;
   imageLink?: string;
 }
 
@@ -34,6 +36,16 @@ defineProps<ProductImageProps>();
     width: 100%;
   }
 
+  .product-image--alt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 10px);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
   a {
     position: absolute;
     top: 0;
@@ -51,6 +63,10 @@ defineProps<ProductImageProps>();
 
   h2 {
     text-decoration: underline;
+  }
+
+  .product-image--alt {
+    opacity: 1;
   }
 }
 </style>

@@ -99,7 +99,7 @@ const productsVar = `products(first: 100) {
                       }
                     }
                   }
-                  images(first: 3) {
+                  images(first: 2) {
                     edges {
                       node {
                         transformedSrc(maxWidth: 500, maxHeight: 500)
