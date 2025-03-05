@@ -1,11 +1,13 @@
 <template>
-  <UiSideMenu v-if="cartStore.cart" :isOpen="cartStore.cartActive" side="right">
+  <UiSideMenu
+    v-if="cartStore.cart"
+    :isOpen="cartStore.cartActive"
+    side="right"
+    :close="closeCart"
+  >
     <div class="text-sm --uppercase">
       Your cart ({{ cartStore.cart.lines.edges.length }} items)
     </div>
-    <UiCloseButton
-      :closeMenu="() => (cartStore.cartActive = !cartStore.cartActive)"
-    />
 
     <CartItem
       v-for="{ node: product } in cartStore.cart.lines.edges"
@@ -19,6 +21,8 @@
 
 <script setup lang="ts">
 const cartStore = useCartStore();
+
+const closeCart = () => (cartStore.cartActive = false);
 
 onMounted(() => cartStore.initializeCart());
 </script>

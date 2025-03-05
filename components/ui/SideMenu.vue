@@ -1,10 +1,18 @@
 <template>
-  <div
-    role="dialog"
-    class="side-menu"
-    :class="[`side-menu--${side}`, { active: isOpen }]"
-  >
-    <slot />
+  <div>
+    <div
+      role="dialog"
+      class="side-menu"
+      :class="[`side-menu--${side}`, { active: isOpen }]"
+    >
+      <UiCloseButton :closeMenu="close" />
+      <slot />
+    </div>
+    <div
+      class="side-menu--backdrop"
+      :class="{ active: isOpen }"
+      @click="close"
+    />
   </div>
 </template>
 
@@ -12,6 +20,7 @@
 interface SideMenuProps {
   side: "left" | "right";
   isOpen: boolean;
+  close: any;
 }
 
 defineProps<SideMenuProps>();
@@ -55,6 +64,26 @@ defineProps<SideMenuProps>();
 
   &.active {
     transform: translateX(0);
+  }
+}
+
+.side-menu--backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  z-index: 999;
+
+  background: black;
+  pointer-events: none;
+  opacity: 0;
+
+  transition: opacity 0.5s;
+
+  &.active {
+    // opacity: 0.5; TODO: Make this work somehow
+    pointer-events: unset;
   }
 }
 </style>

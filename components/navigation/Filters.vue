@@ -1,6 +1,5 @@
 <template>
-  <UiSideMenu :isOpen="filterStore.isActive" side="left">
-    <UiCloseButton :closeMenu="() => (filterStore.isActive = false)" />
+  <UiSideMenu :isOpen="filterStore.isActive" side="left" :close="closeFilters">
     <h2 id="filter-title">Filter Products</h2>
     <form>
       <div
@@ -32,7 +31,7 @@
         type="reset"
         class="--uppercase"
         @click="filterStore.clearFilters()"
-        >Filters</UiButton
+        >Reset</UiButton
       >
     </form>
   </UiSideMenu>
@@ -42,6 +41,8 @@
 import { useFilterStore } from "@/stores/filterStore";
 
 const filterStore = useFilterStore();
+
+const closeFilters = () => (filterStore.isActive = false);
 
 const toggleFilter = (filterType: string, value: string) => {
   const currentFilters = filterStore.selectedFilters[filterType];
