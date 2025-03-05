@@ -39,7 +39,6 @@ h1 {
 }
 
 body {
-  background: $primary-background;
   font-family: $base-level-font;
 }
 
