@@ -75,7 +75,7 @@ header {
 
   backdrop-filter: $blur;
   border-bottom: 1px solid;
-  border-color: $secondary;
+  border-color: var(--secondary);
 
   position: fixed;
   top: 0;
@@ -90,17 +90,8 @@ header {
 
   a,
   button {
-    color: $secondary;
+    color: var(--secondary);
     padding: 0;
-
-    transition: filter 1s;
-  }
-
-  &.is-front-page {
-    a,
-    button {
-      filter: invert(100%);
-    }
   }
 
   button {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ homepage: isFrontPage }">
     <NavigationNavHeader />
     <NavigationCart />
     <NavigationNotificationBar />
@@ -7,3 +7,16 @@
     <NavigationNavFooter />
   </div>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from "nuxt/app";
+
+const route = useRoute();
+const isFrontPage = computed(() => route.path === "/");
+</script>
+
+<style lang="scss">
+.homepage {
+  --secondary: white;
+}
+</style>

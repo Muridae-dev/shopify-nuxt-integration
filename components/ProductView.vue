@@ -89,7 +89,7 @@ $product-container-padding: 20px;
   height: calc(100vh - $header-spacing - ($product-container-padding * 2));
   width: 100%;
   background: $primary-background;
-  color: $secondary;
+  color: var(--secondary);
 
   display: flex;
   align-items: center;

@@ -39,11 +39,12 @@ withDefaults(defineProps<ButtonProps>(), {
 
   &--primary {
     background: transparent;
-    color: $secondary;
-    border-color: $secondary;
+    color: var(--secondary);
+    border-color: var(--secondary);
 
     &:hover {
       background: black;
+      border-color: black;
       color: white;
     }
   }
@@ -51,7 +52,7 @@ withDefaults(defineProps<ButtonProps>(), {
   &--secondary {
     background: black;
     color: white;
-    border-color: $secondary;
+    border-color: var(--secondary);
     width: auto;
     border-radius: 2px;
 

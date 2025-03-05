@@ -70,7 +70,7 @@ const cartUpdateHelper = () => {
 .product-container {
   width: 100%;
   margin: auto;
-  color: $secondary;
+  color: var(--secondary);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -154,10 +154,10 @@ const cartUpdateHelper = () => {
   }
 
   h1 {
-    color: $secondary;
+    color: var(--secondary);
     padding-bottom: 30px;
     border-bottom: 1px solid;
-    border-color: rgba($secondary, 0.5);
+    border-color: rgba(var(--secondary), 0.5);
   }
 }
 </style>

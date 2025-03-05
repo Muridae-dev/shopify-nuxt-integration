@@ -35,11 +35,11 @@ const metaData = await ShopifyMetaData();
 
 <style lang="scss">
 h1 {
-  color: $secondary;
+  color: var(--secondary);
 }
 
 body {
-  background: $primary-background; /* fallback for old browsers */
+  background: $primary-background;
   font-family: $base-level-font;
 }
 
@@ -71,7 +71,6 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    filter: invert(100%);
   }
 
   .front-page--reference-button {
