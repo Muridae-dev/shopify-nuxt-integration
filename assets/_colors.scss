@@ -7,8 +7,8 @@ $primary: black;
 $primary-background: rgb(245, 244, 244);
 
 $card-background: transparent;
-$card-image-background: white;
-$card-image-background--hover: red;
+$card-image-background: rgba(255, 255, 255, 0.8);
+$card-image-background--hover: rgba(0, 0, 0, 0.2);
 
 $notification-bar-success-color: rgb(19, 222, 110);
 $notification-bar-error-color: rgb(234, 67, 53);
