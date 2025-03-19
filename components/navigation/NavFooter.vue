@@ -52,6 +52,11 @@
   display: flex;
   flex-direction: column;
 
+  a {
+    text-decoration: underline;
+    color: black;
+  }
+
   @include respond-to(sm) {
     width: 50%;
   }
