@@ -41,6 +41,7 @@ body {
   width: 100vw;
   overflow: hidden;
 
+  background: rgba(0, 0, 0, 0.3);
   img {
     position: absolute;
     top: 50%;

@@ -2,13 +2,8 @@ designs
     - Find a handful of generic fonts that have specific use cases in mind
     - Footer
 
-    Product Cards:
-        - Multiple thumbnails on hover !!!
-
     Product Page:
         - fix size of images to not be larger than screen
-        - add collections
-            - link to said collections
         - allow for rich-text
 
     Carousel:
