@@ -11,7 +11,8 @@
           }}</span>
         </div>
         <div class="product-description">
-          Description:<span>{{ product.description }}</span>
+          Description:
+          <span v-html="product.descriptionHtml" />
         </div>
 
         <div class="product-breadcrumb">
@@ -117,6 +118,9 @@ const cartUpdateHelper = () => {
       text-transform: uppercase;
 
       span {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         width: 60%;
         font-weight: normal;
         text-transform: none;

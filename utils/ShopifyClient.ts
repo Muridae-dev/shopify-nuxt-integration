@@ -161,7 +161,7 @@ export const GetProduct = async (productHandler: string) => {
                 id
                 handle
                 title
-                description
+                descriptionHtml
                 productType
                 tags
                 variants(first: 1) {
@@ -336,7 +336,7 @@ export const ShopifyMetaData = async () => {
           references(first: 10) {
             nodes {
               ... on Collection {
-                description
+                descriptionHtml
                 handle
                 title
                 image {

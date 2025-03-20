@@ -29,7 +29,7 @@
   width: 100%;
   min-height: 100px;
   border-top: 1px solid;
-  border-color: var(--secondary);
+  border-color: black;
   color: black;
   font-family: $base-level-font;
 

@@ -7,8 +7,8 @@
       >
         <img :src="reference.image.transformedSrc" />
         <div class="front-page--reference-info">
-          <span class="text-md --uppercase">{{ reference.title }}</span>
-          <span class="text-md">{{ reference.description }}</span>
+          <span class="text-lg --uppercase">{{ reference.title }}</span>
+          <span class="text-md" v-html="reference.descriptionHtml" />
           <UiButton
             class="front-page--reference-button"
             :href="`/collections/${reference.handle}`"
@@ -64,6 +64,12 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    max-width: 800px;
+    width: 100%;
+
+    @include respond-to(sm) {
+      top: 70%;
+    }
   }
 
   .front-page--reference-button {
