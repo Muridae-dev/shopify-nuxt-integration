@@ -10,9 +10,9 @@
     </div>
 
     <CartItem
-      v-for="{ node: product } in cartStore.cart.lines.edges"
-      :key="product.id"
-      v-bind="{ product, quantity: product.quantity }"
+      v-for="{ node } in cartStore.cart.lines.edges"
+      :key="node.id"
+      v-bind="{ product: node, quantity: node.quantity }"
     />
 
     <UiButton :href="cartStore.cart.checkoutUrl">CHECKOUT</UiButton>

@@ -25,9 +25,10 @@
 
 <script setup lang="ts">
 import { useFilterStore } from "@/stores/filterStore";
+import type { ShopifyProduct } from "~/types/shopify";
 
 interface ProductViewProps {
-  products: any;
+  products: { node: ShopifyProduct }[];
   collectionName?: string;
 }
 

@@ -45,8 +45,10 @@
 </template>
 
 <script setup lang="ts">
+import type { ShopifyProduct } from "~/types/shopify";
+
 interface ProductCardProps {
-  product: any;
+  product: ShopifyProduct;
 }
 
 defineProps<ProductCardProps>();

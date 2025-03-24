@@ -1,23 +1,25 @@
 import { defineStore } from "pinia";
+import type { FilterTypes } from "~/types/filters";
+import type { ShopifyProduct } from "~/types/shopify";
 
 export const useFilterStore = defineStore("filterStore", {
   state: () => ({
     isActive: false,
     filters: {
-      productTypes: [],
-      tags: [],
+      productTypes: [] as string[],
+      tags: [] as string[],
     },
     selectedFilters: {
-      productTypes: [],
-      tags: [],
+      productTypes: [] as string[],
+      tags: [] as string[],
     },
   }),
 
   actions: {
-    setAvailableFilters(products: any[]) {
+    setAvailableFilters(products: { node: ShopifyProduct }[]) {
       const filterSet = {
-        productTypes: new Set(),
-        tags: new Set(),
+        productTypes: new Set<string>(),
+        tags: new Set<string>(),
       };
 
       products.forEach((product) => {
@@ -27,13 +29,11 @@ export const useFilterStore = defineStore("filterStore", {
 
         // Tags
         if (product.node.tags) {
-          product.node.tags.forEach((tag: any) => {
+          product.node.tags.forEach((tag) => {
             filterSet.tags.add(tag);
           });
         }
       });
-
-      console.log(filterSet.tags);
 
       this.filters = {
         productTypes: Array.from(filterSet.productTypes),
@@ -41,7 +41,7 @@ export const useFilterStore = defineStore("filterStore", {
       };
     },
 
-    updateSelectedFilters(filterType: string, values: string[]) {
+    updateSelectedFilters(filterType: FilterTypes, values: string[]) {
       this.selectedFilters[filterType] = values;
     },
 

@@ -8,6 +8,10 @@ interface UpdateCartProps {
 }
 
 import { useCookie } from "#app";
+import type {
+  ShopifyCartProduct,
+  ShopifyCartProductEdges,
+} from "~/types/shopify";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
@@ -15,7 +19,7 @@ export const useCartStore = defineStore("cart", {
     cartActive: false,
     cartUpdating: false,
     cart: {
-      lines: { edges: [] },
+      lines: { edges: [] as ShopifyCartProductEdges },
       checkoutUrl: "",
       totalQuantity: "",
     },
@@ -28,7 +32,9 @@ export const useCartStore = defineStore("cart", {
       try {
         const data = await ShopifyGetCart(this.cartId);
         this.cart = {
-          lines: { edges: data.cart.lines.edges },
+          lines: {
+            edges: data.cart.lines.edges as ShopifyCartProductEdges,
+          },
           checkoutUrl: data.cart.checkoutUrl,
           totalQuantity: data.cart.totalQuantity,
         };

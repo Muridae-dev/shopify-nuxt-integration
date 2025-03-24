@@ -28,7 +28,7 @@
         </button>
         <input
           class="cart-product-quantity-input"
-          @change="(e) => (quantityRef = (e.target as HTMLInputElement).value)"
+          @change="(e) => (quantityRef = parseInt((e.target as HTMLInputElement).value))"
           :value="quantityRef"
         />
         <button @click="quantityRef = quantityRef + 1">+</button>
@@ -38,21 +38,23 @@
 </template>
 
 <script setup lang="ts">
+import type { ShopifyCartProduct } from "~/types/shopify";
+
 interface CartItemProps {
-  product: any;
-  quantity: any;
+  product: ShopifyCartProduct;
+  quantity: number;
 }
 
 const props = defineProps<CartItemProps>();
 
 const quantityRef = ref(props.quantity);
 
-const updateCart = ({ product, quantity }: any) => {
+const updateCart = ({ product, quantity }: CartItemProps) => {
   const { cartId } = useCartStore();
   const productInfo = {
     id: product.id,
     merchandiseId: product.merchandise.id,
-    quantity: parseInt(quantity),
+    quantity: quantity,
   };
 
   ShopifyUpdateLineItem({ cartId, product: productInfo });

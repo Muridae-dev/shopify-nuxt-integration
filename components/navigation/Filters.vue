@@ -43,12 +43,13 @@
 
 <script setup lang="ts">
 import { useFilterStore } from "@/stores/filterStore";
+import type { FilterTypes } from "~/types/filters";
 
 const filterStore = useFilterStore();
 
 const closeFilters = () => (filterStore.isActive = false);
 
-const toggleFilter = (filterType: string, value: string) => {
+const toggleFilter = (filterType: FilterTypes, value: string) => {
   const currentFilters = filterStore.selectedFilters[filterType];
   if (currentFilters.includes(value)) {
     filterStore.updateSelectedFilters(
