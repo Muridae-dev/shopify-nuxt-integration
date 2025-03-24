@@ -5,11 +5,11 @@ export const useFilterStore = defineStore("filterStore", {
     isActive: false,
     filters: {
       productTypes: [],
-      colors: [],
+      tags: [],
     },
     selectedFilters: {
       productTypes: [],
-      colors: [],
+      tags: [],
     },
   }),
 
@@ -17,25 +17,27 @@ export const useFilterStore = defineStore("filterStore", {
     setAvailableFilters(products: any[]) {
       const filterSet = {
         productTypes: new Set(),
-        colors: new Set(),
+        tags: new Set(),
       };
 
-      products.forEach((product, index) => {
+      products.forEach((product) => {
+        // ProductType
         if (product.node.productType)
           filterSet.productTypes.add(product.node.productType);
-        product.node.variants.edges.forEach(({ node }: any) => {
-          if (node.selectedOptions) {
-            node.selectedOptions.forEach((option: any) => {
-              if (option.name.toLowerCase() === "color")
-                filterSet.colors.add(option.value);
-            });
-          }
-        });
+
+        // Tags
+        if (product.node.tags) {
+          product.node.tags.forEach((tag: any) => {
+            filterSet.tags.add(tag);
+          });
+        }
       });
+
+      console.log(filterSet.tags);
 
       this.filters = {
         productTypes: Array.from(filterSet.productTypes),
-        colors: Array.from(filterSet.colors),
+        tags: Array.from(filterSet.tags),
       };
     },
 
@@ -46,7 +48,7 @@ export const useFilterStore = defineStore("filterStore", {
     clearFilters() {
       this.selectedFilters = {
         productTypes: [],
-        colors: [],
+        tags: [],
       };
     },
   },

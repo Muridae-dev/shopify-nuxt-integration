@@ -42,13 +42,9 @@ const filteredProducts = computed(() => {
         filterStore.selectedFilters.productTypes.includes(
           product.node.productType
         )) &&
-      (!filterStore.selectedFilters.colors.length ||
-        product.node.variants.edges.some(({ node }) =>
-          node.selectedOptions.some(
-            (opt) =>
-              opt.name.toLowerCase() === "color" &&
-              filterStore.selectedFilters.colors.includes(opt.value)
-          )
+      (!filterStore.selectedFilters.tags.length ||
+        product.node.tags.some((tag) =>
+          filterStore.selectedFilters.tags.includes(tag)
         ))
     );
   });

@@ -77,6 +77,7 @@ const productsVar = `products(first: 100) {
                   title
                   description
                   productType
+                  tags
                   collections(first: 2) {
                     edges {
                       node {
