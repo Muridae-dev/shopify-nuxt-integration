@@ -8,10 +8,7 @@ interface UpdateCartProps {
 }
 
 import { useCookie } from "#app";
-import type {
-  ShopifyCartProduct,
-  ShopifyCartProductEdges,
-} from "~/types/shopify";
+import type { ShopifyCartProductEdges } from "~/types/shopify";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({

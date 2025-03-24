@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import type { FilterTypes } from "~/types/filters";
-import type { ShopifyProduct } from "~/types/shopify";
+import type { ShopifyProductNode } from "~/types/shopify";
 
 export const useFilterStore = defineStore("filterStore", {
   state: () => ({
@@ -16,7 +16,7 @@ export const useFilterStore = defineStore("filterStore", {
   }),
 
   actions: {
-    setAvailableFilters(products: { node: ShopifyProduct }[]) {
+    setAvailableFilters(products: ShopifyProductNode) {
       const filterSet = {
         productTypes: new Set<string>(),
         tags: new Set<string>(),

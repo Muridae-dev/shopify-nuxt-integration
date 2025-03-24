@@ -44,9 +44,10 @@
 
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cartStore";
+import type { ShopifyProduct } from "~/types/shopify";
 
 interface ProductPageProps {
-  product: any;
+  product: ShopifyProduct;
 }
 
 const props = defineProps<ProductPageProps>();

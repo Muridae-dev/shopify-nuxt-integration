@@ -6,7 +6,7 @@
 const route = useRoute();
 
 const { data: product } = await useAsyncData("product", async () => {
-  const fetchedProduct = await GetProduct(route.params.id);
+  const fetchedProduct = await GetProduct(route.params.id as string);
   return fetchedProduct ? fetchedProduct.product : null;
 });
 </script>

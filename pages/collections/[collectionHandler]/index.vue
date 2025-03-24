@@ -22,7 +22,7 @@ watchEffect(() => {
   const collectionHandler = route.params.collectionHandler;
 
   if (collectionHandler) {
-    productStore.fetchProductsByCollection(collectionHandler);
+    productStore.fetchProductsByCollection(collectionHandler as string);
   }
 });
 </script>

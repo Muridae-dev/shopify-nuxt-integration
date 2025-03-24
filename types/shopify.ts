@@ -3,6 +3,7 @@ export interface ShopifyProduct {
   handle: string;
   title: string;
   description: string;
+  descriptionHtml: string;
   productType: string;
   tags: string[];
   collections: {
@@ -16,6 +17,7 @@ export interface ShopifyProduct {
   variants: {
     edges: {
       node: {
+        id: string;
         price: {
           amount: string;
           currencyCode: string;
@@ -36,6 +38,8 @@ export interface ShopifyProduct {
     }[];
   };
 }
+
+export type ShopifyProductNode = { node: ShopifyProduct }[];
 
 export interface ShopifyCartProduct {
   id: string;

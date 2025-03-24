@@ -1,10 +1,11 @@
 import { defineStore } from "pinia";
 import { useFilterStore } from "@/stores/filterStore";
 import { GetProducts, GetProductsByCollection } from "@/utils/ShopifyClient";
+import type { ShopifyProductNode } from "~/types/shopify";
 
 export const useProductStore = defineStore("productStore", {
   state: () => ({
-    products: [] as any[],
+    products: [] as ShopifyProductNode,
     collection: null as any | null,
     isLoading: false,
   }),
