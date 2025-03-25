@@ -31,10 +31,6 @@ h1 {
   color: var(--secondary);
 }
 
-body {
-  font-family: $base-level-font;
-}
-
 .front-page--reference-container {
   position: relative;
   height: 100dvh;
@@ -42,6 +38,7 @@ body {
   overflow: hidden;
 
   background: rgba(0, 0, 0, 0.3);
+
   img {
     position: absolute;
     top: 50%;

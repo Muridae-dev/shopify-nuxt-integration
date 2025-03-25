@@ -6,6 +6,8 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from "#imports";
+
 // This could be used in line with Store to change title to product name
 const description = ref("My amazing site.");
 
@@ -17,8 +19,6 @@ useSeoMeta({
   ogImage: "https://example.com/image.png",
   twitterCard: "summary_large_image",
 });
-
-import { useHead } from "#imports";
 
 useHead({
   link: [
@@ -49,31 +49,5 @@ useHead({
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-}
-
-body {
-  min-height: 100dvh;
-  line-height: 1.6;
-  background: $primary-background;
-
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
 }
 </style>

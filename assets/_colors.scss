@@ -16,3 +16,7 @@ $notification-bar-info-color: rgb(0, 122, 255);
 
 $blur: blur(20px);
 $blur--menu: blur(25px);
+
+body {
+  background: $primary-background;
+}
