@@ -18,7 +18,7 @@
 
     <div class="footer-section-container">
       <span>Reach out to us at</span>
-      <a href="mailto:hello@clubyvonne.com">hello@companyname.com</a>
+      <a href="mailto:hello@companyname.com">hello@companyname.com</a>
     </div>
   </footer>
 </template>

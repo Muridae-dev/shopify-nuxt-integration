@@ -61,4 +61,12 @@ a {
 
 button {
   cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+a,
+button {
+  color: var(--secondary);
+  padding: 0;
 }

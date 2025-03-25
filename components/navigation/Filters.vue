@@ -66,8 +66,8 @@ const toggleFilter = (filterType: FilterTypes, value: string) => {
 .filter-type-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .checkbox-label {
@@ -83,16 +83,16 @@ const toggleFilter = (filterType: FilterTypes, value: string) => {
     display: inline-block;
     height: 32px;
     width: 32px;
+
     border: 1px solid black;
     background: white;
-
-    box-shadow: inset 0 0 0 0 white; /* No inner box initially */
+    box-shadow: inset 0 0 0 0 white;
   }
 
   &.--checked {
     &::before {
       background: black;
-      box-shadow: inset 0 0 0 4px white; /* Expands inward to form the black box */
+      box-shadow: inset 0 0 0 4px white;
     }
   }
 }

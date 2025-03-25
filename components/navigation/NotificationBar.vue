@@ -46,15 +46,13 @@ const notificationStore = useNotificationStore();
   width: 100%;
   padding: 0 $side-spacing;
 
+  display: flex;
+  align-items: center;
   transform: translateY(-100%);
   opacity: 1;
-
   border-bottom: 1px solid var(--secondary);
 
   transition: transform 0.5s;
-
-  display: flex;
-  align-items: center;
 
   &.--success {
     background: $notification-bar-success-color;

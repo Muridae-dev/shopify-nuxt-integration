@@ -16,6 +16,9 @@ designs
 functionality
     - Add search
 
+    - Filter:
+        - If there's more than x amount in one category, only show y amount & hide rest
+
     - NAV:
         - Dropdown for collections ?
 
