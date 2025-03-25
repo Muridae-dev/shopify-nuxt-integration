@@ -17,7 +17,6 @@ import { watchEffect } from "vue";
 const productStore = useProductStore();
 const route = useRoute();
 
-// Automatically fetch products when the route changes
 watchEffect(() => {
   const collectionHandler = route.params.collectionHandler;
 

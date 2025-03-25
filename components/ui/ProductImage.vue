@@ -5,15 +5,15 @@
       :to="`/products/${imageLink}`"
       aria-hidden="true"
     ></NuxtLink>
-    <img :alt="imageAlt" :src="imageSrc" />
+    <img v-if="imageSrc" :alt="imageAlt" :src="imageSrc" />
     <img v-if="imageHoverSrc" class="product-image--alt" :src="imageHoverSrc" />
   </figure>
 </template>
 
 <script lang="ts" setup>
 interface ProductImageProps {
-  imageSrc: string;
-  imageAlt: string;
+  imageSrc?: string;
+  imageAlt?: string;
   imageHoverSrc?: string | false;
   imageLink?: string;
 }

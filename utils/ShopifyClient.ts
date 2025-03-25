@@ -272,7 +272,8 @@ export const ShopifyGetCart = async (cartId: string) => {
                     handle
                   }
                   image {
-                    url
+                    transformedSrc(maxWidth: 200, maxHeight: 200)
+                    altText
                   }
                 
                 }
@@ -342,6 +343,7 @@ export const ShopifyMetaData = async () => {
                 title
                 image {
                   transformedSrc(maxHeight: 1200)
+                  altText
                 }
               }
             }

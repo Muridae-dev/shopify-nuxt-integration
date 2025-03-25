@@ -1,12 +1,11 @@
 <template>
-  <div
-    class="cart-product parent text-sm --uppercase"
-    v-if="product.merchandise.image"
-  >
-    <!-- TODO: Above v-if might be worth looking into... -->
+  <div class="cart-product parent text-sm --uppercase">
     <UiProductImage
-      :imageSrc="product.merchandise.image.url"
-      :imageAlt="`[[ TODO ]]`"
+      :imageSrc="product.merchandise.image?.transformedSrc"
+      :imageAlt="
+        product.merchandise.image?.altText ??
+        `Image for ${product.merchandise.product.title}`
+      "
       :imageLink="product.merchandise.product.handle"
     />
 
@@ -67,12 +66,12 @@ watch(quantityRef, (newQuantity) => {
 
 <style lang="scss">
 .cart-product {
+  height: 150px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 50px;
-
-  height: 150px;
 
   .cart-product-title {
     color: inherit;
@@ -81,6 +80,7 @@ watch(quantityRef, (newQuantity) => {
 
   .cart-product-info {
     width: 100%;
+
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;

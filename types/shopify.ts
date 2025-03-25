@@ -52,7 +52,8 @@ export interface ShopifyCartProduct {
       handle: string;
     };
     image?: {
-      url: string;
+      transformedSrc: string;
+      altText: string;
     };
   };
   cost: {
