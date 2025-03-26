@@ -179,7 +179,7 @@ export const GetProduct = async (productHandler: string) => {
                 images(first: 10) {
                   edges {
                     node {
-                      transformedSrc(maxWidth: 1200, maxHeight: 1200)
+                      transformedSrc(maxWidth: 700, maxHeight: 700)
                       altText
                     }
                   }
@@ -272,7 +272,8 @@ export const ShopifyGetCart = async (cartId: string) => {
                     handle
                   }
                   image {
-                    url
+                    transformedSrc(maxWidth: 200, maxHeight: 200)
+                    altText
                   }
                 
                 }
@@ -329,6 +330,51 @@ export const ShopifyUpdateLineItem = async ({ cartId, product }: any) => {
   return result.data;
 };
 
+export const ShopifyRemoveCartItem = async ({ cartId, lineId }: any) => {
+  const params = {
+    query: `
+    mutation RemoveCartItem($cartId: ID!, $lineId: ID!) {
+      cartLinesRemove(cartId: $cartId, lineIds: [$lineId]) {
+        cart {
+          id
+          lines(first: 100) {
+            edges {
+              node {
+                id
+                quantity
+                merchandise {
+                    ... on ProductVariant {
+                    id
+                    title
+                    product {
+                      title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `,
+    variables: { cartId, lineId },
+  };
+
+  const result = await ShopifyClientJson(JSON.stringify(params));
+
+  if (result.error) {
+    console.error("Error updating line-item: ", result.error);
+    return null;
+  }
+
+  return result.data;
+};
+
 export const ShopifyMetaData = async () => {
   const params = {
     query: `query MyQuery($handle: MetaobjectHandleInput) {
@@ -342,6 +388,7 @@ export const ShopifyMetaData = async () => {
                 title
                 image {
                   transformedSrc(maxHeight: 1200)
+                  altText
                 }
               }
             }

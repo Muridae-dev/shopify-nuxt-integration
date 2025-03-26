@@ -45,15 +45,20 @@
 </template>
 
 <script setup lang="ts">
+import type { ShopifyProduct } from "~/types/shopify";
+
 interface ProductCardProps {
-  product: any;
+  product: ShopifyProduct;
 }
 
 defineProps<ProductCardProps>();
 
 const route = useRoute();
 
-const productIsPartOfCollection = (cardCollection: any) => {
+// TODO: Do something similar to filtering to check wether any of the items collections match
+const productIsPartOfCollection = (cardCollection: {
+  node: { title: string; handle: string };
+}) => {
   return (
     cardCollection &&
     route.params.collectionHandler === cardCollection.node.handle
@@ -71,6 +76,7 @@ const productIsPartOfCollection = (cardCollection: any) => {
 .product-card {
   width: $product-card-width;
   height: 100%;
+
   display: flex;
   flex-direction: column;
   color: $primary;
@@ -97,12 +103,13 @@ const productIsPartOfCollection = (cardCollection: any) => {
   }
 
   .product-info {
+    padding-top: 10px;
+    height: 100%;
+
     order: 2;
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding-top: 10px;
-    height: 100%;
   }
 }
 </style>

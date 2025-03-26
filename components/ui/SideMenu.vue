@@ -12,6 +12,7 @@
       class="side-menu--backdrop"
       :class="{ active: isOpen }"
       @click="closeMenu"
+      aria-hidden="true"
     />
   </div>
 </template>
@@ -34,15 +35,16 @@ defineProps<SideMenuProps>();
   display: flex;
   flex-direction: column;
   gap: 40px;
+
   height: 100%;
   width: 100%;
   padding: 10px;
   max-width: $cart-max-width;
+  z-index: 1000;
 
   color: var(--secondary);
   background: transparent;
   backdrop-filter: $blur--menu;
-  z-index: 1000;
   overflow-y: scroll;
   border-right: 1px solid $primary;
 
@@ -75,14 +77,10 @@ defineProps<SideMenuProps>();
   height: 100dvh;
   z-index: 999;
 
-  background: black;
   pointer-events: none;
   opacity: 0;
 
-  transition: opacity 0.5s;
-
   &.active {
-    // opacity: 0.5; TODO: Make this work somehow
     pointer-events: unset;
   }
 }

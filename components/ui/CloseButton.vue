@@ -1,5 +1,7 @@
 <template>
-  <button class="cart-close-button" @click="closeMenu">X</button>
+  <button class="close-button" @click="closeMenu" aria-label="Close menu">
+    X
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -9,7 +11,7 @@ defineProps<{
 </script>
 
 <style lang="scss">
-.cart-close-button {
+.close-button {
   position: absolute;
   top: 5px;
   right: 10px;

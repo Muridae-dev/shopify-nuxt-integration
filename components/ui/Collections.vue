@@ -4,6 +4,7 @@
       class="collections-button-container"
       v-for="collection in collections.collections.edges"
     >
+      <!-- TODO: Add show all & maybe what collection is active -->
       <UiButton :href="`/collections/${collection.node.handle}`">{{
         collection.node.title
       }}</UiButton>
@@ -21,6 +22,7 @@ const collections = await GetCollections();
 .collections--container {
   display: flex;
   flex-wrap: wrap;
+
   padding: 20px var(--side-spacing);
   padding-bottom: 0px;
   gap: 10px;

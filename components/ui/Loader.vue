@@ -2,7 +2,6 @@
   <div>
     <div class="loader" />
     <span class="loader-spacing-text">LOADING</span>
-    <!-- TODO: THIS NEEDS TO BE FIXED ;_; -->
   </div>
 </template>
 
@@ -40,6 +39,6 @@
 }
 
 .loader-spacing-text {
-  color: transparent;
+  visibility: hidden;
 }
 </style>

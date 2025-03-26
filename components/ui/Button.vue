@@ -1,8 +1,8 @@
 <template>
   <component
     :is="href ? (href.startsWith('/') ? defineNuxtLink({}) : 'a') : 'button'"
-    :to="href?.startsWith('/') ? href : null"
-    :href="!href?.startsWith('/') ? href : null"
+    :to="href?.startsWith('/') ? href : undefined"
+    :href="!href?.startsWith('/') ? href : undefined"
     :class="['button', `button--${variant}`]"
     @click="href ? null : click ? click() : null"
     ><slot
@@ -24,18 +24,18 @@ withDefaults(defineProps<ButtonProps>(), {
 <style scoped lang="scss">
 .button {
   position: relative;
+  width: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
-  width: 100%;
   border: 1px solid;
+
   justify-self: flex-end;
-
-  font-family: $button-font--primary;
-  font-weight: 600;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  font-family: $button-font--primary;
+  font-weight: 600;
 
   &--primary {
     background: transparent;

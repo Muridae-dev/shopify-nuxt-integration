@@ -5,15 +5,15 @@
       :to="`/products/${imageLink}`"
       aria-hidden="true"
     ></NuxtLink>
-    <img :alt="imageAlt" :src="imageSrc" />
+    <img v-if="imageSrc" :alt="imageAlt" :src="imageSrc" />
     <img v-if="imageHoverSrc" class="product-image--alt" :src="imageHoverSrc" />
   </figure>
 </template>
 
 <script lang="ts" setup>
 interface ProductImageProps {
-  imageSrc: string;
-  imageAlt: string;
+  imageSrc?: string;
+  imageAlt?: string;
   imageHoverSrc?: string | false;
   imageLink?: string;
 }
@@ -24,11 +24,13 @@ defineProps<ProductImageProps>();
 <style lang="scss">
 .product-image-container {
   position: relative;
-  display: flex;
-  justify-content: center;
   height: 100%;
   aspect-ratio: 1;
   padding: 5px;
+
+  display: flex;
+  justify-content: center;
+
   background-color: $card-image-background;
 
   img {
@@ -41,6 +43,7 @@ defineProps<ProductImageProps>();
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     width: calc(100% - 10px);
     opacity: 0;
     transition: opacity 0.5s;

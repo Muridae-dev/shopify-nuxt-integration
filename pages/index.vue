@@ -5,7 +5,12 @@
         v-for="reference in metaData.metaobject.fields[0].references.nodes"
         class="front-page--reference-container"
       >
-        <img :src="reference.image.transformedSrc" />
+        <img
+          :src="reference.image.transformedSrc"
+          :alt="
+            reference.image.altText ?? `Image for ${reference.title} collection`
+          "
+        />
         <div class="front-page--reference-info">
           <span class="text-lg --uppercase">{{ reference.title }}</span>
           <span class="text-md" v-html="reference.descriptionHtml" />
@@ -27,26 +32,20 @@ const metaData = await ShopifyMetaData();
 </script>
 
 <style lang="scss">
-h1 {
-  color: var(--secondary);
-}
-
-body {
-  font-family: $base-level-font;
-}
-
 .front-page--reference-container {
   position: relative;
   height: 100dvh;
   width: 100vw;
-  overflow: hidden;
 
+  overflow: hidden;
   background: rgba(0, 0, 0, 0.3);
+
   img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     width: 100vw;
     height: auto;
     min-height: 100%;
@@ -59,13 +58,16 @@ body {
     top: 75%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     gap: 20px;
     max-width: 800px;
     width: 100%;
+
+    text-align: center;
 
     @include respond-to(sm) {
       top: 70%;

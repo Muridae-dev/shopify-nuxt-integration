@@ -8,10 +8,7 @@
     width="28"
     height="28"
   >
-    <!-- Bag body outline -->
     <rect x="6" y="8" width="12" height="12" />
-
-    <!-- Handle -->
     <path d="M8 8a4 4 0 0 1 8 0" />
   </svg>
 </template>

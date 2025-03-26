@@ -1,12 +1,11 @@
 <template>
-  <div
-    class="cart-product parent text-sm --uppercase"
-    v-if="product.merchandise.image"
-  >
-    <!-- TODO: Above v-if might be worth looking into... -->
+  <div class="cart-product parent text-sm --uppercase">
     <UiProductImage
-      :imageSrc="product.merchandise.image.url"
-      :imageAlt="`[[ TODO ]]`"
+      :imageSrc="product.merchandise.image?.transformedSrc"
+      :imageAlt="
+        product.merchandise.image?.altText ??
+        `Image for ${product.merchandise.product.title}`
+      "
       :imageLink="product.merchandise.product.handle"
     />
 
@@ -28,8 +27,10 @@
         </button>
         <input
           class="cart-product-quantity-input"
-          @change="(e) => (quantityRef = (e.target as HTMLInputElement).value)"
+          @change="(e) => (quantityRef = parseInt((e.target as HTMLInputElement).value))"
           :value="quantityRef"
+          :aria-label="`Quantity of ${product.merchandise.product.title} in cart`"
+          :name="`cart-item-${product.id}-qty`"
         />
         <button @click="quantityRef = quantityRef + 1">+</button>
       </div>
@@ -38,39 +39,51 @@
 </template>
 
 <script setup lang="ts">
+import type { ShopifyCartProduct } from "~/types/shopify";
+
 interface CartItemProps {
-  product: any;
-  quantity: any;
+  product: ShopifyCartProduct;
+  quantity: number;
 }
 
 const props = defineProps<CartItemProps>();
 
 const quantityRef = ref(props.quantity);
 
-const updateCart = ({ product, quantity }: any) => {
+const updateCart = ({ product, quantity }: CartItemProps) => {
   const { cartId } = useCartStore();
   const productInfo = {
     id: product.id,
     merchandiseId: product.merchandise.id,
-    quantity: parseInt(quantity),
+    quantity: quantity,
   };
 
   ShopifyUpdateLineItem({ cartId, product: productInfo });
 };
 
-watch(quantityRef, (newQuantity) => {
-  updateCart({ product: props.product, quantity: newQuantity });
+const removeCartItem = async (id: string) => {
+  const cartStore = useCartStore();
+  await ShopifyRemoveCartItem({ cartId: cartStore.cartId, lineId: id });
+  cartStore.fetchCart();
+};
+
+watch(quantityRef, async (newQuantity) => {
+  if (newQuantity === 0) {
+    removeCartItem(props.product.id);
+  } else {
+    await updateCart({ product: props.product, quantity: newQuantity });
+  }
 });
 </script>
 
 <style lang="scss">
 .cart-product {
+  height: 150px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 50px;
-
-  height: 150px;
 
   .cart-product-title {
     color: inherit;
@@ -79,6 +92,7 @@ watch(quantityRef, (newQuantity) => {
 
   .cart-product-info {
     width: 100%;
+
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;

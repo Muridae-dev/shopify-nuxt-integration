@@ -16,12 +16,17 @@ designs
 functionality
     - Add search
 
+    - Filter:
+        - If there's more than x amount in one category, only show y amount & hide rest
+
     - NAV:
         - Dropdown for collections ?
 
     - Product Page:
         - Quantity of items to add
         - Sizes? (maybe versions or something similar?)
+        - Provide error when adding more than allowed amount of items
+            - Currently it's not actually doing this but I'm still getting a success notification when adding more than the allowed amount of items
 
 misc
     - Add other products
@@ -32,6 +37,7 @@ misc
         - ETC
     - Remove unused fonts
     - Remove "edges" for all product fetching to use "node"
+    - Optimize transformedSrc based on screen-size
 
 bugs
     - When an item that's already added to cart gets added to cart again it doesn't increase its quantity

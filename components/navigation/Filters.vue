@@ -24,6 +24,7 @@
           <input
             class="hidden"
             type="checkbox"
+            :name="`filter-${filterType}`"
             :value="value"
             :checked="filterStore.selectedFilters[filterType].includes(value)"
             @change="toggleFilter(filterType, value)"
@@ -43,12 +44,13 @@
 
 <script setup lang="ts">
 import { useFilterStore } from "@/stores/filterStore";
+import type { FilterTypes } from "~/types/filters";
 
 const filterStore = useFilterStore();
 
 const closeFilters = () => (filterStore.isActive = false);
 
-const toggleFilter = (filterType: string, value: string) => {
+const toggleFilter = (filterType: FilterTypes, value: string) => {
   const currentFilters = filterStore.selectedFilters[filterType];
   if (currentFilters.includes(value)) {
     filterStore.updateSelectedFilters(
@@ -65,8 +67,8 @@ const toggleFilter = (filterType: string, value: string) => {
 .filter-type-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 .checkbox-label {
@@ -82,16 +84,16 @@ const toggleFilter = (filterType: string, value: string) => {
     display: inline-block;
     height: 32px;
     width: 32px;
+
     border: 1px solid black;
     background: white;
-
-    box-shadow: inset 0 0 0 0 white; /* No inner box initially */
+    box-shadow: inset 0 0 0 0 white;
   }
 
   &.--checked {
     &::before {
       background: black;
-      box-shadow: inset 0 0 0 4px white; /* Expands inward to form the black box */
+      box-shadow: inset 0 0 0 4px white;
     }
   }
 }

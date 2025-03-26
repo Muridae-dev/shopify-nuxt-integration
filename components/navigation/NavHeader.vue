@@ -3,7 +3,7 @@
   <header
     class="text-header --uppercase"
     :class="{
-      'hide-header': notificationStore.headerHidden,
+      '--hidden': notificationStore.headerHidden,
       'is-front-page': isFrontPage,
     }"
     ref="header"
@@ -52,7 +52,8 @@ const toggleMenu = () => {
 
 const handleScroll = () => {
   const currentScroll = window.scrollY;
-  notificationStore.headerHidden = currentScroll > lastScroll.value;
+  notificationStore.headerHidden =
+    currentScroll > lastScroll.value && currentScroll > 50;
   lastScroll.value = currentScroll;
 };
 
@@ -67,36 +68,25 @@ onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 }
 
 header {
+  position: fixed;
+  top: 0;
+  transform: translateY(0);
+  transition: transform 0.5s;
+
   height: $header-spacing;
   width: 100%;
   z-index: 99;
-
   padding: 0px var(--side-spacing);
+
+  display: flex;
+  align-items: center;
 
   backdrop-filter: $blur;
   border-bottom: 1px solid;
   border-color: var(--secondary);
 
-  position: fixed;
-  top: 0;
-  transform: translateY(0);
-  transition: transform 0.5s;
-  display: flex;
-  align-items: center;
-
-  &.hide-header {
+  &.--hidden {
     transform: translateY(-100%);
-  }
-
-  a,
-  button {
-    color: var(--secondary);
-    padding: 0;
-  }
-
-  button {
-    background: transparent;
-    border: none;
   }
 }
 
@@ -128,18 +118,19 @@ header {
   }
 }
 
-// MOBILE
 .mobile-nav {
   display: none;
 
   @include respond-to(sm) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
     transform: translateX(-100%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 100vw;
     height: 100vh;
     backdrop-filter: blur(25px);
