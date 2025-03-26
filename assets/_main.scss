@@ -70,3 +70,16 @@ button {
   color: var(--secondary);
   padding: 0;
 }
+
+// -- Homepage styles
+.homepage {
+  --secondary: white;
+  header {
+    transition: border-color 0.5s, transform 0.5s;
+
+    a,
+    button {
+      transition: color 0.5s;
+    }
+  }
+}

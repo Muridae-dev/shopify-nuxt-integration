@@ -4,6 +4,7 @@
       class="collections-button-container"
       v-for="collection in collections.collections.edges"
     >
+      <!-- TODO: Add show all & maybe what collection is active -->
       <UiButton :href="`/collections/${collection.node.handle}`">{{
         collection.node.title
       }}</UiButton>

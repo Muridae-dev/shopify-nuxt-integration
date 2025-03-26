@@ -1,7 +1,10 @@
 <template>
   <div>
     <section>
-      <h1 class="collections-title-container text-lg">
+      <h1
+        class="collections-title-container text-lg"
+        aria-label="Viewing collection"
+      >
         {{ collectionName ?? "Show All" }}
       </h1>
       <UiCollections />
@@ -12,7 +15,7 @@
       >
         Filters
       </UiButton>
-      <div key="products" class="product-container">
+      <div class="product-container">
         <ProductCard
           v-for="{ node: product } in filteredProducts"
           v-bind="{ product }"
@@ -36,6 +39,7 @@ const props = defineProps<ProductViewProps>();
 
 const filterStore = useFilterStore();
 
+// TODO: Look into moving this into filterStore
 const filteredProducts = computed(() => {
   return props.products.filter((product) => {
     return (
@@ -79,20 +83,8 @@ $product-container-padding: 20px;
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 20px;
   z-index: 99;
-}
 
-.loading-products {
-  height: calc(100vh - $header-spacing - ($product-container-padding * 2));
-  width: 100%;
-  color: var(--secondary);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-family: "roc-grotesk-extrawide",  sans-serif;
-  font-weight: 700;
+  padding: 10px 20px;
 }
 </style>
