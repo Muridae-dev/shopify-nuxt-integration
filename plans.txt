@@ -25,6 +25,8 @@ functionality
     - Product Page:
         - Quantity of items to add
         - Sizes? (maybe versions or something similar?)
+        - Provide error when adding more than allowed amount of items
+            - Currently it's not actually doing this but I'm still getting a success notification when adding more than the allowed amount of items
 
 misc
     - Add other products

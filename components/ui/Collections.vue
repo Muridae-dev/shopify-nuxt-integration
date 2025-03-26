@@ -22,6 +22,7 @@ const collections = await GetCollections();
 .collections--container {
   display: flex;
   flex-wrap: wrap;
+
   padding: 20px var(--side-spacing);
   padding-bottom: 0px;
   gap: 10px;
