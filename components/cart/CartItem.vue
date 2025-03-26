@@ -29,6 +29,8 @@
           class="cart-product-quantity-input"
           @change="(e) => (quantityRef = parseInt((e.target as HTMLInputElement).value))"
           :value="quantityRef"
+          :aria-label="`Quantity of ${product.merchandise.product.title} in cart`"
+          :name="`cart-item-${product.id}-qty`"
         />
         <button @click="quantityRef = quantityRef + 1">+</button>
       </div>

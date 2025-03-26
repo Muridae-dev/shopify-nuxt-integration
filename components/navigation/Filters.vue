@@ -24,6 +24,7 @@
           <input
             class="hidden"
             type="checkbox"
+            :name="`filter-${filterType}`"
             :value="value"
             :checked="filterStore.selectedFilters[filterType].includes(value)"
             @change="toggleFilter(filterType, value)"
