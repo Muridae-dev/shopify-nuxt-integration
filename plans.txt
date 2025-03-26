@@ -37,6 +37,7 @@ misc
         - ETC
     - Remove unused fonts
     - Remove "edges" for all product fetching to use "node"
+    - Optimize transformedSrc based on screen-size
 
 bugs
     - When an item that's already added to cart gets added to cart again it doesn't increase its quantity
