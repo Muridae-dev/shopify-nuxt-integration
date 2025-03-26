@@ -330,6 +330,51 @@ export const ShopifyUpdateLineItem = async ({ cartId, product }: any) => {
   return result.data;
 };
 
+export const ShopifyRemoveCartItem = async ({ cartId, lineId }: any) => {
+  const params = {
+    query: `
+    mutation RemoveCartItem($cartId: ID!, $lineId: ID!) {
+      cartLinesRemove(cartId: $cartId, lineIds: [$lineId]) {
+        cart {
+          id
+          lines(first: 100) {
+            edges {
+              node {
+                id
+                quantity
+                merchandise {
+                    ... on ProductVariant {
+                    id
+                    title
+                    product {
+                      title
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `,
+    variables: { cartId, lineId },
+  };
+
+  const result = await ShopifyClientJson(JSON.stringify(params));
+
+  if (result.error) {
+    console.error("Error updating line-item: ", result.error);
+    return null;
+  }
+
+  return result.data;
+};
+
 export const ShopifyMetaData = async () => {
   const params = {
     query: `query MyQuery($handle: MetaobjectHandleInput) {

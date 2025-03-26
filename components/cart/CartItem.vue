@@ -61,8 +61,18 @@ const updateCart = ({ product, quantity }: CartItemProps) => {
   ShopifyUpdateLineItem({ cartId, product: productInfo });
 };
 
-watch(quantityRef, (newQuantity) => {
-  updateCart({ product: props.product, quantity: newQuantity });
+const removeCartItem = async (id: string) => {
+  const cartStore = useCartStore();
+  await ShopifyRemoveCartItem({ cartId: cartStore.cartId, lineId: id });
+  cartStore.fetchCart();
+};
+
+watch(quantityRef, async (newQuantity) => {
+  if (newQuantity === 0) {
+    removeCartItem(props.product.id);
+  } else {
+    await updateCart({ product: props.product, quantity: newQuantity });
+  }
 });
 </script>
 

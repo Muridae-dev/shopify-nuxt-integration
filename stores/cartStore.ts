@@ -28,13 +28,10 @@ export const useCartStore = defineStore("cart", {
 
       try {
         const data = await ShopifyGetCart(this.cartId);
-        this.cart = {
-          lines: {
-            edges: data.cart.lines.edges as ShopifyCartProductEdges,
-          },
-          checkoutUrl: data.cart.checkoutUrl,
-          totalQuantity: data.cart.totalQuantity,
-        };
+
+        this.cart.lines.edges = data.cart.lines.edges;
+        this.cart.checkoutUrl = data.cart.checkoutUrl;
+        this.cart.totalQuantity = data.cart.totalQuantity;
       } catch (error) {
         console.error("Error fetching cart:", error);
       }
@@ -84,9 +81,9 @@ export const useCartStore = defineStore("cart", {
           "Failed to add item to cart."
         );
         console.error("Cart update error:", error);
+      } finally {
+        this.cartUpdating = false;
       }
-
-      this.cartUpdating = false;
     },
   },
 });

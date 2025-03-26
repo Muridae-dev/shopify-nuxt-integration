@@ -11,7 +11,7 @@
 
     <CartItem
       v-for="{ node } in cartStore.cart.lines.edges"
-      :key="node.id"
+      :key="node.id + node.quantity"
       v-bind="{ product: node, quantity: node.quantity }"
     />
 
